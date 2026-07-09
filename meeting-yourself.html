@@ -1,0 +1,936 @@
+﻿<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Встреча с собой | Наталья Хоруженко</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --graphite: #111111;
+        --black: #050505;
+        --gold: #d8b58a;
+        --milk: #e9e2da;
+        --muted: #aaa19a;
+        --line: rgba(216, 181, 138, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--black);
+        color: rgba(233, 226, 218, 0.78);
+        font-family: "Manrope", Arial, sans-serif;
+        overflow-x: hidden;
+      }
+
+      a,
+      button {
+        font: inherit;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page {
+        background:
+          radial-gradient(circle at 78% 12%, rgba(216, 181, 138, 0.08), transparent 30%),
+          linear-gradient(180deg, #141414 0%, #060606 100%);
+      }
+
+      .header {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 40px;
+        align-items: center;
+        padding: 30px clamp(18px, 5vw, 70px) 18px;
+        background: rgba(5, 5, 5, 0.78);
+        border-bottom: 1px solid rgba(216, 181, 138, 0.12);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        text-decoration: none;
+      }
+
+      .mark {
+        color: rgba(233, 226, 218, 0.88);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 45px;
+        font-weight: 600;
+        line-height: 0.85;
+      }
+
+      .brand-line {
+        width: 1px;
+        height: 34px;
+        background: rgba(233, 226, 218, 0.24);
+      }
+
+      .brand-text {
+        max-width: 190px;
+        color: rgba(233, 226, 218, 0.68);
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.35;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: clamp(15px, 2.5vw, 42px);
+      }
+
+      .nav a {
+        position: relative;
+        color: rgba(233, 226, 218, 0.72);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+        transition: color 180ms ease;
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible,
+      .nav a.is-active {
+        color: var(--gold);
+      }
+
+      .nav a.is-active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -10px;
+        height: 1px;
+        background: rgba(216, 181, 138, 0.44);
+      }
+
+      .hero {
+        position: relative;
+        min-height: calc(100svh - 94px);
+        display: grid;
+        grid-template-columns: minmax(420px, 48%) minmax(420px, 52%);
+        border-bottom: 1px solid rgba(216, 181, 138, 0.14);
+        overflow: hidden;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 52px clamp(24px, 6vw, 86px);
+        background:
+          linear-gradient(90deg, rgba(5, 5, 5, 1) 0%, rgba(5, 5, 5, 0.94) 72%, rgba(5, 5, 5, 0.72) 100%);
+      }
+
+      .hero-title {
+        margin: 0 0 32px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(58px, 5.8vw, 78px);
+        font-weight: 600;
+        line-height: 0.9;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .hero-lead {
+        margin: 0 0 30px;
+        color: rgba(233, 226, 218, 0.84);
+        font-size: clamp(17px, 1.4vw, 21px);
+        font-weight: 300;
+        line-height: 1.55;
+      }
+
+      .hero-text,
+      .section-text,
+      .price-list,
+      .final-text,
+      .aside-note {
+        color: rgba(233, 226, 218, 0.68);
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.7;
+      }
+
+      .hero-text {
+        max-width: 470px;
+        margin: 0 0 34px;
+      }
+
+      .hero-photo {
+        position: relative;
+        min-height: 100%;
+        background-image: url("img/meeting-author-hero.jpg");
+        background-size: cover;
+        background-position: 58% 42%;
+        filter: grayscale(1) contrast(1.05) brightness(0.74);
+      }
+
+      .hero-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(5, 5, 5, 0.74) 0%, rgba(5, 5, 5, 0.18) 34%, rgba(5, 5, 5, 0.08) 72%, rgba(5, 5, 5, 0.28) 100%),
+          linear-gradient(180deg, rgba(5, 5, 5, 0.14) 0%, rgba(5, 5, 5, 0.02) 52%, rgba(5, 5, 5, 0.42) 100%);
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: min(425px, 100%);
+        min-height: 58px;
+        padding: 14px 26px;
+        border: 1px solid rgba(216, 181, 138, 0.72);
+        border-radius: 4px;
+        color: var(--gold);
+        background: rgba(5, 5, 5, 0.24);
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+      }
+
+      .cta-button:hover,
+      .cta-button:focus-visible {
+        color: #000000;
+        border-color: var(--gold);
+        background: var(--gold);
+      }
+
+      .process {
+        padding: 64px clamp(24px, 7vw, 86px) 70px;
+        border-bottom: 1px solid rgba(216, 181, 138, 0.14);
+        background:
+          radial-gradient(circle at 16% 24%, rgba(216, 181, 138, 0.08), transparent 24%),
+          #0b0b0b;
+      }
+
+      .section-title {
+        margin: 0;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(38px, 4.2vw, 56px);
+        font-weight: 500;
+        line-height: 1.02;
+      }
+
+      .title-line {
+        width: 48px;
+        height: 1px;
+        margin: 18px 0 44px;
+        background: rgba(216, 181, 138, 0.58);
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .step {
+        min-height: 292px;
+        padding-right: clamp(22px, 4vw, 56px);
+      }
+
+      .step + .step {
+        padding-left: clamp(22px, 4vw, 56px);
+        border-left: 1px solid rgba(216, 181, 138, 0.16);
+      }
+
+      .step-number {
+        margin: 0 0 16px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .step-title {
+        margin: 0 0 18px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 1.15;
+      }
+
+      .step-text {
+        margin: 0;
+        color: rgba(233, 226, 218, 0.66);
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      .after {
+        position: relative;
+        min-height: 76vh;
+        min-height: 76svh;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(216, 181, 138, 0.14);
+      }
+
+      .after-copy {
+        position: relative;
+        z-index: 2;
+        max-width: 760px;
+        padding: 72px clamp(24px, 6vw, 86px);
+        background: linear-gradient(90deg, rgba(8, 8, 8, 0.9), rgba(8, 8, 8, 0.54), rgba(8, 8, 8, 0));
+      }
+
+      .after-photo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("img/со мной 2.jpg");
+        background-size: cover;
+        background-position: 58% 50%;
+        filter: grayscale(1) contrast(1.06) brightness(0.66);
+      }
+
+      .after-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(8, 8, 8, 0.84) 0%, rgba(8, 8, 8, 0.36) 28%, rgba(8, 8, 8, 0.1) 70%, rgba(8, 8, 8, 0.38) 100%),
+          linear-gradient(180deg, rgba(8, 8, 8, 0.16) 0%, rgba(8, 8, 8, 0.04) 42%, rgba(8, 8, 8, 0.55) 100%);
+      }
+
+      .price {
+        padding: 54px 24px 56px;
+        border-bottom: 1px solid rgba(216, 181, 138, 0.14);
+        background:
+          radial-gradient(circle at 50% 12%, rgba(216, 181, 138, 0.07), transparent 28%),
+          #080808;
+        text-align: center;
+      }
+
+      .price-inner {
+        width: min(560px, 100%);
+        margin: 0 auto;
+      }
+
+      .price-kicker {
+        margin: 0 0 8px;
+        color: rgba(233, 226, 218, 0.72);
+        font-size: 18px;
+        font-weight: 300;
+      }
+
+      .price-value {
+        margin: 0;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(50px, 5vw, 72px);
+        font-weight: 500;
+        line-height: 1;
+      }
+
+      .price-divider {
+        width: 36px;
+        height: 1px;
+        margin: 20px auto;
+        background: rgba(216, 181, 138, 0.5);
+      }
+
+      .price-list {
+        margin: 0;
+      }
+
+      .price-note {
+        margin: 28px 0 0;
+        color: rgba(233, 226, 218, 0.52);
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 1.6;
+      }
+
+      .final {
+        position: relative;
+        min-height: 560px;
+        display: grid;
+        grid-template-columns: minmax(360px, 48%) minmax(320px, 52%);
+        gap: 40px;
+        align-items: end;
+        padding: 70px clamp(24px, 7vw, 86px);
+        background:
+          linear-gradient(90deg, rgba(5, 5, 5, 0.82), rgba(5, 5, 5, 0.92)),
+          radial-gradient(circle at 12% 34%, rgba(216, 181, 138, 0.1), transparent 28%),
+          #070707;
+      }
+
+      .final-title {
+        margin: 0 0 24px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(42px, 4.8vw, 66px);
+        font-weight: 500;
+        line-height: 1;
+      }
+
+      .final-yes {
+        display: block;
+        margin: 14px 0 8px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(38px, 5vw, 62px);
+        line-height: 1;
+      }
+
+      .final .cta-button {
+        margin-top: 28px;
+      }
+
+      .aside {
+        justify-self: end;
+        width: min(340px, 100%);
+        padding-bottom: 20px;
+      }
+
+      .aside-line {
+        width: 46px;
+        height: 1px;
+        margin: 24px 0;
+        background: rgba(216, 181, 138, 0.46);
+      }
+
+      .site-footer {
+        padding: 38px 24px;
+        background: #000000;
+        color: #888888;
+        text-align: center;
+      }
+
+      .footer-actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 22px 52px;
+      }
+
+      .footer-actions a,
+      .footer-actions button {
+        padding: 0;
+        border: 0;
+        color: #a8a8a8;
+        background: transparent;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 180ms ease;
+      }
+
+      .footer-actions a:hover,
+      .footer-actions a:focus-visible,
+      .footer-actions button:hover,
+      .footer-actions button:focus-visible {
+        color: var(--gold);
+      }
+
+      .footer-copy {
+        max-width: 980px;
+        margin: 30px auto 0;
+        color: #777777;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 1.55;
+      }
+
+      .callback-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(0, 0, 0, 0.72);
+      }
+
+      .callback-modal {
+        position: relative;
+        width: min(560px, 100%);
+        max-height: min(92svh, 860px);
+        overflow-y: auto;
+        padding: 44px 46px 40px;
+        background: #ffffff;
+        color: #000000;
+        box-shadow: 0 24px 90px rgba(0, 0, 0, 0.42);
+      }
+
+      .callback-close {
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        background: transparent;
+        color: #000000;
+        font-size: 34px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .callback-title {
+        margin: 0 0 28px;
+        color: #000000;
+        font-size: clamp(30px, 4.2vw, 38px);
+        font-weight: 400;
+        line-height: 1.15;
+        text-align: center;
+      }
+
+      .callback-form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .callback-field {
+        display: grid;
+        gap: 7px;
+      }
+
+      .callback-label {
+        color: #000000;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .callback-input,
+      .callback-select {
+        width: 100%;
+        min-height: 60px;
+        border: 1px solid #cfcfcf;
+        border-radius: 4px;
+        padding: 0 20px;
+        background: #ffffff;
+        color: #000000;
+        font-size: 16px;
+        outline: none;
+      }
+
+      .callback-input::placeholder {
+        color: #8c8c8c;
+      }
+
+      .callback-input:focus,
+      .callback-select:focus {
+        border-color: #000000;
+      }
+
+      .callback-phone-row {
+        display: grid;
+        grid-template-columns: minmax(150px, 0.42fr) minmax(170px, 1fr);
+        gap: 10px;
+      }
+
+      .callback-error {
+        min-height: 16px;
+        color: #b00020;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .callback-submit {
+        min-height: 60px;
+        border: 0;
+        border-radius: 4px;
+        background: #000000;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .callback-note {
+        margin: 2px 0 0;
+        color: #5f5f5f;
+        font-size: 12px;
+        line-height: 1.45;
+        text-align: center;
+      }
+
+      @media (max-width: 980px) {
+        .header {
+          grid-template-columns: 1fr;
+          gap: 22px;
+          padding: 24px 22px 18px;
+        }
+
+        .nav {
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          gap: 14px 24px;
+        }
+
+        .hero,
+        .after,
+        .final {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        .hero-copy {
+          padding: 56px 24px;
+        }
+
+        .hero-photo {
+          min-height: 64svh;
+          order: -1;
+        }
+
+        .steps {
+          grid-template-columns: 1fr;
+          gap: 34px;
+        }
+
+        .step,
+        .step + .step {
+          min-height: auto;
+          padding: 0;
+          border-left: 0;
+        }
+
+        .after-photo {
+          min-height: 100%;
+        }
+
+        .after-copy,
+        .process,
+        .final {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+
+        .aside {
+          justify-self: start;
+        }
+
+        .callback-modal {
+          padding: 38px 24px 30px;
+        }
+
+        .callback-phone-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .brand-text,
+        .brand-line {
+          display: none;
+        }
+
+        .mark {
+          font-size: 38px;
+        }
+
+        .nav a {
+          font-size: 12px;
+          white-space: normal;
+        }
+
+        .hero-title {
+          font-size: 49px;
+        }
+
+        .hero-photo {
+          min-height: 50svh;
+          background-position: 56% 34%;
+        }
+
+        .after-photo {
+          background-position: 58% 50%;
+        }
+
+        .cta-button {
+          min-height: 52px;
+          padding-left: 16px;
+          padding-right: 16px;
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <a class="brand" href="index.html" aria-label="На главную">
+          <div class="mark">HX</div>
+          <div class="brand-line" aria-hidden="true"></div>
+          <div class="brand-text">Наталья Хоруженко<br />фотограф | психолог</div>
+        </a>
+        <nav class="nav" aria-label="Основное меню">
+          <a href="index.html#top">Главная</a>
+          <a href="about.html">Об авторе</a>
+          <a class="is-active" href="meeting-yourself.html">Встреча с собой</a>
+          <a href="index.html#stories">Истории</a>
+          <a href="book.html">Книга</a>
+          <a href="index.html#practice">Наставничество</a>
+          <a href="contacts.html">Контакты</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <h1 class="hero-title">Встреча<br />с собой</h1>
+            <p class="hero-lead">Не фотосессия.<br />Не терапия.<br />Не день красоты.</p>
+            <p class="hero-text">Это авторская практика, которая помогает женщине перестать бороться с собой и впервые увидеть себя настоящей.</p>
+            <button class="cta-button" type="button" data-open-callback>Записаться на предварительную встречу</button>
+          </div>
+          <div class="hero-photo" aria-label="Черно-белый портрет женщины"></div>
+        </section>
+
+        <section class="process">
+          <h2 class="section-title">Как проходит встреча</h2>
+          <div class="title-line" aria-hidden="true"></div>
+          <div class="steps">
+            <article class="step">
+              <p class="step-number">01</p>
+              <h3 class="step-title">Предварительная встреча</h3>
+              <p class="step-text">Мы знакомимся.<br />Я внимательно слушаю твою историю.<br /><br />Мы говорим о теле, о чувствах, о том, какой ты хочешь увидеть себя.<br /><br />Именно здесь начинается наша работа.</p>
+            </article>
+            <article class="step">
+              <p class="step-number">02</p>
+              <h3 class="step-title">Авторская концепция</h3>
+              <p class="step-text">После встречи я создаю концепцию только для тебя.<br /><br />Не образ.<br />Не сценарий.<br /><br />А пространство, в котором тебе будет безопасно быть собой.<br /><br />Мы вместе подбираем место, одежду, детали будущей встречи.</p>
+            </article>
+            <article class="step">
+              <p class="step-number">03</p>
+              <h3 class="step-title">Практика</h3>
+              <p class="step-text">И только потом происходит сама встреча.<br /><br />Без спешки.<br />Без необходимости нравиться.<br /><br />Через разговор.<br />Через тело.<br />Через присутствие.<br /><br />И именно тогда рождаются фотографии.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="after">
+          <div class="after-copy">
+            <h2 class="section-title">Что остаётся после</h2>
+            <div class="title-line" aria-hidden="true"></div>
+            <p class="section-text">Фотографии —<br />лишь часть этой встречи.<br /><br />Самое важное остаётся внутри.<br /><br />Спокойствие.<br />Доверие себе.<br />Контакт со своим телом.<br />Внутренняя опора.<br /><br />И фотографии, которые помогают снова возвращаться в это состояние.</p>
+          </div>
+          <div class="after-photo" aria-label="Черно-белая фотография у стены"></div>
+        </section>
+
+        <section class="price">
+          <div class="price-inner">
+            <p class="price-kicker">Авторская практика</p>
+            <p class="price-value">39 000 ₽</p>
+            <div class="price-divider" aria-hidden="true"></div>
+            <p class="price-list">В стоимость входит:<br /><br />→ предварительная встреча<br />→ индивидуальная концепция<br />→ сопровождение подготовки<br />→ практика «Встреча с собой»<br />→ фотосессия<br />→ художественная обработка фотографий</p>
+            <p class="price-note">Дополнительно оплачиваются аренда студии и услуги визажиста.<br />Все детали мы спокойно обсуждаем заранее.</p>
+          </div>
+        </section>
+
+        <section class="final">
+          <div>
+            <h2 class="final-title">Возможно...</h2>
+            <p class="final-text">Ты давно ищешь<br />не красивые фотографии.<br /><br />А место, где можно наконец перестать быть сильной, правильной и удобной.<br /><br />Если внутри уже появилось тихое</p>
+            <span class="final-yes">«Да...»</span>
+            <p class="final-text">значит,<br />эта встреча уже начинается.</p>
+            <button class="cta-button" type="button" data-open-callback>Записаться на предварительную встречу</button>
+          </div>
+          <aside class="aside">
+            <p class="aside-note">Практика проходит только<br />в индивидуальном формате.</p>
+            <div class="aside-line" aria-hidden="true"></div>
+            <p class="aside-note">Каждая встреча создаётся<br />только для одной женщины.</p>
+          </aside>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-actions">
+          <button type="button" data-open-callback>Заказать обратный звонок</button>
+          <a href="privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>
+          <a href="offer.html" target="_blank" rel="noopener">Оферта</a>
+        </div>
+        <p class="footer-copy">© ИП Хоруженко Наталья Петровна. Отправляя любую форму на сайте, вы даете <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a>.</p>
+      </footer>
+    </div>
+
+    <script>
+      const countries = [
+        ["Россия +7", "🇷🇺 Россия +7"],
+        ["Казахстан +7", "🇰🇿 Казахстан +7"],
+        ["Беларусь +375", "🇧🇾 Беларусь +375"],
+        ["Украина +380", "🇺🇦 Украина +380"],
+        ["Армения +374", "🇦🇲 Армения +374"],
+        ["Грузия +995", "🇬🇪 Грузия +995"],
+        ["Азербайджан +994", "🇦🇿 Азербайджан +994"],
+        ["Кыргызстан +996", "🇰🇬 Кыргызстан +996"],
+        ["Узбекистан +998", "🇺🇿 Узбекистан +998"],
+        ["Таджикистан +992", "🇹🇯 Таджикистан +992"],
+        ["Турция +90", "🇹🇷 Турция +90"],
+        ["Германия +49", "🇩🇪 Германия +49"],
+        ["Франция +33", "🇫🇷 Франция +33"],
+        ["Италия +39", "🇮🇹 Италия +39"],
+        ["Испания +34", "🇪🇸 Испания +34"],
+        ["Великобритания +44", "🇬🇧 Великобритания +44"],
+        ["США +1", "🇺🇸 США +1"],
+        ["Канада +1", "🇨🇦 Канада +1"],
+        ["ОАЭ +971", "🇦🇪 ОАЭ +971"],
+        ["Израиль +972", "🇮🇱 Израиль +972"],
+        ["Китай +86", "🇨🇳 Китай +86"],
+        ["Индия +91", "🇮🇳 Индия +91"],
+        ["Таиланд +66", "🇹🇭 Таиланд +66"]
+      ];
+
+      const modalHtml = `
+        <div class="callback-overlay" role="dialog" aria-modal="true" aria-labelledby="callback-title">
+          <div class="callback-modal">
+            <button class="callback-close" type="button" aria-label="Закрыть форму">×</button>
+            <h2 class="callback-title" id="callback-title">Оставьте ваши<br />контактные данные, и я<br />с вами свяжусь</h2>
+            <form class="callback-form" action="https://formsubmit.co/ilyzenko11@gmail.com" method="POST" novalidate>
+              <input type="hidden" name="_subject" value="Заявка на встречу с собой" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="Телефон полностью" value="" />
+              <label class="callback-field">
+                <input class="callback-input" name="Имя" type="text" placeholder="Ваше Имя" autocomplete="name" />
+                <span class="callback-error" data-error-for="name"></span>
+              </label>
+              <div class="callback-field">
+                <div class="callback-phone-row">
+                  <select class="callback-select" name="Страна" aria-label="Страна телефона">
+                    ${countries.map(([value, label]) => `<option value="${value}">${label}</option>`).join("")}
+                  </select>
+                  <input class="callback-input" name="Телефон" type="tel" placeholder="(000) 000-0000" autocomplete="tel" />
+                </div>
+                <span class="callback-error" data-error-for="phone"></span>
+              </div>
+              <label class="callback-field">
+                <select class="callback-select" name="Удобный мессенджер">
+                  <option value="">Выберите удобный мессенджер</option>
+                  <option value="Telegram">Телеграмм</option>
+                  <option value="MAX">Макс</option>
+                </select>
+                <span class="callback-error" data-error-for="messenger"></span>
+              </label>
+              <label class="callback-field">
+                <input class="callback-input" name="Email" type="email" placeholder="Email" autocomplete="email" />
+                <span class="callback-error" data-error-for="email"></span>
+              </label>
+              <label class="callback-field">
+                <span class="callback-label">Капча</span>
+                <input class="callback-input" name="Капча" type="text" inputmode="numeric" />
+                <span class="callback-error" data-error-for="captcha"></span>
+              </label>
+              <button class="callback-submit" type="submit">Отправить</button>
+              <p class="callback-note">После отправки данные придут на email: ilyzenko11@gmail.com</p>
+            </form>
+          </div>
+        </div>
+      `;
+
+      let captchaAnswer = "";
+
+      function setError(form, key, message) {
+        const node = form.querySelector(`[data-error-for="${key}"]`);
+        if (node) node.textContent = message || "";
+      }
+
+      function openCallback() {
+        document.body.insertAdjacentHTML("beforeend", modalHtml);
+        document.body.style.overflow = "hidden";
+        const modal = document.querySelector(".callback-overlay");
+        const form = modal.querySelector(".callback-form");
+        const first = Math.floor(Math.random() * 8) + 2;
+        const second = Math.floor(Math.random() * 8) + 2;
+        captchaAnswer = String(first + second);
+        form.querySelector('[name="Капча"]').placeholder = `Сколько будет ${first}+${second}?`;
+        form.querySelector('[name="Имя"]').focus();
+
+        function closeCallback() {
+          modal.remove();
+          document.body.style.overflow = "";
+          window.removeEventListener("keydown", onKeydown);
+        }
+
+        function onKeydown(event) {
+          if (event.key === "Escape") closeCallback();
+        }
+
+        modal.addEventListener("mousedown", (event) => {
+          if (event.target === modal) closeCallback();
+        });
+        modal.querySelector(".callback-close").addEventListener("click", closeCallback);
+        window.addEventListener("keydown", onKeydown);
+
+        form.addEventListener("submit", (event) => {
+          const name = form.querySelector('[name="Имя"]').value.trim();
+          const country = form.querySelector('[name="Страна"]').value;
+          const phone = form.querySelector('[name="Телефон"]').value.trim();
+          const messenger = form.querySelector('[name="Удобный мессенджер"]').value;
+          const email = form.querySelector('[name="Email"]').value.trim();
+          const captcha = form.querySelector('[name="Капча"]').value.trim();
+          const phoneDigits = phone.replace(/\D/g, "");
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+          let valid = true;
+
+          ["name", "phone", "messenger", "email", "captcha"].forEach((key) => setError(form, key, ""));
+          if (!name) {
+            setError(form, "name", "Заполните имя.");
+            valid = false;
+          }
+          if (!phoneDigits || phoneDigits.length < 6) {
+            setError(form, "phone", "Введите корректный номер телефона.");
+            valid = false;
+          }
+          if (!messenger) {
+            setError(form, "messenger", "Выберите удобный мессенджер.");
+            valid = false;
+          }
+          if (!email) {
+            setError(form, "email", "Заполните email.");
+            valid = false;
+          } else if (!emailPattern.test(email)) {
+            setError(form, "email", "Проверьте правильность email.");
+            valid = false;
+          }
+          if (!captcha) {
+            setError(form, "captcha", "Введите ответ на капчу.");
+            valid = false;
+          } else if (captcha !== captchaAnswer) {
+            setError(form, "captcha", "Капча решена неверно.");
+            valid = false;
+          }
+
+          form.querySelector('[name="Телефон полностью"]').value = `${country}: ${phone}`;
+          if (!valid) event.preventDefault();
+        });
+      }
+
+      document.querySelectorAll("[data-open-callback]").forEach((button) => {
+        button.addEventListener("click", openCallback);
+      });
+    </script>
+  </body>
+</html>

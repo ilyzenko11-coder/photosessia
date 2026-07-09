@@ -1,0 +1,355 @@
+﻿<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Контакты | Встреча с собой</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --graphite: #111111;
+        --gold: #d8b58a;
+        --milk: #e9e2da;
+        --muted: #a8a8a8;
+        --line: #2a2a2a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
+        background: var(--graphite);
+        color: rgba(233, 226, 218, 0.78);
+        font-family: "Manrope", Arial, sans-serif;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .header {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 42px;
+        align-items: center;
+        padding: 34px 56px 18px;
+        background: linear-gradient(180deg, rgba(17, 17, 17, 0.92) 0%, rgba(17, 17, 17, 0) 100%);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        color: rgba(233, 226, 218, 0.82);
+        text-decoration: none;
+      }
+
+      .mark {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 46px;
+        font-weight: 600;
+        line-height: 0.8;
+      }
+
+      .brand-line {
+        width: 1px;
+        height: 34px;
+        background: rgba(233, 226, 218, 0.24);
+      }
+
+      .brand-text {
+        max-width: 190px;
+        color: rgba(233, 226, 218, 0.7);
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.35;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: clamp(16px, 2.7vw, 48px);
+      }
+
+      .nav a {
+        position: relative;
+        color: rgba(233, 226, 218, 0.72);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.2;
+        white-space: nowrap;
+        transition: color 180ms ease;
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible,
+      .nav a.is-active {
+        color: var(--gold);
+      }
+
+      .nav a.is-active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -10px;
+        height: 1px;
+        background: rgba(216, 181, 138, 0.42);
+      }
+
+      .contact-page {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        min-height: 100svh;
+        overflow: hidden;
+        padding: 88px 24px 46px;
+        isolation: isolate;
+        background: var(--graphite);
+      }
+
+      .side-line {
+        position: absolute;
+        left: 20vw;
+        bottom: 11.5vh;
+        width: 1px;
+        height: 32vh;
+        background: rgba(233, 226, 218, 0.48);
+      }
+
+      .contact-card {
+        position: relative;
+        z-index: 1;
+        width: min(560px, 100%);
+        transform: translateY(-2vh);
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(58px, 6.6vw, 86px);
+        font-weight: 600;
+        line-height: 0.9;
+        letter-spacing: 0;
+      }
+
+      .center-line {
+        width: 1px;
+        height: 32px;
+        margin: 26px auto 22px;
+        background: rgba(233, 226, 218, 0.5);
+      }
+
+      .contact-text {
+        margin: 0;
+        color: rgba(233, 226, 218, 0.78);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(19px, 1.7vw, 23px);
+        font-weight: 600;
+        line-height: 1.38;
+      }
+
+      .contact-text + .contact-text {
+        margin-top: 22px;
+      }
+
+      .contact-actions {
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr;
+        align-items: center;
+        gap: 46px;
+        width: min(350px, 100%);
+        margin: 44px auto 0;
+      }
+
+      .contact-actions::before {
+        content: "";
+        width: 1px;
+        height: 64px;
+        background: rgba(233, 226, 218, 0.48);
+        grid-column: 2;
+      }
+
+      .contact-link {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-decoration: underline;
+        text-underline-offset: 8px;
+        text-decoration-thickness: 1px;
+        transition: color 180ms ease;
+      }
+
+      .contact-link:hover,
+      .contact-link:focus-visible {
+        color: var(--gold);
+      }
+
+      .contact-link:first-child {
+        grid-column: 1;
+      }
+
+      .contact-link:last-child {
+        grid-column: 3;
+      }
+
+      .place {
+        margin: 40px 0 0;
+        color: rgba(233, 226, 218, 0.8);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      .small-divider {
+        width: 28px;
+        height: 1px;
+        margin: 12px auto 14px;
+        background: rgba(216, 181, 138, 0.52);
+      }
+
+      .note {
+        margin: 0;
+        color: rgba(233, 226, 218, 0.66);
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.36;
+      }
+
+      @media (max-width: 1160px) {
+        .header {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding: 28px 34px 18px;
+        }
+
+        .nav {
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          gap: 14px 28px;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .header {
+          padding: 20px 18px 14px;
+        }
+
+        .brand {
+          gap: 16px;
+        }
+
+        .mark {
+          font-size: 38px;
+        }
+
+        .brand-line {
+          height: 30px;
+        }
+
+        .brand-text {
+          font-size: 12px;
+        }
+
+        .nav {
+          gap: 9px 14px;
+        }
+
+        .nav a {
+          font-size: 11px;
+        }
+
+        .contact-page {
+          min-height: 100svh;
+          padding: 140px 18px 36px;
+        }
+
+        .contact-card {
+          transform: none;
+        }
+
+        .side-line {
+          display: none;
+        }
+
+        h1 {
+          font-size: clamp(48px, 15vw, 64px);
+        }
+
+        .contact-actions {
+          gap: 26px;
+          margin-top: 42px;
+        }
+
+        .contact-link {
+          font-size: 19px;
+        }
+
+        .place {
+          margin-top: 42px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a class="brand" href="index.html" aria-label="На главную">
+        <div class="mark">HX</div>
+        <div class="brand-line" aria-hidden="true"></div>
+        <div class="brand-text">Наталья Хоруженко<br />фотограф | психолог</div>
+      </a>
+      <nav class="nav" aria-label="Основное меню">
+        <a href="index.html#top">Главная</a>
+        <a href="about.html">Об авторе</a>
+        <a href="meeting-yourself.html">Встреча с собой</a>
+        <a href="index.html#stories">Истории</a>
+        <a href="book.html">Книга</a>
+        <a href="index.html#practice">Наставничество</a>
+        <a class="is-active" href="contacts.html">Контакты</a>
+      </nav>
+    </header>
+
+    <main class="contact-page">
+      <div class="side-line" aria-hidden="true"></div>
+      <section class="contact-card" aria-label="Контакты">
+        <h1>Давай<br />познакомимся</h1>
+        <div class="center-line" aria-hidden="true"></div>
+        <p class="contact-text">Иногда всё начинается<br />с одного сообщения.</p>
+        <p class="contact-text">Если ты чувствуешь,<br />что сейчас пришло время встретиться с собой —<br />просто напиши.</p>
+        <p class="contact-text">Я обязательно отвечу.</p>
+        <div class="contact-actions">
+          <a class="contact-link" href="#">TELEGRAM</a>
+          <a class="contact-link" href="#">MAX</a>
+        </div>
+        <p class="place">Новосибирск</p>
+        <div class="small-divider" aria-hidden="true"></div>
+        <p class="note">Практика проходит<br />только по предварительной записи.</p>
+      </section>
+    </main>
+  </body>
+</html>
