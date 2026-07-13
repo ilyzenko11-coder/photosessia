@@ -74,7 +74,6 @@
         height: 100%;
         object-fit: cover;
         object-position: 52% 50%;
-        filter: grayscale(1) contrast(1.08) brightness(0.8);
         transform: scale(1.02);
       }
 
@@ -253,7 +252,6 @@
         background-image: url("img/IMG_0503.jpg");
         background-size: cover;
         background-position: 50% 50%;
-        filter: grayscale(1) contrast(1.04) brightness(0.72);
         transform: scale(1.01);
       }
 
@@ -400,7 +398,6 @@
         background-size: auto 100%;
         background-repeat: no-repeat;
         background-position: right center;
-        filter: grayscale(1) contrast(1.05) brightness(0.78);
       }
 
       .practice-image::after {
@@ -523,7 +520,6 @@
         height: 100%;
         object-fit: cover;
         object-position: 38% 50%;
-        filter: grayscale(1) contrast(1.06) brightness(0.72);
       }
 
       .permission-section::after {
@@ -621,7 +617,6 @@
         background-repeat: no-repeat;
         background-size: contain;
         background-position: right center;
-        filter: grayscale(1) contrast(1.08) brightness(0.58);
         transform: scale(1.01);
       }
 
@@ -1326,7 +1321,6 @@
 
         .women-story-section::before {
           background-position: 58% center;
-          filter: grayscale(1) contrast(1.08) brightness(0.46);
         }
 
         .women-story-section::after {
@@ -1913,9 +1907,9 @@
               <a href="#top">Главная</a>
               <a href="about.html">Об авторе</a>
               <a href="meeting-yourself.html">Встреча с собой</a>
-              <a href="#stories">Истории</a>
+              <a href="Portfolio.html">Истории</a>
               <a href="book.html">Книга</a>
-              <a href="#practice">Наставничество</a>
+              <a href="nastavnichestvo.html">Наставничество</a>
               <a href="contacts.html">Контакты</a>
             </nav>
           </header>
@@ -1957,16 +1951,6 @@
         </div>
         <div class="practice-image" aria-hidden="true"></div>
       </section>
-      <section class="reflection-section" id="reflection">
-        <div class="reflection-inner">
-          <h2 class="reflection-title">Возможно...</h2>
-          <p class="reflection-text">Ты уже достаточно долго<br />пытаешься стать другой.</p>
-          <p class="reflection-text">Может быть,</p>
-          <p class="reflection-text">пришло время</p>
-          <p class="reflection-final">просто стать собой.</p>
-        </div>
-        <div class="reflection-line" aria-hidden="true"></div>
-      </section>
       <section class="permission-section" id="permission">
         <video class="permission-video" src="1783503330474749.mov" autoplay muted loop playsinline></video>
         <div class="permission-panel">
@@ -2001,7 +1985,7 @@
             <p class="women-story-quote">«Долгое время мне казалось,<br />что нельзя показывать,<br />как мне бывает больно.<br />Я привыкла жить в этих доспехах.<br />И однажды поняла —<br />больше не хочу.<br /><br />На нашей встрече я впервые<br />разрешила себе не защищаться.<br />Когда увидела фотографии,<br />подумала:<br />“Да... Это я.”<br /><br />Сильная. Ранимая.<br />Нежная. Живая.<br /><br />Теперь я больше не прячусь,<br />и это изменило намного больше,<br />чем я могла представить.»</p>
           </div>
           <p class="women-story-note">Иногда встреча с собой<br />начинается с одного взгляда.</p>
-          <a class="women-story-link" href="#stories">Смотреть другие истории <span aria-hidden="true">→</span></a>
+          <a class="women-story-link" href="Portfolio.html">Смотреть другие истории <span aria-hidden="true">→</span></a>
         </div>
       </section>
       <section class="closing-section" id="closing">
@@ -2102,23 +2086,6 @@
             React.createElement("p", { className: "practice-text" }, "Фотографии помогают сохранить этот опыт", React.createElement("br"), "и становятся внутренней точкой опоры,", React.createElement("br"), "к которой можно возвращаться снова и снова.")
           ),
           React.createElement("div", { className: "practice-image", "aria-hidden": "true" })
-        );
-      }
-
-      function ReflectionBlock() {
-        return React.createElement(
-          "section",
-          { className: "reflection-section", id: "reflection" },
-          React.createElement(
-            "div",
-            { className: "reflection-inner" },
-            React.createElement("h2", { className: "reflection-title" }, "Возможно..."),
-            React.createElement("p", { className: "reflection-text" }, "Ты уже достаточно долго", React.createElement("br"), "пытаешься стать другой."),
-            React.createElement("p", { className: "reflection-text" }, "Может быть,"),
-            React.createElement("p", { className: "reflection-text" }, "пришло время"),
-            React.createElement("p", { className: "reflection-final" }, "просто стать собой.")
-          ),
-          React.createElement("div", { className: "reflection-line", "aria-hidden": "true" })
         );
       }
 
@@ -2229,7 +2196,7 @@
               )
             ),
             React.createElement("p", { className: "women-story-note" }, "Иногда встреча с собой", React.createElement("br"), "начинается с одного взгляда."),
-            React.createElement("a", { className: "women-story-link", href: "#stories" }, "Смотреть другие истории ", React.createElement("span", { "aria-hidden": "true" }, "→"))
+            React.createElement("a", { className: "women-story-link", href: "Portfolio.html" }, "Смотреть другие истории ", React.createElement("span", { "aria-hidden": "true" }, "→"))
           )
         );
       }
@@ -2508,7 +2475,7 @@
                 React.createElement(
                   "nav",
                   { className: "nav", "aria-label": "Основное меню" },
-                  menu.map((item) => React.createElement("a", { href: item === "Главная" ? "#top" : item === "Об авторе" ? "about.html" : item === "Истории" ? "#stories" : item === "Встреча с собой" ? "meeting-yourself.html" : item === "Книга" ? "book.html" : item === "Контакты" ? "contacts.html" : item === "Наставничество" ? "#practice" : "#", key: item }, item))
+              menu.map((item) => React.createElement("a", { href: item === "Главная" ? "#top" : item === "Об авторе" ? "about.html" : item === "Истории" ? "Portfolio.html" : item === "Встреча с собой" ? "meeting-yourself.html" : item === "Книга" ? "book.html" : item === "Контакты" ? "contacts.html" : item === "Наставничество" ? "nastavnichestvo.html" : "#", key: item }, item))
                 )
               ),
               React.createElement(
@@ -2528,7 +2495,6 @@
           ),
           React.createElement(SecondBlock),
           React.createElement(ThirdBlock),
-          React.createElement(ReflectionBlock),
           React.createElement(PermissionBlock),
           React.createElement(WomenStoryBlock),
           React.createElement(ClosingBlock),

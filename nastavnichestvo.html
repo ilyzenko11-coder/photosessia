@@ -1,0 +1,1065 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Наставничество | Наталья Хоруженко</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --graphite: #111111;
+        --black: #050505;
+        --deep: #090909;
+        --gold: #d8b58a;
+        --milk: #e9e2da;
+        --muted: #a8a8a8;
+        --line: rgba(216, 181, 138, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--black);
+        color: rgba(233, 226, 218, 0.78);
+        font-family: "Manrope", Arial, sans-serif;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .header {
+        position: relative;
+        z-index: 20;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 42px;
+        align-items: center;
+        min-height: 86px;
+        padding: 30px 52px 18px;
+        background: linear-gradient(180deg, rgba(5, 5, 5, 0.94) 0%, rgba(5, 5, 5, 0.62) 78%, rgba(5, 5, 5, 0) 100%);
+        border-bottom: 1px solid rgba(216, 181, 138, 0.08);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        color: rgba(233, 226, 218, 0.82);
+        text-decoration: none;
+      }
+
+      .mark {
+        color: rgba(233, 226, 218, 0.86);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 46px;
+        font-weight: 600;
+        line-height: 0.8;
+        letter-spacing: 0;
+      }
+
+      .brand-line {
+        width: 1px;
+        height: 34px;
+        background: rgba(233, 226, 218, 0.24);
+      }
+
+      .brand-text {
+        max-width: 190px;
+        color: rgba(233, 226, 218, 0.7);
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.35;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: clamp(16px, 2.7vw, 48px);
+      }
+
+      .nav a {
+        position: relative;
+        color: rgba(233, 226, 218, 0.72);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.2;
+        white-space: nowrap;
+        transition: color 180ms ease;
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible,
+      .nav a.is-active {
+        color: var(--gold);
+      }
+
+      .nav a.is-active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -10px;
+        height: 1px;
+        background: rgba(216, 181, 138, 0.42);
+      }
+
+      .mentorship-page {
+        background:
+          radial-gradient(circle at 74% 8%, rgba(216, 181, 138, 0.08), transparent 28%),
+          linear-gradient(180deg, #050505 0%, #0a0a0a 52%, #050505 100%);
+      }
+
+      .section {
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid var(--line);
+        background: var(--black);
+      }
+
+      .section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(5, 5, 5, 0.2) 64%, rgba(5, 5, 5, 0.62) 100%);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
+        min-height: calc(100vh - 86px);
+        min-height: calc(100svh - 86px);
+      }
+
+      .hero-image,
+      .image-panel {
+        position: relative;
+        min-height: 100%;
+        overflow: hidden;
+        background: #070707;
+      }
+
+      .hero-image img,
+      .image-panel img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-image img {
+        object-position: 40% 50%;
+      }
+
+      .hero-image::after,
+      .image-panel::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(5, 5, 5, 0.08) 0%, rgba(5, 5, 5, 0.14) 48%, rgba(5, 5, 5, 0.72) 100%),
+          linear-gradient(180deg, rgba(5, 5, 5, 0.12) 0%, rgba(5, 5, 5, 0.08) 42%, rgba(5, 5, 5, 0.54) 100%);
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(58px, 7vw, 110px) clamp(36px, 7vw, 118px);
+      }
+
+      .eyebrow {
+        margin: 0 0 26px;
+        color: var(--gold);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.35;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      .hero-title {
+        margin-bottom: 28px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(58px, 6.6vw, 104px);
+        font-weight: 600;
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 420px;
+        margin-bottom: 28px;
+        color: rgba(233, 226, 218, 0.72);
+        font-size: clamp(15px, 1.15vw, 18px);
+        font-weight: 300;
+        line-height: 1.7;
+      }
+
+      .down {
+        display: block;
+        margin: 0 0 28px;
+        color: var(--gold);
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      .action-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        width: max-content;
+        color: var(--gold);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        transition: color 180ms ease, transform 180ms ease;
+      }
+
+      .action-link:hover,
+      .action-link:focus-visible {
+        color: rgba(233, 226, 218, 0.9);
+        transform: translateX(2px);
+      }
+
+      .action-link span {
+        font-size: 30px;
+        line-height: 0.8;
+      }
+
+      .questionnaire-inline-button {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        font-family: inherit;
+        cursor: pointer;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: minmax(0, 0.93fr) minmax(0, 1.07fr);
+        min-height: 54vw;
+        min-height: 720px;
+      }
+
+      .split.reverse {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      }
+
+      .copy-panel {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(54px, 7vw, 112px) clamp(34px, 7.8vw, 122px);
+      }
+
+      .image-panel.is-section-2 img {
+        object-position: 55% 50%;
+      }
+
+      .image-panel.is-section-3 img {
+        object-position: 44% 48%;
+      }
+
+      .image-panel.is-section-6 img {
+        object-position: 42% 45%;
+      }
+
+      .section-title {
+        max-width: 650px;
+        margin-bottom: 26px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(34px, 4vw, 56px);
+        font-weight: 500;
+        line-height: 1.04;
+        letter-spacing: 0;
+      }
+
+      .section-text {
+        max-width: 520px;
+        margin-bottom: 0;
+        color: rgba(233, 226, 218, 0.72);
+        font-size: clamp(15px, 1.08vw, 17px);
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      .section-text + .section-text {
+        margin-top: 22px;
+      }
+
+      .gold-line {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(31px, 3.4vw, 48px);
+        line-height: 1.08;
+      }
+
+      .two-arts {
+        position: relative;
+        z-index: 1;
+        padding: clamp(62px, 7vw, 104px) clamp(28px, 10vw, 156px);
+        background: linear-gradient(180deg, #080808 0%, #050505 100%);
+      }
+
+      .center-title {
+        margin: 0 auto clamp(48px, 5vw, 76px);
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(31px, 3.2vw, 48px);
+        font-weight: 500;
+        line-height: 1.08;
+        text-align: center;
+        letter-spacing: 0;
+      }
+
+      .art-grid {
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr;
+        gap: clamp(32px, 5vw, 72px);
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      .art-divider {
+        background: rgba(216, 181, 138, 0.2);
+      }
+
+      .art-card h3 {
+        margin: 0 0 18px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(27px, 2.4vw, 38px);
+        font-weight: 500;
+        line-height: 1.12;
+        letter-spacing: 0;
+      }
+
+      .art-card p {
+        max-width: 360px;
+        margin-bottom: 0;
+        color: rgba(233, 226, 218, 0.72);
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      .steps {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        min-height: 330px;
+        padding: 62px 24px;
+        background:
+          radial-gradient(circle at 50% 50%, rgba(216, 181, 138, 0.06), transparent 42%),
+          #050505;
+      }
+
+      .steps-list {
+        display: grid;
+        gap: 12px;
+        color: var(--gold);
+        font-size: clamp(18px, 2.4vw, 32px);
+        font-weight: 400;
+        letter-spacing: clamp(0.18em, 1vw, 0.48em);
+        line-height: 1.25;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .steps-list span {
+        display: block;
+      }
+
+      .steps-list .arrow {
+        color: rgba(216, 181, 138, 0.78);
+        font-size: 24px;
+        letter-spacing: 0;
+        line-height: 0.8;
+      }
+
+      .final {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(420px, 0.92fr);
+        min-height: 620px;
+      }
+
+      .final .copy-panel {
+        padding-top: clamp(52px, 6vw, 84px);
+        padding-bottom: clamp(52px, 6vw, 84px);
+      }
+
+      .individual {
+        display: grid;
+        grid-template-columns: minmax(420px, 0.95fr) minmax(0, 1.05fr);
+        min-height: 430px;
+      }
+
+      .after-mentorship {
+        display: grid;
+        grid-template-columns: minmax(420px, 0.95fr) minmax(0, 1.05fr);
+        min-height: 520px;
+      }
+
+      .individual .copy-panel,
+      .after-mentorship .copy-panel {
+        padding-top: clamp(48px, 5vw, 78px);
+        padding-bottom: clamp(48px, 5vw, 78px);
+      }
+
+      .application {
+        display: grid;
+        grid-template-columns: minmax(390px, 0.84fr) minmax(0, 1.16fr);
+        min-height: 420px;
+        background: #050505;
+      }
+
+      .application .copy-panel {
+        justify-content: end;
+        padding-top: clamp(52px, 6vw, 90px);
+        padding-bottom: clamp(46px, 5vw, 72px);
+      }
+
+      .image-panel.is-section-7 img {
+        object-position: 50% 50%;
+      }
+
+      .image-panel.is-after-mentorship img {
+        object-position: 58% 46%;
+      }
+
+      .image-panel.is-section-9 img {
+        object-position: 50% 44%;
+      }
+
+      .mentorship-footer {
+        padding: clamp(52px, 7vw, 92px) clamp(18px, 6vw, 86px);
+        border-top: 1px solid rgba(216, 181, 138, 0.16);
+        background:
+          radial-gradient(circle at 50% 0%, rgba(216, 181, 138, 0.08), transparent 32%),
+          #050505;
+        text-align: center;
+      }
+
+      .footer-title {
+        margin: 0;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(42px, 5vw, 74px);
+        font-weight: 500;
+        line-height: 1;
+      }
+
+      .footer-text {
+        width: min(680px, 100%);
+        margin: 22px auto 34px;
+        color: rgba(233, 226, 218, 0.72);
+        font-size: clamp(16px, 1.25vw, 20px);
+        font-weight: 300;
+        line-height: 1.7;
+      }
+
+      .questionnaire-button,
+      .questionnaire-submit {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: min(320px, 100%);
+        min-height: 58px;
+        padding: 15px 30px;
+        border: 1px solid rgba(216, 181, 138, 0.82);
+        border-radius: 4px;
+        color: #050505;
+        background: var(--gold);
+        text-decoration: none;
+        font-family: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+      }
+
+      .questionnaire-button:hover,
+      .questionnaire-button:focus-visible,
+      .questionnaire-submit:hover,
+      .questionnaire-submit:focus-visible {
+        border-color: #e8caa3;
+        background: #e8caa3;
+        transform: translateY(-1px);
+      }
+
+      .questionnaire-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        place-items: center;
+        padding: clamp(12px, 3vw, 28px);
+        background: rgba(0, 0, 0, 0.76);
+      }
+
+      .questionnaire-overlay[hidden] {
+        display: none;
+      }
+
+      .questionnaire-modal {
+        position: relative;
+        width: min(820px, 100%);
+        max-height: min(92svh, 900px);
+        overflow-y: auto;
+        padding: clamp(28px, 4vw, 48px);
+        border: 1px solid rgba(216, 181, 138, 0.3);
+        border-radius: 4px;
+        background:
+          linear-gradient(180deg, rgba(17, 17, 17, 0.98), rgba(5, 5, 5, 0.98)),
+          #111111;
+        box-shadow: 0 24px 90px rgba(0, 0, 0, 0.58);
+      }
+
+      .questionnaire-close {
+        position: sticky;
+        top: 0;
+        float: right;
+        display: inline-grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        margin: -12px -12px 0 14px;
+        border: 1px solid rgba(216, 181, 138, 0.38);
+        border-radius: 50%;
+        color: var(--gold);
+        background: rgba(5, 5, 5, 0.74);
+        font-family: inherit;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .questionnaire-title {
+        margin: 0 0 30px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(40px, 5vw, 64px);
+        font-weight: 500;
+        line-height: 1;
+        text-align: center;
+      }
+
+      .questionnaire-form {
+        display: grid;
+        gap: 26px;
+        clear: both;
+      }
+
+      .questionnaire-field {
+        display: grid;
+        gap: 10px;
+      }
+
+      .questionnaire-label {
+        color: rgba(233, 226, 218, 0.78);
+        font-size: clamp(18px, 2.1vw, 28px);
+        font-weight: 300;
+        line-height: 1.35;
+      }
+
+      .questionnaire-input,
+      .questionnaire-textarea,
+      .questionnaire-select {
+        width: 100%;
+        border: 1px solid rgba(233, 226, 218, 0.72);
+        border-radius: 4px;
+        color: rgba(233, 226, 218, 0.9);
+        background: rgba(17, 17, 17, 0.82);
+        font-family: inherit;
+        font-size: 18px;
+        outline: none;
+        transition: border-color 180ms ease, box-shadow 180ms ease;
+      }
+
+      .questionnaire-input,
+      .questionnaire-select {
+        min-height: 58px;
+        padding: 0 18px;
+      }
+
+      .questionnaire-textarea {
+        min-height: 150px;
+        resize: vertical;
+        padding: 16px 18px;
+        line-height: 1.5;
+      }
+
+      .questionnaire-input:focus,
+      .questionnaire-textarea:focus,
+      .questionnaire-select:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(216, 181, 138, 0.12);
+      }
+
+      .phone-row {
+        display: grid;
+        grid-template-columns: minmax(180px, 0.44fr) minmax(220px, 1fr);
+        gap: 12px;
+      }
+
+      .questionnaire-check {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 14px;
+        align-items: start;
+        color: rgba(233, 226, 218, 0.76);
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.45;
+      }
+
+      .questionnaire-check input {
+        width: 24px;
+        height: 24px;
+        accent-color: var(--gold);
+      }
+
+      .questionnaire-note {
+        margin: -10px 0 0;
+        color: rgba(233, 226, 218, 0.5);
+        font-size: 12px;
+        line-height: 1.5;
+        text-align: center;
+      }
+
+      @media (max-width: 1180px) {
+        .header {
+          gap: 24px;
+          padding: 24px 28px 18px;
+        }
+
+        .nav {
+          gap: 18px;
+        }
+
+        .nav a {
+          font-size: 13px;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .header {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+
+        .nav {
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+
+        .hero,
+        .split,
+        .split.reverse,
+        .final,
+        .individual,
+        .after-mentorship,
+        .application {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .hero-image,
+        .image-panel {
+          min-height: 48vh;
+          min-height: 48svh;
+        }
+
+        .hero-copy,
+        .copy-panel {
+          padding: 52px 28px 58px;
+        }
+
+        .split.reverse .image-panel {
+          order: -1;
+        }
+
+        .application .image-panel {
+          order: -1;
+        }
+
+        .phone-row {
+          grid-template-columns: 1fr;
+        }
+
+        .art-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .art-divider {
+          width: 100%;
+          height: 1px;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .header {
+          padding: 20px 18px 16px;
+        }
+
+        .brand {
+          gap: 14px;
+        }
+
+        .mark {
+          font-size: 40px;
+        }
+
+        .brand-text {
+          font-size: 12px;
+        }
+
+        .nav {
+          gap: 13px 18px;
+        }
+
+        .nav a {
+          font-size: 12px;
+        }
+
+        .hero-title {
+          font-size: clamp(46px, 15vw, 66px);
+        }
+
+        .section-title,
+        .gold-line {
+          font-size: clamp(31px, 10vw, 44px);
+        }
+
+        .hero-image,
+        .image-panel {
+          min-height: 360px;
+        }
+
+        .two-arts {
+          padding: 52px 24px;
+        }
+
+        .steps {
+          min-height: 280px;
+          padding: 48px 18px;
+        }
+
+        .steps-list {
+          font-size: 17px;
+          letter-spacing: 0.22em;
+        }
+
+        .questionnaire-modal {
+          padding: 24px 16px 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a class="brand" href="index.html" aria-label="На главную">
+        <div class="mark">HX</div>
+        <div class="brand-line" aria-hidden="true"></div>
+        <div class="brand-text">Наталья Хоруженко<br />фотограф | психолог</div>
+      </a>
+      <nav class="nav" aria-label="Основное меню">
+        <a href="index.html#top">Главная</a>
+        <a href="about.html">Об авторе</a>
+        <a href="meeting-yourself.html">Встреча с собой</a>
+        <a href="Portfolio.html">Истории</a>
+        <a href="book.html">Книга</a>
+        <a class="is-active" href="nastavnichestvo.html">Наставничество</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+    </header>
+
+    <main class="mentorship-page">
+      <section class="section hero" id="top">
+        <div class="hero-image" aria-hidden="true">
+          <img src="нс/секция 1.JPG" alt="" />
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Авторская программа<br />для фотографов</p>
+          <h1 class="hero-title">Искусство<br />видеть</h1>
+          <p class="lead">Фотография начинается не с камеры. Она начинается со взгляда фотографа: честного, внимательного, живого.</p>
+          <span class="down" aria-hidden="true">↓</span>
+          <a class="action-link" href="contacts.html">Подать заявку <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <section class="section split">
+        <div class="copy-panel">
+          <h2 class="section-title">Фотография меняет не лицо.<br />Она меняет способ видеть.</h2>
+          <p class="section-text">Женщина приходит на съёмку за красивым кадром, а встречается с тем, что давно ждало внимания внутри.</p>
+          <p class="section-text">Фотограф в этот момент становится не человеком с камерой, а тем, кто умеет держать пространство: мягко, точно, без давления и лишнего шума.</p>
+          <p class="section-text">Именно этому посвящён мой метод: видеть состояние, слышать человека и создавать кадр, в котором появляется правда.</p>
+        </div>
+        <div class="image-panel is-section-2" aria-hidden="true">
+          <img src="нс/секция 2.JPG" alt="" loading="lazy" />
+        </div>
+      </section>
+
+      <section class="section split reverse">
+        <div class="image-panel is-section-3" aria-hidden="true">
+          <img src="нс/секция 3.JPG" alt="" loading="lazy" />
+        </div>
+        <div class="copy-panel">
+          <h2 class="section-title">Этому невозможно научиться,<br />просто изучая фотографию.</h2>
+          <p class="section-text">Мой подход соединяет художественное видение, психологию и практику работы с человеком в одну систему.</p>
+          <p class="section-text">Фотограф перестаёт создавать просто красивые изображения. Он начинает создавать опыт: доверие, принятие, возвращение к себе.</p>
+          <p class="gold-line">Опыт встречи человека с собой.</p>
+        </div>
+      </section>
+
+      <section class="section two-arts">
+        <h2 class="center-title">Программа основана на двух искусствах:</h2>
+        <div class="art-grid">
+          <div class="art-card">
+            <h3>Искусство видеть кадр</h3>
+            <p>Как через свет, композицию, силуэт и художественный язык создавать фотографии, наполненные смыслом. Не просто красивые. Живые. Настоящие.</p>
+          </div>
+          <div class="art-divider" aria-hidden="true"></div>
+          <div class="art-card">
+            <h3>Искусство видеть человека</h3>
+            <p>Как создать пространство, в котором женщина перестаёт играть роль и впервые позволяет себе быть собой. Именно там рождаются кадры, которые невозможно повторить по референсу.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section steps" aria-label="Процесс наставничества">
+        <div class="steps-list">
+          <span>Видеть</span>
+          <span class="arrow">↓</span>
+          <span>Чувствовать</span>
+          <span class="arrow">↓</span>
+          <span>Создавать пространство</span>
+          <span class="arrow">↓</span>
+          <span>Фотографировать</span>
+        </div>
+      </section>
+
+      <section class="section final">
+        <div class="image-panel is-section-6" aria-hidden="true">
+          <img src="нс/секция 6.JPG" alt="" loading="lazy" />
+        </div>
+        <div class="copy-panel">
+          <h2 class="section-title">Фотография становится<br />точкой встречи.</h2>
+          <p class="section-text">Женщина приходит за снимками, но уходит с новым ощущением себя. Она начинает видеть в себе ту, которая всегда была рядом, просто ждала бережного взгляда.</p>
+          <p class="section-text">На наставничестве мы учимся создавать не только кадр, но и состояние, в котором этот кадр может родиться.</p>
+          <span class="down" aria-hidden="true">↓</span>
+          <a class="action-link" href="contacts.html">Подать заявку <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <section class="section after-mentorship">
+        <div class="copy-panel">
+          <h2 class="section-title">Что изменится<br />после наставничества</h2>
+          <p class="section-text">Вы перестанете искать «правильную» позу и ждать идеальную эмоцию. Вместо этого начнёте понимать, что происходит с женщиной перед камерой.</p>
+          <p class="section-text">В кадре появится больше доверия, глубины и настоящего присутствия. Вы научитесь видеть моменты, которые раньше проходили мимо.</p>
+          <p class="section-text">Фотографии станут сильнее не из-за новой камеры или очередной схемы света, а потому что изменится ваш взгляд и способ быть рядом с человеком.</p>
+        </div>
+        <div class="image-panel is-after-mentorship" aria-hidden="true">
+          <img src="нс/нс 7с.JPG" alt="" loading="lazy" />
+        </div>
+      </section>
+
+      <section class="section individual">
+        <div class="image-panel is-section-7" aria-hidden="true">
+          <img src="нс/секция 7.JPG" alt="" loading="lazy" />
+        </div>
+        <div class="copy-panel">
+          <h2 class="section-title">Индивидуальная работа</h2>
+          <p class="section-text">Наставничество проходит в личном формате. Без общего темпа, в который нужно успевать, и без чужих задач, которые не имеют отношения к вашему пути.</p>
+          <p class="section-text">Мы смотрим на вашу точку сейчас: как вы видите кадр, как общаетесь с героиней, где теряется уверенность и где уже есть собственная сила.</p>
+          <p class="section-text">После диагностики я собираю маршрут, который поможет соединить технику, состояние и авторский взгляд в понятную систему работы.</p>
+        </div>
+      </section>
+
+      <section class="section application">
+        <div class="copy-panel">
+          <h2 class="section-title">Если вам близка<br />эта философия</h2>
+          <p class="section-text">Я приглашаю вас в пространство, где фотография становится не повторением чужого кадра, а вашим способом видеть человека.</p>
+          <p class="section-text">Оставьте заявку, и мы обсудим, какой формат наставничества сейчас будет для вас самым точным.</p>
+          <span class="down" aria-hidden="true">↓</span>
+          <button class="action-link questionnaire-inline-button" type="button" data-open-questionnaire>Заполнить анкету <span aria-hidden="true">→</span></button>
+        </div>
+        <div class="image-panel is-section-9" aria-hidden="true">
+          <img src="нс/секция 9.JPG" alt="" loading="lazy" />
+        </div>
+      </section>
+    </main>
+
+    <footer class="mentorship-footer">
+      <h2 class="footer-title">Готова обсудить наставничество?</h2>
+      <p class="footer-text">Заполни короткую анкету, чтобы я увидела твой запрос, уровень в фотографии и могла понять, какой формат сопровождения будет для тебя полезен.</p>
+      <button class="questionnaire-button" type="button" data-open-questionnaire>Заполнить анкету</button>
+    </footer>
+
+    <div class="questionnaire-overlay" data-questionnaire-overlay hidden>
+      <div class="questionnaire-modal" role="dialog" aria-modal="true" aria-labelledby="questionnaire-title">
+        <button class="questionnaire-close" type="button" data-close-questionnaire aria-label="Закрыть анкету">&times;</button>
+        <h2 class="questionnaire-title" id="questionnaire-title">Глубинная анкета</h2>
+        <form class="questionnaire-form" action="https://formsubmit.co/Khoruzhenkophoto@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Анкета на наставничество" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="Телефон полностью" value="" data-full-phone />
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Фамилия и имя</span>
+            <input class="questionnaire-input" name="Фамилия и имя" type="text" autocomplete="name" required />
+          </label>
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Опиши свой уровень в фотографии: как ты сама себя оцениваешь</span>
+            <textarea class="questionnaire-textarea" name="Уровень в фотографии" placeholder="Новичок, есть опыт в коммерческой съемке, профессионал, сколько лет в сфере..." required></textarea>
+          </label>
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Ссылки на свои соцсети, сайт или портфолио</span>
+            <textarea class="questionnaire-textarea" name="Соцсети и сайт" required></textarea>
+          </label>
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Опиши кратко свой запрос</span>
+            <textarea class="questionnaire-textarea" name="Запрос" required></textarea>
+          </label>
+
+          <div class="questionnaire-field">
+            <span class="questionnaire-label">Напиши номер телефона для связи</span>
+            <div class="phone-row">
+              <select class="questionnaire-select" name="Страна" data-country-code aria-label="Код страны">
+                <option value="Россия +7">Россия +7</option>
+                <option value="Казахстан +7">Казахстан +7</option>
+                <option value="Беларусь +375">Беларусь +375</option>
+                <option value="Украина +380">Украина +380</option>
+                <option value="Армения +374">Армения +374</option>
+                <option value="Грузия +995">Грузия +995</option>
+                <option value="Азербайджан +994">Азербайджан +994</option>
+                <option value="Кыргызстан +996">Кыргызстан +996</option>
+                <option value="Узбекистан +998">Узбекистан +998</option>
+                <option value="Таджикистан +992">Таджикистан +992</option>
+                <option value="Турция +90">Турция +90</option>
+                <option value="Германия +49">Германия +49</option>
+                <option value="Франция +33">Франция +33</option>
+                <option value="Италия +39">Италия +39</option>
+                <option value="Испания +34">Испания +34</option>
+                <option value="Великобритания +44">Великобритания +44</option>
+                <option value="США +1">США +1</option>
+                <option value="Канада +1">Канада +1</option>
+                <option value="ОАЭ +971">ОАЭ +971</option>
+                <option value="Израиль +972">Израиль +972</option>
+                <option value="Китай +86">Китай +86</option>
+                <option value="Индия +91">Индия +91</option>
+                <option value="Таиланд +66">Таиланд +66</option>
+              </select>
+              <input class="questionnaire-input" name="Телефон" type="tel" placeholder="(000) 000-0000" autocomplete="tel" required />
+            </div>
+          </div>
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Удобный мессенджер для связи</span>
+            <select class="questionnaire-select" name="Удобный мессенджер" required>
+              <option value="">Выбери мессенджер</option>
+              <option value="Telegram">Telegram</option>
+              <option value="MAX">MAX</option>
+            </select>
+          </label>
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Email</span>
+            <input class="questionnaire-input" name="Email" type="email" autocomplete="email" required />
+          </label>
+
+          <label class="questionnaire-check">
+            <input type="checkbox" name="Согласие" value="Да" required />
+            <span>Я разрешаю использовать мои ответы для предварительного анализа запроса и согласна на обработку персональных данных.</span>
+          </label>
+
+          <button class="questionnaire-submit" type="submit">Отправить</button>
+          <p class="questionnaire-note">После отправки ответы придут на почту Khoruzhenkophoto@gmail.com.</p>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const questionnaireOverlay = document.querySelector("[data-questionnaire-overlay]");
+      const questionnaireForm = document.querySelector(".questionnaire-form");
+      const openQuestionnaireButtons = Array.from(document.querySelectorAll("[data-open-questionnaire]"));
+      const closeQuestionnaireButton = document.querySelector("[data-close-questionnaire]");
+
+      function openQuestionnaire() {
+        if (!questionnaireOverlay) return;
+        questionnaireOverlay.hidden = false;
+        document.body.style.overflow = "hidden";
+        const firstInput = questionnaireOverlay.querySelector("input, textarea, select");
+        if (firstInput) firstInput.focus();
+      }
+
+      function closeQuestionnaire() {
+        if (!questionnaireOverlay) return;
+        questionnaireOverlay.hidden = true;
+        document.body.style.overflow = "";
+      }
+
+      openQuestionnaireButtons.forEach((button) => {
+        button.addEventListener("click", openQuestionnaire);
+      });
+
+      if (closeQuestionnaireButton) {
+        closeQuestionnaireButton.addEventListener("click", closeQuestionnaire);
+      }
+
+      if (questionnaireOverlay) {
+        questionnaireOverlay.addEventListener("mousedown", (event) => {
+          if (event.target === questionnaireOverlay) closeQuestionnaire();
+        });
+      }
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && questionnaireOverlay && !questionnaireOverlay.hidden) {
+          closeQuestionnaire();
+        }
+      });
+
+      if (questionnaireForm) {
+        questionnaireForm.addEventListener("submit", () => {
+          const country = questionnaireForm.querySelector("[data-country-code]").value;
+          const phone = questionnaireForm.querySelector('[name="Телефон"]').value.trim();
+          questionnaireForm.querySelector("[data-full-phone]").value = `${country}: ${phone}`;
+        });
+      }
+    </script>
+  </body>
+</html>

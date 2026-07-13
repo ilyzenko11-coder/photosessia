@@ -1,0 +1,1441 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Истории женщин | Наталья Хоруженко</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --gold: #D8B58A;
+        --black: #050505;
+        --milk: #e9e2da;
+        --line: rgba(216, 181, 138, 0.18);
+        --film-height: clamp(168px, 27vh, 297px);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--milk);
+        font-family: "Manrope", Arial, sans-serif;
+        overflow-x: hidden;
+      }
+
+      a,
+      button {
+        color: inherit;
+        font: inherit;
+      }
+
+      .page {
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 76% 14%, rgba(216, 181, 138, 0.06), transparent 30%),
+          #050505;
+      }
+
+      .header {
+        position: relative;
+        z-index: 20;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 28px;
+        align-items: center;
+        min-height: 86px;
+        padding: 22px clamp(18px, 5vw, 70px);
+        background: linear-gradient(180deg, rgba(5, 5, 5, 0.92), rgba(5, 5, 5, 0.7));
+        border-bottom: 1px solid rgba(216, 181, 138, 0.12);
+        backdrop-filter: blur(12px);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        text-decoration: none;
+      }
+
+      .mark {
+        color: rgba(233, 226, 218, 0.88);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 45px;
+        font-weight: 600;
+        line-height: 0.85;
+      }
+
+      .brand-line {
+        width: 1px;
+        height: 34px;
+        background: rgba(233, 226, 218, 0.24);
+      }
+
+      .brand-text {
+        max-width: 190px;
+        color: rgba(233, 226, 218, 0.68);
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.35;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: clamp(14px, 2.3vw, 38px);
+      }
+
+      .nav a {
+        position: relative;
+        color: rgba(233, 226, 218, 0.72);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+        transition: color 180ms ease;
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible,
+      .nav a.is-active {
+        color: var(--gold);
+      }
+
+      .nav a.is-active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -10px;
+        height: 1px;
+        background: rgba(216, 181, 138, 0.44);
+      }
+
+      .top-actions {
+        position: absolute;
+        top: clamp(24px, 3vw, 36px);
+        right: clamp(22px, 3.5vw, 48px);
+        z-index: 12;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .arrow-button {
+        display: inline-grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(216, 181, 138, 0.42);
+        border-radius: 50%;
+        color: var(--gold);
+        background: rgba(5, 5, 5, 0.46);
+        cursor: pointer;
+        transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+      }
+
+      .arrow-button:hover,
+      .arrow-button:focus-visible {
+        border-color: rgba(216, 181, 138, 0.86);
+        background: rgba(5, 5, 5, 0.78);
+        transform: translateY(-1px);
+      }
+
+      .arrow-button span {
+        display: block;
+        transform: translateY(-1px);
+        font-size: 29px;
+        line-height: 1;
+      }
+
+      .stories-stage {
+        position: relative;
+      }
+
+      .story {
+        display: none;
+        grid-template-columns: minmax(360px, 50vw) minmax(520px, 1fr);
+        min-height: calc(100svh - 86px);
+        opacity: 0;
+        transform: translateX(30px);
+      }
+
+      .story.is-active {
+        display: grid;
+        animation: storyIn 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      .story.is-leaving-left,
+      .story.is-leaving-right {
+        display: grid;
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        animation: storyOut 360ms ease forwards;
+      }
+
+      .story.is-leaving-left {
+        --leave-x: -28px;
+      }
+
+      .story.is-leaving-right {
+        --leave-x: 28px;
+      }
+
+      .story-photo-wrap {
+        position: relative;
+        align-self: start;
+        min-height: calc(100svh - 86px);
+        overflow: hidden;
+        background: #080808;
+      }
+
+      .story-photo-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, 0.08) 72%, rgba(5, 5, 5, 0.62) 100%),
+          linear-gradient(180deg, rgba(5, 5, 5, 0.08) 0%, rgba(5, 5, 5, 0) 58%, rgba(5, 5, 5, 0.22) 100%);
+        pointer-events: none;
+      }
+
+      .story-photo {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        object-position: left top;
+      }
+
+      .story-photo.is-full-length {
+        width: 100%;
+        max-width: none;
+        height: calc(100svh - 86px);
+        min-height: 560px;
+        margin: 0;
+        object-fit: cover;
+        object-position: center 64%;
+        background: #080808;
+      }
+      .story-photo.is-full-visible {
+        width: 100%;
+        height: calc(100svh - 86px);
+        min-height: 560px;
+        margin: 0;
+        object-fit: contain;
+        object-position: center bottom;
+        background: #080808;
+      }
+
+      .story--irina {
+        min-height: auto;
+      }
+
+      .story--irina .story-photo-wrap {
+        min-height: 0;
+      }
+
+      .story-photo.is-irina-main {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        object-fit: contain;
+        object-position: center center;
+      }
+
+      .story--anya {
+        min-height: auto;
+      }
+
+      .story--anya .story-photo-wrap {
+        min-height: 0;
+      }
+
+      .story-photo.is-anya-main {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        margin: 0;
+        object-fit: contain;
+        object-position: center top;
+      }
+
+      .story--yulia-k {
+        min-height: auto;
+      }
+
+      .story--yulia-k .story-photo-wrap {
+        min-height: 0;
+      }
+
+      .story--mentor {
+        min-height: auto;
+      }
+
+      .story--mentor .story-photo-wrap {
+        min-height: 0;
+      }
+
+      .story-photo.is-yulia-k-main {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        margin: 0;
+        object-fit: contain;
+        object-position: center top;
+      }
+
+      .story-photo.is-mentor-main {
+        width: 100%;
+        height: calc(100svh - 86px);
+        min-height: 620px;
+        margin: 0;
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      .story-copy {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(230px, 0.9fr) minmax(260px, 1fr);
+        gap: clamp(34px, 5.8vw, 92px);
+        align-content: start;
+        padding: clamp(54px, 7vh, 84px) clamp(36px, 6vw, 92px) 74px clamp(42px, 6vw, 96px);
+        background:
+          linear-gradient(90deg, rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.98) 18%, #050505 100%);
+      }
+
+      .story-copy--irina {
+        grid-template-columns: minmax(230px, 0.92fr) minmax(250px, 1fr);
+        column-gap: clamp(42px, 5vw, 78px);
+        row-gap: clamp(20px, 2.2vh, 28px);
+        min-height: auto;
+        padding: clamp(44px, 5.6vh, 62px) clamp(40px, 4.5vw, 64px) 54px clamp(54px, 5.4vw, 78px);
+      }
+
+      .story-name {
+        grid-column: 1 / -1;
+        margin: 0 0 10px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(68px, 7vw, 112px);
+        font-weight: 500;
+        line-height: 0.86;
+      }
+
+      .story-lead {
+        grid-column: 1 / -1;
+        margin: 0 0 18px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(34px, 3.2vw, 56px);
+        font-weight: 500;
+        line-height: 1.05;
+      }
+
+      .story-copy--irina .story-name {
+        margin-bottom: 0;
+        padding-right: 104px;
+        font-size: clamp(60px, 5vw, 76px);
+        line-height: 0.9;
+      }
+
+      .story-copy--irina .story-lead {
+        margin: 0;
+        font-size: clamp(40px, 3.6vw, 54px);
+        line-height: 1.14;
+      }
+
+      .story-column {
+        min-width: 0;
+      }
+
+      .story-text {
+        margin: 0;
+        color: rgba(233, 226, 218, 0.78);
+        font-size: clamp(15px, 1.05vw, 18px);
+        font-weight: 300;
+        line-height: 1.58;
+      }
+
+      .story-text + .story-text {
+        margin-top: 26px;
+      }
+
+      .story-copy--irina .story-text {
+        font-size: clamp(17px, 1.22vw, 20px);
+        line-height: 1.62;
+      }
+
+      .story-copy--irina .story-text + .story-text {
+        margin-top: 30px;
+      }
+
+      .accent {
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.72em;
+        font-weight: 500;
+        line-height: 0.98;
+      }
+
+      .accent.block {
+        display: block;
+        margin: 4px 0;
+      }
+
+      .story-copy--irina .accent {
+        font-size: 1.46em;
+      }
+
+      .story-copy--anya {
+        grid-template-columns: minmax(230px, 1fr) minmax(230px, 1fr);
+        column-gap: clamp(54px, 6vw, 96px);
+        row-gap: clamp(34px, 4.5vh, 64px);
+        align-content: start;
+        padding: clamp(74px, 9vh, 122px) clamp(44px, 6vw, 92px) 72px clamp(52px, 6vw, 96px);
+      }
+
+      .story-copy--anya .story-name,
+      .story-copy--anya .story-lead {
+        grid-column: 1 / -1;
+        text-align: left;
+      }
+
+      .story-copy--anya .story-name {
+        margin-bottom: -10px;
+        padding-right: 76px;
+        font-size: clamp(78px, 8vw, 128px);
+        line-height: 0.88;
+      }
+
+      .story-copy--anya .story-lead {
+        margin: 0 0 clamp(54px, 7vh, 96px);
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(30px, 2.6vw, 42px);
+        line-height: 1.38;
+      }
+
+      .story-copy--anya .story-text {
+        font-size: clamp(20px, 1.52vw, 25px);
+        line-height: 2.02;
+      }
+
+      .story-copy--anya .story-text + .story-text {
+        margin-top: 44px;
+      }
+
+      .story-copy--yulia-k {
+        grid-template-columns: minmax(280px, 1.08fr) minmax(250px, 0.92fr);
+        column-gap: clamp(46px, 5.5vw, 86px);
+        row-gap: clamp(26px, 3.4vh, 46px);
+        align-content: start;
+        padding: clamp(52px, 6.8vh, 86px) clamp(42px, 5.5vw, 86px) 64px clamp(50px, 5.8vw, 90px);
+      }
+
+      .story-copy--yulia-k .story-name,
+      .story-copy--yulia-k .story-lead {
+        grid-column: 1 / -1;
+        text-align: left;
+      }
+
+      .story-copy--yulia-k .story-name {
+        margin-bottom: -12px;
+        padding-right: 86px;
+        font-size: clamp(68px, 6.8vw, 108px);
+        line-height: 0.9;
+      }
+
+      .story-copy--yulia-k .story-lead {
+        margin: 0 0 clamp(22px, 3vh, 38px);
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(36px, 3.4vw, 56px);
+        line-height: 1.22;
+      }
+
+      .story-copy--yulia-k .story-text {
+        font-size: clamp(17px, 1.15vw, 20px);
+        line-height: 1.74;
+      }
+
+      .story-copy--yulia-k .story-text + .story-text {
+        margin-top: 26px;
+      }
+
+      .story-copy--yulia-k .story-column--quotes .story-text + .story-text {
+        margin-top: 22px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(216, 181, 138, 0.24);
+      }
+
+      .story-copy--yulia-k .story-wide {
+        grid-column: 1 / -1;
+        max-width: 760px;
+        justify-self: end;
+      }
+
+      .story-copy--yulia-k .story-final {
+        grid-column: 1 / -1;
+        margin-top: -8px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(34px, 3vw, 50px);
+        line-height: 1.12;
+        text-align: right;
+      }
+
+      .story-copy--mentor {
+        grid-template-columns: minmax(420px, 760px);
+        gap: 0;
+        align-content: start;
+        padding: clamp(70px, 9vh, 116px) clamp(54px, 7vw, 110px) 72px clamp(54px, 7vw, 110px);
+      }
+
+      .story-copy--mentor .story-name {
+        margin-bottom: 14px;
+        padding-right: 100px;
+        font-size: clamp(66px, 6vw, 96px);
+        line-height: 0.9;
+      }
+
+      .story-copy--mentor .story-name-line {
+        width: 70px;
+        height: 1px;
+        margin: 0 0 clamp(34px, 4.2vh, 54px);
+        background: rgba(216, 181, 138, 0.54);
+      }
+
+      .story-copy--mentor .story-column {
+        max-width: 760px;
+      }
+
+      .story-copy--mentor .story-text {
+        font-size: clamp(20px, 1.45vw, 25px);
+        line-height: 1.72;
+      }
+
+      .story-copy--mentor .story-text + .story-text {
+        margin-top: clamp(30px, 3.4vh, 44px);
+      }
+
+      @media (min-width: 1181px) {
+        .story--scroll-copy .story-copy {
+          height: calc(100svh - 86px);
+          min-height: 560px;
+          overflow-y: auto;
+          overscroll-behavior-y: auto;
+          scrollbar-color: rgba(216, 181, 138, 0.5) rgba(216, 181, 138, 0.08);
+          scrollbar-width: thin;
+        }
+
+        .story--scroll-copy .story-copy--mentor {
+          min-height: 620px;
+        }
+
+        .story--scroll-copy .story-copy::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        .story--scroll-copy .story-copy::-webkit-scrollbar-track {
+          background: rgba(216, 181, 138, 0.08);
+        }
+
+        .story--scroll-copy .story-copy::-webkit-scrollbar-thumb {
+          border-radius: 999px;
+          background: rgba(216, 181, 138, 0.5);
+        }
+      }
+
+      .film-overlay {
+        position: relative;
+        left: 0;
+        right: 0;
+        z-index: 6;
+        height: var(--film-height);
+        overflow: hidden;
+        border-top: 1px solid rgba(216, 181, 138, 0.2);
+        background: rgba(0, 0, 0, 0.82);
+      }
+
+      .film-track {
+        display: none;
+        width: max-content;
+        height: 100%;
+        animation: filmMove 42s linear infinite;
+      }
+
+      .film-track.is-active {
+        display: flex;
+      }
+
+      .film-sequence {
+        display: flex;
+        flex: 0 0 auto;
+        height: 100%;
+      }
+
+
+      .film-track img,
+      .film-track video {
+        display: block;
+        width: auto;
+        height: 100%;
+        flex: 0 0 auto;
+        object-fit: cover;
+      }
+
+      .film-overlay:hover .film-track {
+        animation-play-state: paused;
+      }
+
+      @keyframes filmMove {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      @keyframes storyIn {
+        from {
+          opacity: 0;
+          transform: translateX(var(--enter-x, 30px));
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes storyOut {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(var(--leave-x));
+        }
+      }
+
+      @media (max-width: 1180px) {
+        .header {
+          grid-template-columns: 1fr auto;
+          gap: 18px;
+        }
+
+        .nav {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          gap: 12px 22px;
+        }
+
+        .story {
+          grid-template-columns: 1fr;
+        }
+
+        .story-photo-wrap {
+          position: relative;
+          top: auto;
+          min-height: 0;
+        }
+
+        .story-photo {
+          display: block;
+          height: auto;
+          max-height: none;
+        }
+
+        .story-photo.is-full-length {
+          height: auto;
+          min-height: 0;
+        }
+
+        .story-photo.is-full-visible {
+          height: auto;
+          min-height: 0;
+        }
+
+        .story--irina,
+        .story--anya,
+        .story--yulia-k,
+        .story--mentor,
+        .story--irina .story-photo-wrap,
+        .story--anya .story-photo-wrap,
+        .story--yulia-k .story-photo-wrap,
+        .story--mentor .story-photo-wrap,
+        .story-copy--irina {
+          min-height: 0;
+        }
+
+        .story-photo.is-irina-main,
+        .story-photo.is-anya-main,
+        .story-photo.is-yulia-k-main,
+        .story-photo.is-mentor-main {
+          height: auto;
+          min-height: 0;
+          object-fit: contain;
+          object-position: center center;
+        }
+
+        .story-photo.is-anya-main {
+          width: 100%;
+          margin-right: 0;
+        }
+
+        .story-copy {
+          grid-template-columns: 1fr 1fr;
+          height: auto;
+          max-height: none;
+          overflow: visible;
+        }
+
+        .story-copy--anya {
+          grid-template-columns: 1fr 1fr;
+          padding-top: 58px;
+        }
+
+        .story-copy--yulia-k {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .story-copy--mentor {
+          grid-template-columns: 1fr;
+          padding-top: 58px;
+        }
+
+        .story-copy--anya .story-lead {
+          margin-bottom: 48px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        :root {
+          --film-height: 144px;
+        }
+
+        .header {
+          min-height: auto;
+          padding: 16px 18px 14px;
+        }
+
+        .brand-line,
+        .brand-text {
+          display: none;
+        }
+
+        .mark {
+          font-size: 38px;
+        }
+
+        .nav a {
+          font-size: 12px;
+          white-space: normal;
+        }
+
+        .arrow-button {
+          width: 38px;
+          height: 38px;
+        }
+
+        .top-actions {
+          top: 20px;
+          right: 16px;
+        }
+
+        .story-copy {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding: 34px 18px 46px;
+        }
+
+        .story-name {
+          font-size: clamp(54px, 16vw, 72px);
+        }
+
+        .story-copy--irina .story-name {
+          padding-right: 86px;
+        }
+
+        .story-copy--anya {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .story-copy--anya .story-name,
+        .story-copy--anya .story-lead {
+          text-align: left;
+        }
+
+        .story-copy--anya .story-name {
+          padding-right: 86px;
+        }
+
+        .story-copy--anya .story-lead {
+          margin-bottom: 18px;
+        }
+
+        .story-copy--yulia-k {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .story-copy--yulia-k .story-name {
+          padding-right: 86px;
+        }
+
+        .story-copy--yulia-k .story-wide,
+        .story-copy--yulia-k .story-final {
+          justify-self: stretch;
+          text-align: left;
+        }
+
+        .story-copy--mentor {
+          padding: 40px 18px 46px;
+        }
+
+        .story-copy--mentor .story-name {
+          padding-right: 86px;
+          font-size: clamp(50px, 14vw, 68px);
+        }
+
+        .story-copy--mentor .story-text {
+          font-size: clamp(17px, 5vw, 21px);
+          line-height: 1.66;
+        }
+
+        .story-lead {
+          font-size: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <a class="brand" href="index.html" aria-label="На главную">
+          <div class="mark">HX</div>
+          <div class="brand-line" aria-hidden="true"></div>
+          <div class="brand-text">Наталья Хоруженко<br />фотограф | психолог</div>
+        </a>
+        <nav class="nav" aria-label="Основное меню">
+          <a href="index.html#top">Главная</a>
+          <a href="about.html">Об авторе</a>
+          <a href="meeting-yourself.html">Встреча с собой</a>
+          <a class="is-active" href="Portfolio.html">Истории</a>
+          <a href="book.html">Книга</a>
+          <a href="nastavnichestvo.html">Наставничество</a>
+          <a href="contacts.html">Контакты</a>
+        </nav>
+      </header>
+
+      <main class="stories-stage" aria-label="Истории женщин">
+        <div class="top-actions" aria-label="Переключение историй">
+          <button class="arrow-button" type="button" data-prev aria-label="Предыдущая история"><span>‹</span></button>
+          <button class="arrow-button" type="button" data-next aria-label="Следующая история"><span>›</span></button>
+        </div>
+
+        <section class="story is-active" data-story="0">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-full-length" src="img/story-yulia-reference.jpg" alt="Юля в черно-белом портрете в полный рост" />
+          </div>
+          <div class="story-copy">
+            <h1 class="story-name">Юля</h1>
+            <div class="story-column">
+              <p class="story-text">Следуя за порывами души,<br />я плыву по комнате<br />под звуки музыки —</p>
+              <p class="story-text">то замедляясь,<br />то ускоряясь,<br />кружась —</p>
+              <p class="story-text">вдруг ловлю моё отражение<br />в зеркале.<br /><span class="accent">Я не вижу</span> камеры.</p>
+              <p class="story-text">Есть только<br /><span class="accent block">танец</span>моего движения,<br />поток<br /><span class="accent block">чувствования,</span>и улыбчиво одобрительное<br /><span class="accent block">отражение.</span></p>
+            </div>
+            <div class="story-column">
+              <p class="story-text">Я нравлюсь мне<br />в этом процессе.</p>
+              <p class="story-text">Я влюбляюсь<br /><span class="accent block">в мою суть.</span></p>
+              <p class="story-text">Так рождается<br /><span class="accent block">женщина.</span></p>
+              <p class="story-text">Чувственная<br /><span class="accent block">энергия,</span>плавная,<br /><span class="accent block">текучая,</span>местами<br /><span class="accent block">взбалмошная,</span>дерзкая,<br /><span class="accent block">игривая</span>и <span class="accent">ранимая.</span></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--irina" data-story="1">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-full-length is-irina-main" src="img/story-irina-main.jpg" alt="" />
+          </div>
+          <div class="story-copy story-copy--irina">
+            <h1 class="story-name">Ирина</h1>
+            <p class="story-lead">Процесс запущен.<br />Я прям чувствую это. Внутри.</p>
+            <div class="story-column">
+              <p class="story-text">«Я думала, что просто<br />схожу пофотографироваться.<br />А в итоге это стало<br />невероятным вкладом<br /><span class="accent block">в себя...</span>Знакомством с другой собой.<br />Точнее — разговором.»</p>
+              <p class="story-text">«Пришлось заглянуть<br />и в самые тёмные уголки.<br />И в самые ранимые,<br />которые никому<br />не показываешь.<br />Да и себе очень редко.»</p>
+              <p class="story-text">«<span class="accent">Я часто живу в панцире.</span><br />Даже в броне.<br />Пока не найду то место,<br />где можно снять её<br />хотя бы ненадолго<br />и расслабиться.»</p>
+            </div>
+            <div class="story-column">
+              <p class="story-text">«Какая я<br />на самом деле?<br /><span class="accent block">Да разная.</span>И сильная есть.<br />И ранимая есть.<br />Я в броне есть —<br />и открытая есть.<br />И чёрная — и белая.<br />Разная есть.»</p>
+              <p class="story-text">«После встречи у меня было<br />ощущение, будто я стала<br />лучше слышать своё тело.<br />Лучше понимать его.<br />Лучше чувствовать.<br />Первое, что пришло мне в голову:<br />это как будто последствия<br />нашей встречи»</p>
+              <p class="story-text">«Я часто живу в панцире.<br />Даже в броне.<br />Пока не найду то место,<br />где можно снять её<br />хотя бы ненадолго<br />и расслабиться.»</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--anya" data-story="2">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-full-length is-anya-main" src="img/story-anya-main.jpg" alt="Аня в черно-белом портрете" />
+          </div>
+          <div class="story-copy story-copy--anya">
+            <h1 class="story-name">Аня</h1>
+            <p class="story-lead">Я устала быть сильной</p>
+            <div class="story-column">
+              <p class="story-text">Долгое время<br />мне казалось,<br />что нельзя показывать,<br />как мне бывает больно.<br />Я привыкла жить<br />в этих доспехах.<br />И однажды поняла —<br />больше не хочу.</p>
+              <p class="story-text">На нашей встрече<br />я впервые<br />разрешила себе<br />не защищаться.<br />Когда увидела фотографии,<br />подумала:<br />«Да...<br />Это я.»</p>
+              <p class="story-text">—</p>
+            </div>
+            <div class="story-column">
+              <p class="story-text">Сильная.<br />Ранимая.<br />Нежная.<br />Живая.</p>
+              <p class="story-text">—</p>
+              <p class="story-text">Теперь<br />я больше не прячусь,<br />И это изменило<br />намного больше,<br />чем я могла представить.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--yulia-k" data-story="3">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-full-length is-yulia-k-main" src="img/story-yulia-k-main.jpg" alt="Юлия в черно-белом портрете" />
+          </div>
+          <div class="story-copy story-copy--yulia-k">
+            <h1 class="story-name">Юлия</h1>
+            <p class="story-lead">То, что ты сегодня посеяла во мне,<br />точно будет прорастать.</p>
+            <div class="story-column">
+              <p class="story-text">«У меня такое смешение чувств...<br /><br />одновременно сложных и лёгких.<br /><br />Как будто внутри идёт борьба.<br />Я правда периодически ловила<br />в зеркале взгляд красивой женщины...<br />Но мой привычный опыт и поведение<br />пока не могут с этим состыковаться.<br />И всё же искра нет-нет, но доходит.<br />И я считаю это своей победой.<br />Потому что то, что ты сегодня<br />посеяла во мне, точно будет<br />прорастать.<br />Да, не быстро.<br />Да, придётся потрудиться.<br />Но я определённо готова.»</p>
+            </div>
+            <div class="story-column story-column--quotes">
+              <p class="story-text">«Я до сих пор<br />не верю, что это я.»</p>
+              <p class="story-text">«Я вижу эту лёгкость<br />на фотографиях.»</p>
+              <p class="story-text">«Эти фотографии<br />стали мне опорой.»</p>
+              <p class="story-text">«Теперь мне хочется мысленно<br />возвращаться к своему образу<br />на фотографии, чтобы снова<br />настраиваться на это состояние.»</p>
+              <p class="story-text">«Ты действительно увидела<br />меня моими глазами,<br />какой я хочу быть.»</p>
+            </div>
+            <p class="story-text story-wide">«Моё стойкое ощущение — хочу по-другому.<br />Так, как раньше, мне уже не подходит.»</p>
+            <p class="story-final">«Перемен требуют наши сердца.»</p>
+          </div>
+        </section>
+        <section class="story story--mentor story--scroll-copy" data-story="4">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-ira-sh-main.jpg" alt="Ирина, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor">
+            <h1 class="story-name">Ирина, 43 года</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column">
+              <p class="story-text">Мне кажется, что ты просто в целом талантливый человек.<br />Это как очень талантливый мастер, как художник,<br />который берет кисточку и просто рисует шедевр.<br />У тебя кисточка — это твой фотоаппарат.</p>
+              <p class="story-text">Ты берешь в руки, и ты настолько умеешь раскрывать человека,<br />подсказывать. Ты вроде и не ведешь меня, но ты находишь<br />такие тонкие слова, такие тонкие вещи, что. Как знаешь,<br />у меня как душу окутывает такие струны какие-то мягкие,<br />я так начинаю растекаться, растворяться.</p>
+              <p class="story-text">Я тебе доверяю.</p>
+              <p class="story-text">Ты сказала, что влюбляешься в каждую героиню,<br />спасибо за твою любовь<br />ко мне, к жизни)!</p>
+              <p class="story-text">Ты вернула меня к себе настоящей!!!</p>
+              <p class="story-text">Благодаря твоим фотографиям зарядилась,<br />поняла куда двигаться !</p>
+              <p class="story-text">Улыбаюсь до ушей!</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--mentor story--scroll-copy" data-story="5">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-natasha-main.webp" alt="Наташа, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor">
+            <h1 class="story-name">Наташа, 44 года</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column">
+              <p class="story-text">Ты помогла мне вернуться к жизни. И это не просто красивые слова,<br />в моем случае это прям буквально. Потому что гарантией того,<br />что болезнь не вернется (если вообще можно говорить про гарантии)<br />является мое психо-эмоциональное состояние,<br />мои положительные эмоции, моя вера в будущее, мое желание жить.<br />Встреча с тобой запустила какую-то совершенно потрясающую<br />череду событий в моей жизни, ты абсолютно точно<br />не случайный человек для меня.</p>
+              <p class="story-text">Ты сделала именно то, чего я хотела, чего я просила.<br />Хотя не уверена, что достаточно ясно сформулировала<br />свои желания. Ты показала именно то, что мне нужно было<br />увидеть в себе. До самого последнего слова и взгляда –<br />это именно то, что мне было нужно.</p>
+              <p class="story-text">Я невероятно счастлива, что нашла тебя,<br />что мне попался твой сайт.<br />Это не просто случайность, не просто везение,<br />это настоящий знак свыше, который я не пропустила!</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--mentor" data-story="6">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-natasha-p-main.jpg" alt="Наташа, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor">
+            <h1 class="story-name">Наташа, 48 лет</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column">
+              <p class="story-text">Наташа, это вау...</p>
+              <p class="story-text">Твои фото это взгляд со стороны<br />на меня моими глазами</p>
+              <p class="story-text">Их хочется пересматривать и показывать<br />пока только самым близким, потому что в них душа ......</p>
+              <p class="story-text">Эти фото для меня теперь будут как маяк,<br />куда я буду смотреть на себя со стороны.</p>
+              <p class="story-text">Ты поймала мой посыл<br />и мое настроение...</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--mentor story--scroll-copy" data-story="7">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-tatiana-main.webp" alt="Татьяна, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor">
+            <h1 class="story-name">Татьяна</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column">
+              <p class="story-text">работа с тобой, Наташ, это отличная<br />возможность раскрыться,<br />прочувствовать себя, понять<br />какой женственной можно быть<br />и быть ей)</p>
+              <p class="story-text">всем тем кто сомневается и думает, ”<br />..ОЙ я какая-то не такая, у меня морщины<br />,лишние кг и тд, и вообще я же никогда<br />не была съемках, не знаю как себя вести,<br />как держаться, куда руки деть и т.д.",</p>
+              <p class="story-text">это все ФИГНЯ, любовь к себе может начаться<br />с волшебных 2х часов съемки, а Наташа 100%<br />ваш путеводитель в этот мир красоты)))<br />100% Рекомендую. И да, встречаться на<br />48 неделе года это уже наша маленькая<br />традиция, очень хочу ее повторять))</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--mentor" data-story="8">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-yulia-1-main.jpg" alt="Юлия, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor">
+            <h1 class="story-name">Юлия</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column">
+              <p class="story-text">Хочу сказать что ты очень крутая Наташа!<br />Ты наша фея крестная!)<br />Видишь всю красоту в женщине<br />и внутреннюю и внешнюю,<br />и показываешь её на фотографиях.<br />Ты отличный психолог, поход к тебе<br />можно расценивать как месяц работы с психологом,<br />у меня столько инсайтов)<br />даже мой мужчина стал по другому<br />ко мне относиться,<br />причём прям на второй день после съёмки))<br />у меня нет слов,<br />я тебе очень сильно благодарна!</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="film-overlay" aria-hidden="true">
+      <div class="film-track is-active" data-film="0">
+        <div class="film-sequence">
+          <img src="img/yulia-film-01.jpg" alt="" />
+          <img src="img/yulia-film-02.jpg" alt="" />
+          <img src="img/yulia-film-03.jpg" alt="" />
+          <img src="img/yulia-film-04.jpg" alt="" />
+          <img src="img/yulia-film-05.jpg" alt="" />
+          <img src="img/yulia-film-06.jpg" alt="" />
+          <img src="img/yulia-film-07.jpg" alt="" />
+          <img src="img/yulia-film-08.jpg" alt="" />
+          <img src="img/yulia-film-09.webp" alt="" />
+          <img src="img/yulia-film-01.jpg" alt="" />
+          <img src="img/yulia-film-02.jpg" alt="" />
+          <img src="img/yulia-film-03.jpg" alt="" />
+          <img src="img/yulia-film-04.jpg" alt="" />
+          <img src="img/yulia-film-05.jpg" alt="" />
+          <img src="img/yulia-film-06.jpg" alt="" />
+          <img src="img/yulia-film-07.jpg" alt="" />
+          <img src="img/yulia-film-08.jpg" alt="" />
+          <img src="img/yulia-film-09.webp" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/yulia-film-01.jpg" alt="" />
+          <img src="img/yulia-film-02.jpg" alt="" />
+          <img src="img/yulia-film-03.jpg" alt="" />
+          <img src="img/yulia-film-04.jpg" alt="" />
+          <img src="img/yulia-film-05.jpg" alt="" />
+          <img src="img/yulia-film-06.jpg" alt="" />
+          <img src="img/yulia-film-07.jpg" alt="" />
+          <img src="img/yulia-film-08.jpg" alt="" />
+          <img src="img/yulia-film-09.webp" alt="" />
+          <img src="img/yulia-film-01.jpg" alt="" />
+          <img src="img/yulia-film-02.jpg" alt="" />
+          <img src="img/yulia-film-03.jpg" alt="" />
+          <img src="img/yulia-film-04.jpg" alt="" />
+          <img src="img/yulia-film-05.jpg" alt="" />
+          <img src="img/yulia-film-06.jpg" alt="" />
+          <img src="img/yulia-film-07.jpg" alt="" />
+          <img src="img/yulia-film-08.jpg" alt="" />
+          <img src="img/yulia-film-09.webp" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="1">
+        <div class="film-sequence">
+          <img src="img/irina-film-01.jpg" alt="" />
+          <img src="img/irina-film-02.jpg" alt="" />
+          <img src="img/irina-film-03.jpg" alt="" />
+          <img src="img/irina-film-04.jpg" alt="" />
+          <img src="img/irina-film-05.jpg" alt="" />
+          <img src="img/irina-film-06.jpg" alt="" />
+          <img src="img/irina-film-07.jpg" alt="" />
+          <img src="img/irina-film-08.jpg" alt="" />
+          <img src="img/irina-film-01.jpg" alt="" />
+          <img src="img/irina-film-02.jpg" alt="" />
+          <img src="img/irina-film-03.jpg" alt="" />
+          <img src="img/irina-film-04.jpg" alt="" />
+          <img src="img/irina-film-05.jpg" alt="" />
+          <img src="img/irina-film-06.jpg" alt="" />
+          <img src="img/irina-film-07.jpg" alt="" />
+          <img src="img/irina-film-08.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/irina-film-01.jpg" alt="" />
+          <img src="img/irina-film-02.jpg" alt="" />
+          <img src="img/irina-film-03.jpg" alt="" />
+          <img src="img/irina-film-04.jpg" alt="" />
+          <img src="img/irina-film-05.jpg" alt="" />
+          <img src="img/irina-film-06.jpg" alt="" />
+          <img src="img/irina-film-07.jpg" alt="" />
+          <img src="img/irina-film-08.jpg" alt="" />
+          <img src="img/irina-film-01.jpg" alt="" />
+          <img src="img/irina-film-02.jpg" alt="" />
+          <img src="img/irina-film-03.jpg" alt="" />
+          <img src="img/irina-film-04.jpg" alt="" />
+          <img src="img/irina-film-05.jpg" alt="" />
+          <img src="img/irina-film-06.jpg" alt="" />
+          <img src="img/irina-film-07.jpg" alt="" />
+          <img src="img/irina-film-08.jpg" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="2">
+        <div class="film-sequence">
+          <img src="img/anya-film-01.jpg" alt="" />
+          <img src="img/anya-film-02.jpg" alt="" />
+          <img src="img/anya-film-03.jpg" alt="" />
+          <img src="img/anya-film-04.jpg" alt="" />
+          <img src="img/anya-film-05.jpg" alt="" />
+          <img src="img/anya-film-06.jpg" alt="" />
+          <img src="img/anya-film-07.jpg" alt="" />
+          <img src="img/anya-film-08.jpg" alt="" />
+          <img src="img/anya-film-09.jpg" alt="" />
+          <img src="img/anya-film-01.jpg" alt="" />
+          <img src="img/anya-film-02.jpg" alt="" />
+          <img src="img/anya-film-03.jpg" alt="" />
+          <img src="img/anya-film-04.jpg" alt="" />
+          <img src="img/anya-film-05.jpg" alt="" />
+          <img src="img/anya-film-06.jpg" alt="" />
+          <img src="img/anya-film-07.jpg" alt="" />
+          <img src="img/anya-film-08.jpg" alt="" />
+          <img src="img/anya-film-09.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/anya-film-01.jpg" alt="" />
+          <img src="img/anya-film-02.jpg" alt="" />
+          <img src="img/anya-film-03.jpg" alt="" />
+          <img src="img/anya-film-04.jpg" alt="" />
+          <img src="img/anya-film-05.jpg" alt="" />
+          <img src="img/anya-film-06.jpg" alt="" />
+          <img src="img/anya-film-07.jpg" alt="" />
+          <img src="img/anya-film-08.jpg" alt="" />
+          <img src="img/anya-film-09.jpg" alt="" />
+          <img src="img/anya-film-01.jpg" alt="" />
+          <img src="img/anya-film-02.jpg" alt="" />
+          <img src="img/anya-film-03.jpg" alt="" />
+          <img src="img/anya-film-04.jpg" alt="" />
+          <img src="img/anya-film-05.jpg" alt="" />
+          <img src="img/anya-film-06.jpg" alt="" />
+          <img src="img/anya-film-07.jpg" alt="" />
+          <img src="img/anya-film-08.jpg" alt="" />
+          <img src="img/anya-film-09.jpg" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="3">
+        <div class="film-sequence">
+          <img src="img/yulia-k-film-01.jpg" alt="" />
+          <img src="img/yulia-k-film-02.jpg" alt="" />
+          <img src="img/yulia-k-film-03.jpg" alt="" />
+          <img src="img/yulia-k-film-04.jpg" alt="" />
+          <img src="img/yulia-k-film-05.jpg" alt="" />
+          <img src="img/yulia-k-film-06.jpg" alt="" />
+          <img src="img/yulia-k-film-07.jpg" alt="" />
+          <img src="img/yulia-k-film-08.jpg" alt="" />
+          <img src="img/yulia-k-film-09.jpg" alt="" />
+          <img src="img/yulia-k-film-01.jpg" alt="" />
+          <img src="img/yulia-k-film-02.jpg" alt="" />
+          <img src="img/yulia-k-film-03.jpg" alt="" />
+          <img src="img/yulia-k-film-04.jpg" alt="" />
+          <img src="img/yulia-k-film-05.jpg" alt="" />
+          <img src="img/yulia-k-film-06.jpg" alt="" />
+          <img src="img/yulia-k-film-07.jpg" alt="" />
+          <img src="img/yulia-k-film-08.jpg" alt="" />
+          <img src="img/yulia-k-film-09.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/yulia-k-film-01.jpg" alt="" />
+          <img src="img/yulia-k-film-02.jpg" alt="" />
+          <img src="img/yulia-k-film-03.jpg" alt="" />
+          <img src="img/yulia-k-film-04.jpg" alt="" />
+          <img src="img/yulia-k-film-05.jpg" alt="" />
+          <img src="img/yulia-k-film-06.jpg" alt="" />
+          <img src="img/yulia-k-film-07.jpg" alt="" />
+          <img src="img/yulia-k-film-08.jpg" alt="" />
+          <img src="img/yulia-k-film-09.jpg" alt="" />
+          <img src="img/yulia-k-film-01.jpg" alt="" />
+          <img src="img/yulia-k-film-02.jpg" alt="" />
+          <img src="img/yulia-k-film-03.jpg" alt="" />
+          <img src="img/yulia-k-film-04.jpg" alt="" />
+          <img src="img/yulia-k-film-05.jpg" alt="" />
+          <img src="img/yulia-k-film-06.jpg" alt="" />
+          <img src="img/yulia-k-film-07.jpg" alt="" />
+          <img src="img/yulia-k-film-08.jpg" alt="" />
+          <img src="img/yulia-k-film-09.jpg" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="4">
+        <div class="film-sequence">
+          <img src="img/ira-sh-film-01.jpg" alt="" />
+          <img src="img/ira-sh-film-02.jpg" alt="" />
+          <img src="img/ira-sh-film-03.jpg" alt="" />
+          <img src="img/ira-sh-film-04.jpg" alt="" />
+          <img src="img/ira-sh-film-05.jpg" alt="" />
+          <img src="img/ira-sh-film-06.jpg" alt="" />
+          <img src="img/ira-sh-film-07.jpg" alt="" />
+          <img src="img/ira-sh-film-08.jpg" alt="" />
+          <img src="img/ira-sh-film-01.jpg" alt="" />
+          <img src="img/ira-sh-film-02.jpg" alt="" />
+          <img src="img/ira-sh-film-03.jpg" alt="" />
+          <img src="img/ira-sh-film-04.jpg" alt="" />
+          <img src="img/ira-sh-film-05.jpg" alt="" />
+          <img src="img/ira-sh-film-06.jpg" alt="" />
+          <img src="img/ira-sh-film-07.jpg" alt="" />
+          <img src="img/ira-sh-film-08.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/ira-sh-film-01.jpg" alt="" />
+          <img src="img/ira-sh-film-02.jpg" alt="" />
+          <img src="img/ira-sh-film-03.jpg" alt="" />
+          <img src="img/ira-sh-film-04.jpg" alt="" />
+          <img src="img/ira-sh-film-05.jpg" alt="" />
+          <img src="img/ira-sh-film-06.jpg" alt="" />
+          <img src="img/ira-sh-film-07.jpg" alt="" />
+          <img src="img/ira-sh-film-08.jpg" alt="" />
+          <img src="img/ira-sh-film-01.jpg" alt="" />
+          <img src="img/ira-sh-film-02.jpg" alt="" />
+          <img src="img/ira-sh-film-03.jpg" alt="" />
+          <img src="img/ira-sh-film-04.jpg" alt="" />
+          <img src="img/ira-sh-film-05.jpg" alt="" />
+          <img src="img/ira-sh-film-06.jpg" alt="" />
+          <img src="img/ira-sh-film-07.jpg" alt="" />
+          <img src="img/ira-sh-film-08.jpg" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="5">
+        <div class="film-sequence">
+          <img src="img/natasha-film-01.webp" alt="" />
+          <img src="img/natasha-film-02.webp" alt="" />
+          <img src="img/natasha-film-03.webp" alt="" />
+          <img src="img/natasha-film-04.webp" alt="" />
+          <img src="img/natasha-film-05.webp" alt="" />
+          <img src="img/natasha-film-06.webp" alt="" />
+          <img src="img/natasha-film-07.webp" alt="" />
+          <img src="img/natasha-film-08.webp" alt="" />
+          <img src="img/natasha-film-09.webp" alt="" />
+          <img src="img/natasha-film-01.webp" alt="" />
+          <img src="img/natasha-film-02.webp" alt="" />
+          <img src="img/natasha-film-03.webp" alt="" />
+          <img src="img/natasha-film-04.webp" alt="" />
+          <img src="img/natasha-film-05.webp" alt="" />
+          <img src="img/natasha-film-06.webp" alt="" />
+          <img src="img/natasha-film-07.webp" alt="" />
+          <img src="img/natasha-film-08.webp" alt="" />
+          <img src="img/natasha-film-09.webp" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/natasha-film-01.webp" alt="" />
+          <img src="img/natasha-film-02.webp" alt="" />
+          <img src="img/natasha-film-03.webp" alt="" />
+          <img src="img/natasha-film-04.webp" alt="" />
+          <img src="img/natasha-film-05.webp" alt="" />
+          <img src="img/natasha-film-06.webp" alt="" />
+          <img src="img/natasha-film-07.webp" alt="" />
+          <img src="img/natasha-film-08.webp" alt="" />
+          <img src="img/natasha-film-09.webp" alt="" />
+          <img src="img/natasha-film-01.webp" alt="" />
+          <img src="img/natasha-film-02.webp" alt="" />
+          <img src="img/natasha-film-03.webp" alt="" />
+          <img src="img/natasha-film-04.webp" alt="" />
+          <img src="img/natasha-film-05.webp" alt="" />
+          <img src="img/natasha-film-06.webp" alt="" />
+          <img src="img/natasha-film-07.webp" alt="" />
+          <img src="img/natasha-film-08.webp" alt="" />
+          <img src="img/natasha-film-09.webp" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="6">
+        <div class="film-sequence">
+          <img src="img/natasha-p-film-01.jpg" alt="" />
+          <img src="img/natasha-p-film-02.jpg" alt="" />
+          <img src="img/natasha-p-film-03.jpg" alt="" />
+          <img src="img/natasha-p-film-04.jpg" alt="" />
+          <img src="img/natasha-p-film-05.jpg" alt="" />
+          <img src="img/natasha-p-film-06.jpg" alt="" />
+          <img src="img/natasha-p-film-07.jpg" alt="" />
+          <img src="img/natasha-p-film-08.jpg" alt="" />
+          <img src="img/natasha-p-film-09.jpg" alt="" />
+          <img src="img/natasha-p-film-01.jpg" alt="" />
+          <img src="img/natasha-p-film-02.jpg" alt="" />
+          <img src="img/natasha-p-film-03.jpg" alt="" />
+          <img src="img/natasha-p-film-04.jpg" alt="" />
+          <img src="img/natasha-p-film-05.jpg" alt="" />
+          <img src="img/natasha-p-film-06.jpg" alt="" />
+          <img src="img/natasha-p-film-07.jpg" alt="" />
+          <img src="img/natasha-p-film-08.jpg" alt="" />
+          <img src="img/natasha-p-film-09.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/natasha-p-film-01.jpg" alt="" />
+          <img src="img/natasha-p-film-02.jpg" alt="" />
+          <img src="img/natasha-p-film-03.jpg" alt="" />
+          <img src="img/natasha-p-film-04.jpg" alt="" />
+          <img src="img/natasha-p-film-05.jpg" alt="" />
+          <img src="img/natasha-p-film-06.jpg" alt="" />
+          <img src="img/natasha-p-film-07.jpg" alt="" />
+          <img src="img/natasha-p-film-08.jpg" alt="" />
+          <img src="img/natasha-p-film-09.jpg" alt="" />
+          <img src="img/natasha-p-film-01.jpg" alt="" />
+          <img src="img/natasha-p-film-02.jpg" alt="" />
+          <img src="img/natasha-p-film-03.jpg" alt="" />
+          <img src="img/natasha-p-film-04.jpg" alt="" />
+          <img src="img/natasha-p-film-05.jpg" alt="" />
+          <img src="img/natasha-p-film-06.jpg" alt="" />
+          <img src="img/natasha-p-film-07.jpg" alt="" />
+          <img src="img/natasha-p-film-08.jpg" alt="" />
+          <img src="img/natasha-p-film-09.jpg" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="7">
+        <div class="film-sequence">
+          <img src="img/tatiana-film-01.webp" alt="" />
+          <img src="img/tatiana-film-02.webp" alt="" />
+          <img src="img/tatiana-film-03.webp" alt="" />
+          <img src="img/tatiana-film-04.webp" alt="" />
+          <img src="img/tatiana-film-05.webp" alt="" />
+          <img src="img/tatiana-film-06.webp" alt="" />
+          <img src="img/tatiana-film-07.webp" alt="" />
+          <img src="img/tatiana-film-08.webp" alt="" />
+          <img src="img/tatiana-film-09.webp" alt="" />
+          <img src="img/tatiana-film-01.webp" alt="" />
+          <img src="img/tatiana-film-02.webp" alt="" />
+          <img src="img/tatiana-film-03.webp" alt="" />
+          <img src="img/tatiana-film-04.webp" alt="" />
+          <img src="img/tatiana-film-05.webp" alt="" />
+          <img src="img/tatiana-film-06.webp" alt="" />
+          <img src="img/tatiana-film-07.webp" alt="" />
+          <img src="img/tatiana-film-08.webp" alt="" />
+          <img src="img/tatiana-film-09.webp" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/tatiana-film-01.webp" alt="" />
+          <img src="img/tatiana-film-02.webp" alt="" />
+          <img src="img/tatiana-film-03.webp" alt="" />
+          <img src="img/tatiana-film-04.webp" alt="" />
+          <img src="img/tatiana-film-05.webp" alt="" />
+          <img src="img/tatiana-film-06.webp" alt="" />
+          <img src="img/tatiana-film-07.webp" alt="" />
+          <img src="img/tatiana-film-08.webp" alt="" />
+          <img src="img/tatiana-film-09.webp" alt="" />
+          <img src="img/tatiana-film-01.webp" alt="" />
+          <img src="img/tatiana-film-02.webp" alt="" />
+          <img src="img/tatiana-film-03.webp" alt="" />
+          <img src="img/tatiana-film-04.webp" alt="" />
+          <img src="img/tatiana-film-05.webp" alt="" />
+          <img src="img/tatiana-film-06.webp" alt="" />
+          <img src="img/tatiana-film-07.webp" alt="" />
+          <img src="img/tatiana-film-08.webp" alt="" />
+          <img src="img/tatiana-film-09.webp" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="8">
+        <div class="film-sequence">
+          <video src="img/yulia-1-film-01.mp4" autoplay muted loop playsinline></video>
+          <img src="img/yulia-1-film-02.jpg" alt="" />
+          <img src="img/yulia-1-film-03.jpg" alt="" />
+          <img src="img/yulia-1-film-04.jpg" alt="" />
+          <img src="img/yulia-1-film-05.jpg" alt="" />
+          <img src="img/yulia-1-film-06.jpg" alt="" />
+          <img src="img/yulia-1-film-07.jpg" alt="" />
+          <img src="img/yulia-1-film-08.jpg" alt="" />
+          <img src="img/yulia-1-film-09.jpg" alt="" />
+          <img src="img/yulia-1-film-10.jpg" alt="" />
+          <video src="img/yulia-1-film-01.mp4" autoplay muted loop playsinline></video>
+          <img src="img/yulia-1-film-02.jpg" alt="" />
+          <img src="img/yulia-1-film-03.jpg" alt="" />
+          <img src="img/yulia-1-film-04.jpg" alt="" />
+          <img src="img/yulia-1-film-05.jpg" alt="" />
+          <img src="img/yulia-1-film-06.jpg" alt="" />
+          <img src="img/yulia-1-film-07.jpg" alt="" />
+          <img src="img/yulia-1-film-08.jpg" alt="" />
+          <img src="img/yulia-1-film-09.jpg" alt="" />
+          <img src="img/yulia-1-film-10.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <video src="img/yulia-1-film-01.mp4" autoplay muted loop playsinline></video>
+          <img src="img/yulia-1-film-02.jpg" alt="" />
+          <img src="img/yulia-1-film-03.jpg" alt="" />
+          <img src="img/yulia-1-film-04.jpg" alt="" />
+          <img src="img/yulia-1-film-05.jpg" alt="" />
+          <img src="img/yulia-1-film-06.jpg" alt="" />
+          <img src="img/yulia-1-film-07.jpg" alt="" />
+          <img src="img/yulia-1-film-08.jpg" alt="" />
+          <img src="img/yulia-1-film-09.jpg" alt="" />
+          <img src="img/yulia-1-film-10.jpg" alt="" />
+          <video src="img/yulia-1-film-01.mp4" autoplay muted loop playsinline></video>
+          <img src="img/yulia-1-film-02.jpg" alt="" />
+          <img src="img/yulia-1-film-03.jpg" alt="" />
+          <img src="img/yulia-1-film-04.jpg" alt="" />
+          <img src="img/yulia-1-film-05.jpg" alt="" />
+          <img src="img/yulia-1-film-06.jpg" alt="" />
+          <img src="img/yulia-1-film-07.jpg" alt="" />
+          <img src="img/yulia-1-film-08.jpg" alt="" />
+          <img src="img/yulia-1-film-09.jpg" alt="" />
+          <img src="img/yulia-1-film-10.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const stories = Array.from(document.querySelectorAll(".story"));
+      const films = Array.from(document.querySelectorAll(".film-track"));
+      let current = 0;
+      let isAnimating = false;
+
+      function showStory(index) {
+        if (isAnimating || index === current) return;
+        isAnimating = true;
+        const next = (index + stories.length) % stories.length;
+        const direction = next > current || (current === stories.length - 1 && next === 0) ? 1 : -1;
+        const previousStory = stories[current];
+        const nextStory = stories[next];
+
+        previousStory.classList.remove("is-active");
+        previousStory.classList.add(direction > 0 ? "is-leaving-left" : "is-leaving-right");
+        nextStory.style.setProperty("--enter-x", `${direction * 30}px`);
+        nextStory.classList.add("is-active");
+
+        films.forEach((film, filmIndex) => {
+          film.classList.toggle("is-active", filmIndex === next);
+          if (filmIndex === next) {
+            film.style.animation = "none";
+            film.offsetHeight;
+            film.style.animation = "";
+          }
+        });
+
+        window.setTimeout(() => {
+          previousStory.classList.remove("is-leaving-left", "is-leaving-right");
+          current = next;
+          isAnimating = false;
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 520);
+      }
+
+      document.querySelector("[data-prev]").addEventListener("click", () => showStory(current - 1));
+      document.querySelector("[data-next]").addEventListener("click", () => showStory(current + 1));
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") showStory(current - 1);
+        if (event.key === "ArrowRight") showStory(current + 1);
+      });
+    </script>
+  </body>
+</html>
