@@ -2608,10 +2608,16 @@
                   React.createElement("div", { className: "brand-text" }, "Наталья Хоруженко", React.createElement("br"), "фотограф | психолог")
                 ),
                 React.createElement(
+                  "button",
+                  { className: "menu-toggle", type: "button", "aria-expanded": "false", "aria-label": "Открыть меню" },
+                  React.createElement("span", { className: "menu-toggle-lines", "aria-hidden": "true" }, React.createElement("span"))
+                ),
+                React.createElement(
                   "nav",
                   { className: "nav", "aria-label": "Основное меню" },
-              menu.map((item) => React.createElement("a", { href: item === "Главная" ? "#top" : item === "Об авторе" ? "about.html" : item === "Истории" ? "Portfolio.html" : item === "Встреча с собой" ? "meeting-yourself.html" : item === "Книга" ? "book.html" : item === "Контакты" ? "contacts.html" : item === "Наставничество" ? "nastavnichestvo.html" : "#", key: item }, item))
-                )
+                  menu.map((item) => React.createElement("a", { href: item === "Главная" ? "#top" : item === "Об авторе" ? "about.html" : item === "Истории" ? "Portfolio.html" : item === "Встреча с собой" ? "meeting-yourself.html" : item === "Книга" ? "book.html" : item === "Контакты" ? "contacts.html" : item === "Наставничество" ? "nastavnichestvo.html" : "#", key: item }, item))
+                ),
+                React.createElement("button", { className: "menu-backdrop", type: "button", tabIndex: -1, "aria-label": "Закрыть меню" })
               ),
               React.createElement(
                 "section",
