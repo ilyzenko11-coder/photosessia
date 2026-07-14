@@ -118,6 +118,11 @@
         background: rgba(216, 181, 138, 0.42);
       }
 
+      .menu-toggle,
+      .menu-backdrop {
+        display: none;
+      }
+
       .mentorship-page {
         background:
           radial-gradient(circle at 74% 8%, rgba(216, 181, 138, 0.08), transparent 28%),
@@ -438,17 +443,58 @@
         padding-bottom: clamp(48px, 5vw, 78px);
       }
 
-      .application {
+      .photographer-channels {
         display: grid;
-        grid-template-columns: minmax(390px, 0.84fr) minmax(0, 1.16fr);
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+        gap: clamp(34px, 6vw, 96px);
+        align-items: center;
         min-height: 420px;
-        background: #050505;
+        padding: clamp(58px, 8vw, 104px) clamp(24px, 8vw, 132px);
+        border-top: 1px solid rgba(216, 181, 138, 0.16);
+        background:
+          radial-gradient(circle at 12% 16%, rgba(216, 181, 138, 0.08), transparent 34%),
+          #050505;
       }
 
-      .application .copy-panel {
-        justify-content: end;
-        padding-top: clamp(52px, 6vw, 90px);
-        padding-bottom: clamp(46px, 5vw, 72px);
+      .photographer-channels-text {
+        margin: 0;
+        color: rgba(233, 226, 218, 0.78);
+        font-size: clamp(18px, 1.55vw, 24px);
+        font-weight: 300;
+        line-height: 1.75;
+      }
+
+      .photographer-channels-links {
+        display: grid;
+        gap: 24px;
+        justify-items: start;
+      }
+
+      .photographer-channel-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(22px, 2vw, 30px);
+        font-weight: 600;
+        line-height: 1.2;
+        text-decoration: none;
+        transition: color 180ms ease, transform 180ms ease;
+      }
+
+      .photographer-channel-link::before {
+        content: "→";
+        color: var(--gold);
+        font-family: "Manrope", Arial, sans-serif;
+        font-size: 22px;
+        font-weight: 300;
+      }
+
+      .photographer-channel-link:hover,
+      .photographer-channel-link:focus-visible {
+        color: #e9e2da;
+        transform: translateX(4px);
       }
 
       .image-panel.is-section-7 img {
@@ -690,7 +736,7 @@
         .final,
         .individual,
         .after-mentorship,
-        .application {
+        .photographer-channels {
           grid-template-columns: 1fr;
           min-height: 0;
         }
@@ -710,8 +756,12 @@
           order: -1;
         }
 
-        .application .image-panel {
-          order: -1;
+        .photographer-channels {
+          padding: 58px 28px;
+        }
+
+        .photographer-channels-links {
+          justify-items: start;
         }
 
         .phone-row {
@@ -730,27 +780,188 @@
 
       @media (max-width: 620px) {
         .header {
-          padding: 20px 18px 16px;
+          position: relative;
+          grid-template-columns: 1fr auto;
+          min-height: 70px;
+          padding: 14px 18px;
         }
 
-        .brand {
-          gap: 14px;
+        .brand-line,
+        .brand-text {
+          display: none;
         }
 
         .mark {
-          font-size: 40px;
+          font-size: 38px;
         }
 
-        .brand-text {
-          font-size: 12px;
+        .menu-toggle {
+          position: relative;
+          z-index: 12;
+          display: inline-flex;
+          width: 44px;
+          height: 44px;
+          padding: 0;
+          border: 1px solid rgba(216, 181, 138, 0.25);
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+          color: inherit;
+          background: rgba(5, 5, 5, 0.72);
+          cursor: pointer;
+        }
+
+        .menu-toggle-lines {
+          position: relative;
+          display: block;
+          width: 19px;
+          height: 14px;
+        }
+
+        .menu-toggle-lines::before,
+        .menu-toggle-lines::after,
+        .menu-toggle-lines span {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: var(--gold);
+          content: "";
+          transition: transform 220ms ease, opacity 180ms ease, top 220ms ease;
+        }
+
+        .menu-toggle-lines::before {
+          top: 0;
+        }
+
+        .menu-toggle-lines span {
+          top: 6px;
+        }
+
+        .menu-toggle-lines::after {
+          top: 12px;
+        }
+
+        .menu-toggle[aria-expanded="true"] .menu-toggle-lines::before {
+          top: 6px;
+          transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .menu-toggle-lines span {
+          opacity: 0;
+        }
+
+        .menu-toggle[aria-expanded="true"] .menu-toggle-lines::after {
+          top: 6px;
+          transform: rotate(-45deg);
         }
 
         .nav {
-          gap: 13px 18px;
+          position: fixed;
+          z-index: 11;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          display: flex;
+          width: min(84vw, 360px);
+          padding: 104px 30px 40px;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          align-items: stretch;
+          justify-content: flex-start;
+          gap: 0;
+          overflow-y: auto;
+          border-left: 1px solid rgba(216, 181, 138, 0.18);
+          background:
+            radial-gradient(circle at 100% 0, rgba(216, 181, 138, 0.1), transparent 34%),
+            #0a0a0a;
+          box-shadow: -20px 0 60px rgba(0, 0, 0, 0.45);
+          transform: translateX(105%);
+          visibility: hidden;
+          transition: transform 260ms ease, visibility 260ms ease;
         }
 
         .nav a {
-          font-size: 12px;
+          padding: 17px 0;
+          border-bottom: 1px solid rgba(216, 181, 138, 0.12);
+          color: rgba(233, 226, 218, 0.82);
+          font-family: "Cormorant Garamond", Georgia, serif;
+          font-size: 25px;
+          font-weight: 500;
+          line-height: 1.15;
+          white-space: normal;
+        }
+
+        .nav a.is-active::after {
+          display: none;
+        }
+
+        .nav a.is-active {
+          color: var(--gold);
+        }
+
+        .header.is-menu-open .nav {
+          transform: translateX(0);
+          visibility: visible;
+        }
+
+        .menu-backdrop {
+          position: fixed;
+          z-index: 10;
+          inset: 0;
+          display: block;
+          padding: 0;
+          border: 0;
+          background: rgba(0, 0, 0, 0.64);
+          opacity: 0;
+          visibility: hidden;
+          cursor: pointer;
+          transition: opacity 220ms ease, visibility 220ms ease;
+        }
+
+        .header.is-menu-open .menu-backdrop {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        body.menu-open {
+          overflow: hidden;
+        }
+
+        body.menu-open .floating-telegram {
+          visibility: hidden;
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .hero,
+        .split,
+        .split.reverse,
+        .final,
+        .individual,
+        .after-mentorship {
+          display: flex;
+          min-height: 0;
+          flex-direction: column;
+        }
+
+        .hero-image,
+        .image-panel,
+        .split.reverse .image-panel {
+          order: 1;
+          width: 100%;
+          height: auto;
+          min-height: 0;
+          aspect-ratio: 4 / 5;
+        }
+
+        .hero-copy,
+        .copy-panel {
+          order: 2;
+          position: relative;
+          padding: 40px 20px 48px;
+          border-top: 1px solid rgba(216, 181, 138, 0.12);
+          background: var(--black);
         }
 
         .hero-title {
@@ -760,11 +971,6 @@
         .section-title,
         .gold-line {
           font-size: clamp(31px, 10vw, 44px);
-        }
-
-        .hero-image,
-        .image-panel {
-          min-height: 360px;
         }
 
         .two-arts {
@@ -785,6 +991,16 @@
           padding: 24px 16px 28px;
         }
       }
+
+      @media (max-width: 620px) and (prefers-reduced-motion: reduce) {
+        .nav,
+        .menu-backdrop,
+        .menu-toggle-lines::before,
+        .menu-toggle-lines::after,
+        .menu-toggle-lines span {
+          transition: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -794,6 +1010,9 @@
         <div class="brand-line" aria-hidden="true"></div>
         <div class="brand-text">Наталья Хоруженко<br />фотограф | психолог</div>
       </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Открыть меню">
+        <span class="menu-toggle-lines" aria-hidden="true"><span></span></span>
+      </button>
       <nav class="nav" aria-label="Основное меню">
         <a href="index.html#top">Главная</a>
         <a href="about.html">Об авторе</a>
@@ -803,6 +1022,7 @@
         <a class="is-active" href="nastavnichestvo.html">Наставничество</a>
         <a href="contacts.html">Контакты</a>
       </nav>
+      <button class="menu-backdrop" type="button" tabindex="-1" aria-label="Закрыть меню"></button>
     </header>
 
     <main class="mentorship-page">
@@ -907,25 +1127,14 @@
         </div>
       </section>
 
-      <section class="section application">
-        <div class="copy-panel">
-          <h2 class="section-title">Если вам близка<br />эта философия</h2>
-          <p class="section-text">Я приглашаю вас в пространство, где фотография становится не повторением чужого кадра, а вашим способом видеть человека.</p>
-          <p class="section-text">Оставьте заявку, и мы обсудим, какой формат наставничества сейчас будет для вас самым точным.</p>
-          <span class="down" aria-hidden="true">↓</span>
-          <button class="action-link questionnaire-inline-button" type="button" data-open-questionnaire>Заполнить анкету <span aria-hidden="true">→</span></button>
-        </div>
-        <div class="image-panel is-section-9" aria-hidden="true">
-          <img src="нс/секция 9.JPG" alt="" loading="lazy" />
+      <section class="photographer-channels" aria-label="Каналы для фотографов">
+        <p class="photographer-channels-text">Своими размышлениями о глубине портрета, психологии съёмки, историями учениц и Искусстве видеть я делюсь в своих каналах:</p>
+        <div class="photographer-channels-links">
+          <a class="photographer-channel-link" href="https://t.me/khoruzhenko_nata">Перейти в Telegram для фотографов</a>
+          <a class="photographer-channel-link" href="https://max.ru/join/pcYRGE0at3XgKvj8j-LwJdQSfbt3pF1FJH3IW9_T1Ck">Перейти в MAX для фотографов</a>
         </div>
       </section>
     </main>
-
-    <footer class="mentorship-footer">
-      <h2 class="footer-title">Готова обсудить наставничество?</h2>
-      <p class="footer-text">Заполни короткую анкету, чтобы я увидела твой запрос, уровень в фотографии и могла понять, какой формат сопровождения будет для тебя полезен.</p>
-      <button class="questionnaire-button" type="button" data-open-questionnaire>Заполнить анкету</button>
-    </footer>
 
     <div class="questionnaire-overlay" data-questionnaire-overlay hidden>
       <div class="questionnaire-modal" role="dialog" aria-modal="true" aria-labelledby="questionnaire-title">
@@ -1018,6 +1227,36 @@
       const questionnaireForm = document.querySelector(".questionnaire-form");
       const openQuestionnaireButtons = Array.from(document.querySelectorAll("[data-open-questionnaire]"));
       const closeQuestionnaireButton = document.querySelector("[data-close-questionnaire]");
+      const header = document.querySelector(".header");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const menuBackdrop = document.querySelector(".menu-backdrop");
+      const navigationLinks = Array.from(document.querySelectorAll(".nav a"));
+
+      function setMenuOpen(isOpen) {
+        if (!header || !menuToggle) return;
+        header.classList.toggle("is-menu-open", isOpen);
+        document.body.classList.toggle("menu-open", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+      }
+
+      if (menuToggle) {
+        menuToggle.addEventListener("click", () => {
+          setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
+        });
+      }
+
+      if (menuBackdrop) {
+        menuBackdrop.addEventListener("click", () => setMenuOpen(false));
+      }
+
+      navigationLinks.forEach((link) => {
+        link.addEventListener("click", () => setMenuOpen(false));
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 620) setMenuOpen(false);
+      });
 
       function openQuestionnaire() {
         if (!questionnaireOverlay) return;
@@ -1048,6 +1287,10 @@
       }
 
       window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menuToggle && menuToggle.getAttribute("aria-expanded") === "true") {
+          setMenuOpen(false);
+          menuToggle.focus();
+        }
         if (event.key === "Escape" && questionnaireOverlay && !questionnaireOverlay.hidden) {
           closeQuestionnaire();
         }
@@ -1061,5 +1304,54 @@
         });
       }
     </script>
+    <style>
+      .floating-telegram {
+        position: fixed;
+        right: clamp(16px, 3vw, 32px);
+        bottom: clamp(16px, 3vw, 32px);
+        z-index: 1000;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .floating-telegram:hover,
+      .floating-telegram:focus-visible {
+        opacity: 0.86;
+        transform: translateY(-2px);
+      }
+
+      .floating-telegram-label {
+        color: rgba(168, 168, 168, 0.72);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        text-transform: lowercase;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .floating-telegram img {
+        display: block;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.28));
+      }
+
+      @media (max-width: 640px) {
+        .floating-telegram img {
+          width: 52px;
+          height: 52px;
+        }
+      }
+    </style>
+    <a class="floating-telegram" href="https://t.me/Khoruzhenko_Nataly" aria-label="Telegram">
+      <span class="floating-telegram-label">тгк</span>
+      <img src="img/social-telegram.png" alt="" />
+    </a>
   </body>
 </html>

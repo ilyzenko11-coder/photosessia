@@ -466,7 +466,8 @@
         align-items: center;
         justify-content: center;
         padding: 24px;
-        background: rgba(0, 0, 0, 0.72);
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(8px);
       }
 
       .callback-modal {
@@ -475,9 +476,11 @@
         max-height: min(92svh, 860px);
         overflow-y: auto;
         padding: 44px 46px 40px;
-        background: #ffffff;
-        color: #000000;
-        box-shadow: 0 24px 90px rgba(0, 0, 0, 0.42);
+        border: 1px solid rgba(216, 181, 138, 0.34);
+        border-radius: 8px;
+        background: linear-gradient(180deg, rgba(31, 31, 31, 0.98) 0%, rgba(17, 17, 17, 0.98) 100%);
+        color: var(--milk);
+        box-shadow: 0 24px 90px rgba(0, 0, 0, 0.58);
       }
 
       .callback-close {
@@ -488,17 +491,24 @@
         height: 38px;
         border: 0;
         background: transparent;
-        color: #000000;
+        color: rgba(233, 226, 218, 0.72);
         font-size: 34px;
         line-height: 1;
         cursor: pointer;
+        transition: color 180ms ease;
+      }
+
+      .callback-close:hover,
+      .callback-close:focus-visible {
+        color: var(--gold);
       }
 
       .callback-title {
         margin: 0 0 28px;
-        color: #000000;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
         font-size: clamp(30px, 4.2vw, 38px);
-        font-weight: 400;
+        font-weight: 600;
         line-height: 1.15;
         text-align: center;
       }
@@ -514,7 +524,7 @@
       }
 
       .callback-label {
-        color: #000000;
+        color: rgba(233, 226, 218, 0.78);
         font-size: 16px;
         font-weight: 400;
       }
@@ -523,22 +533,30 @@
       .callback-select {
         width: 100%;
         min-height: 60px;
-        border: 1px solid #cfcfcf;
+        border: 1px solid rgba(216, 181, 138, 0.34);
         border-radius: 4px;
         padding: 0 20px;
-        background: #ffffff;
-        color: #000000;
+        background: rgba(0, 0, 0, 0.28);
+        color: var(--milk);
         font-size: 16px;
         outline: none;
+        transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
       }
 
       .callback-input::placeholder {
-        color: #8c8c8c;
+        color: rgba(233, 226, 218, 0.48);
       }
 
       .callback-input:focus,
       .callback-select:focus {
-        border-color: #000000;
+        border-color: var(--gold);
+        background: rgba(0, 0, 0, 0.42);
+        box-shadow: 0 0 0 3px rgba(216, 181, 138, 0.14);
+      }
+
+      .callback-select option {
+        background: #111111;
+        color: var(--milk);
       }
 
       .callback-phone-row {
@@ -549,25 +567,36 @@
 
       .callback-error {
         min-height: 16px;
-        color: #b00020;
+        color: #ff9a9a;
         font-size: 12px;
         line-height: 1.35;
       }
 
       .callback-submit {
         min-height: 60px;
-        border: 0;
+        border: 1px solid var(--gold);
         border-radius: 4px;
-        background: #000000;
-        color: #ffffff;
+        background: var(--gold);
+        color: #111111;
         font-size: 16px;
         font-weight: 700;
         cursor: pointer;
+        transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+      }
+
+      .callback-submit:hover,
+      .callback-submit:focus-visible {
+        background: transparent;
+        color: var(--gold);
+      }
+
+      .callback-submit:active {
+        transform: translateY(1px);
       }
 
       .callback-note {
         margin: 2px 0 0;
-        color: #5f5f5f;
+        color: rgba(233, 226, 218, 0.58);
         font-size: 12px;
         line-height: 1.45;
         text-align: center;
@@ -930,5 +959,54 @@
         button.addEventListener("click", openCallback);
       });
     </script>
+    <style>
+      .floating-telegram {
+        position: fixed;
+        right: clamp(16px, 3vw, 32px);
+        bottom: clamp(16px, 3vw, 32px);
+        z-index: 1000;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .floating-telegram:hover,
+      .floating-telegram:focus-visible {
+        opacity: 0.86;
+        transform: translateY(-2px);
+      }
+
+      .floating-telegram-label {
+        color: rgba(168, 168, 168, 0.72);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        text-transform: lowercase;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .floating-telegram img {
+        display: block;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.28));
+      }
+
+      @media (max-width: 640px) {
+        .floating-telegram img {
+          width: 52px;
+          height: 52px;
+        }
+      }
+    </style>
+    <a class="floating-telegram" href="https://t.me/Khoruzhenko_Nataly" aria-label="Telegram">
+      <span class="floating-telegram-label">тгк</span>
+      <img src="img/social-telegram.png" alt="" />
+    </a>
   </body>
 </html>

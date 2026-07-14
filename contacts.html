@@ -38,17 +38,14 @@
       }
 
       .header {
-        position: fixed;
+        position: relative;
         z-index: 10;
-        top: 0;
-        left: 0;
-        right: 0;
         display: grid;
         grid-template-columns: auto 1fr;
         gap: 42px;
         align-items: center;
         padding: 34px 56px 18px;
-        background: linear-gradient(180deg, rgba(17, 17, 17, 0.92) 0%, rgba(17, 17, 17, 0) 100%);
+        background: var(--graphite);
       }
 
       .brand {
@@ -119,10 +116,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 100vh;
-        min-height: 100svh;
+        min-height: calc(100vh - 108px);
+        min-height: calc(100svh - 108px);
         overflow: hidden;
-        padding: 88px 24px 46px;
+        padding: 46px 24px;
         isolation: isolate;
         background: var(--graphite);
       }
@@ -240,6 +237,267 @@
         line-height: 1.36;
       }
 
+      .site-footer {
+        background: #000000;
+        padding: 38px clamp(20px, 8vw, 150px) 42px;
+        color: #a8a8a8;
+        text-align: center;
+      }
+
+      .footer-top {
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .footer-title {
+        margin: 0 0 22px;
+        color: #a8a8a8;
+        font-size: clamp(18px, 1.6vw, 24px);
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .footer-socials {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .social-link:hover,
+      .social-link:focus-visible {
+        opacity: 0.82;
+        transform: translateY(-2px);
+      }
+
+      .social-link img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .footer-phone {
+        color: #a8a8a8;
+        font-size: clamp(18px, 1.7vw, 22px);
+        font-weight: 400;
+        white-space: nowrap;
+        text-align: center;
+      }
+
+      .footer-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(26px, 5vw, 110px);
+        margin-top: 58px;
+        width: 100%;
+      }
+
+      .footer-text-button {
+        padding: 0;
+        border: 0;
+        color: #a8a8a8;
+        background: transparent;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition: color 180ms ease;
+      }
+
+      .footer-text-button:hover,
+      .footer-text-button:focus-visible {
+        color: var(--gold);
+      }
+
+      .footer-copy {
+        max-width: 1180px;
+        margin: 48px auto 0;
+        color: #a8a8a8;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.55;
+        text-align: center;
+      }
+
+      .footer-consent-button {
+        padding: 0;
+        border: 0;
+        color: var(--gold);
+        background: transparent;
+        font: inherit;
+        cursor: pointer;
+        text-decoration: none;
+        transition: color 180ms ease;
+      }
+
+      .footer-consent-button:hover,
+      .footer-consent-button:focus-visible {
+        color: var(--gold);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .callback-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(8px);
+      }
+
+      .callback-modal {
+        position: relative;
+        width: min(560px, 100%);
+        max-height: min(92svh, 860px);
+        overflow-y: auto;
+        padding: 44px 46px 40px;
+        border: 1px solid rgba(216, 181, 138, 0.34);
+        border-radius: 8px;
+        background: linear-gradient(180deg, rgba(31, 31, 31, 0.98) 0%, rgba(17, 17, 17, 0.98) 100%);
+        color: var(--milk);
+        box-shadow: 0 24px 90px rgba(0, 0, 0, 0.58);
+      }
+
+      .callback-close {
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        background: transparent;
+        color: rgba(233, 226, 218, 0.72);
+        font-size: 34px;
+        line-height: 1;
+        cursor: pointer;
+        transition: color 180ms ease;
+      }
+
+      .callback-close:hover,
+      .callback-close:focus-visible {
+        color: var(--gold);
+      }
+
+      .callback-title {
+        margin: 0 0 28px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(30px, 4.2vw, 38px);
+        font-weight: 600;
+        line-height: 1.15;
+        text-align: center;
+      }
+
+      .callback-form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .callback-field {
+        display: grid;
+        gap: 7px;
+      }
+
+      .callback-label {
+        color: rgba(233, 226, 218, 0.78);
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .callback-input,
+      .callback-select {
+        width: 100%;
+        min-height: 60px;
+        border: 1px solid rgba(216, 181, 138, 0.34);
+        border-radius: 4px;
+        padding: 0 20px;
+        background: rgba(0, 0, 0, 0.28);
+        color: var(--milk);
+        font-size: 16px;
+        outline: none;
+        transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      }
+
+      .callback-input::placeholder {
+        color: rgba(233, 226, 218, 0.48);
+      }
+
+      .callback-input:focus,
+      .callback-select:focus {
+        border-color: var(--gold);
+        background: rgba(0, 0, 0, 0.42);
+        box-shadow: 0 0 0 3px rgba(216, 181, 138, 0.14);
+      }
+
+      .callback-select option {
+        background: #111111;
+        color: var(--milk);
+      }
+
+      .callback-phone-row {
+        display: grid;
+        grid-template-columns: minmax(150px, 0.42fr) minmax(170px, 1fr);
+        gap: 10px;
+      }
+
+      .callback-error {
+        min-height: 16px;
+        color: #ff9a9a;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .callback-submit {
+        min-height: 60px;
+        border: 1px solid var(--gold);
+        border-radius: 4px;
+        background: var(--gold);
+        color: #111111;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+      }
+
+      .callback-submit:hover,
+      .callback-submit:focus-visible {
+        background: transparent;
+        color: var(--gold);
+      }
+
+      .callback-submit:active {
+        transform: translateY(1px);
+      }
+
+      .callback-note {
+        margin: 2px 0 0;
+        color: rgba(233, 226, 218, 0.58);
+        font-size: 12px;
+        line-height: 1.45;
+        text-align: center;
+      }
+
       @media (max-width: 1160px) {
         .header {
           grid-template-columns: 1fr;
@@ -284,8 +542,8 @@
         }
 
         .contact-page {
-          min-height: 100svh;
-          padding: 140px 18px 36px;
+          min-height: calc(100svh - 132px);
+          padding: 46px 18px 36px;
         }
 
         .contact-card {
@@ -312,6 +570,31 @@
         .place {
           margin-top: 42px;
           font-size: 12px;
+        }
+
+        .site-footer {
+          padding: 34px 18px 36px;
+        }
+
+        .footer-top,
+        .footer-actions {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 24px;
+          text-align: center;
+        }
+
+        .footer-actions {
+          margin-top: 52px;
+        }
+
+        .callback-modal {
+          padding: 38px 24px 30px;
+        }
+
+        .callback-phone-row {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -343,13 +626,240 @@
         <p class="contact-text">Если ты чувствуешь,<br />что сейчас пришло время встретиться с собой —<br />просто напиши.</p>
         <p class="contact-text">Я обязательно отвечу.</p>
         <div class="contact-actions">
-          <a class="contact-link" href="https://t.me/Khoruzhenko_Nataly">TELEGRAM</a>
-          <a class="contact-link" href="https://max.ru/join/Ky_laijAnAXNXVZiBa8XL-ct-ZNSgVSWyO0Qg3uQMKg">MAX</a>
+          <a class="contact-link" href="https://t.me/khoruzhenko_nataly">TELEGRAM</a>
+          <a class="contact-link" href=" https://max.ru/u/f9LHodD0cOLBq1trg3ctk1oujiVY9LP8ciax4O8db_CDsbIM1cx2tUGCV8c">MAX</a>
         </div>
         <p class="place">Новосибирск</p>
         <div class="small-divider" aria-hidden="true"></div>
         <p class="note">Практика проходит<br />только по предварительной записи.</p>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div>
+          <p class="footer-title">Связаться со мной можно здесь:</p>
+          <div class="footer-socials">
+            <a class="social-link" href="https://t.me/khoruzhenko_nataly" aria-label="Telegram"><img src="img/social-telegram.png" alt="" /></a>
+            <a class="social-link" href="https://max.ru/u/f9LHodD0cOLBq1trg3ctk1oujiVY9LP8ciax4O8db_CDsbIM1cx2tUGCV8c" aria-label="MAX"><img src="img/social-max.png" alt="" /></a>
+            <a class="social-link" href="https://www.instagram.com/khoruzhenko_natalya?igsh=MXJnbW04OHd2ZDZqdw%3D%3D" aria-label="Instagram"><img src="img/social-instagram.png" alt="" /></a>
+            <a class="social-link" href="https://vk.ru/khoruzhenko_natalya" aria-label="VK"><img src="img/social-vk.png" alt="" /></a>
+          </div>
+        </div>
+        <div class="footer-phone">Телефон: +7 913 945 4927</div>
+      </div>
+      <div class="footer-actions">
+        <button class="footer-text-button" type="button" data-open-callback>Заказать обратный звонок</button>
+        <a class="footer-text-button" href="privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>
+        <a class="footer-text-button" href="offer.html" target="_blank" rel="noopener">Оферта</a>
+      </div>
+      <p class="footer-copy">© ИП Хоруженко Наталья Петровна. Все материалы данного сайта являются объектами авторского права. Запрещается копирование, распространение и любое иное использование материалов без предварительного письменного согласия правообладателя. Отправляя любую форму на сайте, вы даете <a class="footer-consent-button" href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a>.</p>
+    </footer>
+
+    <script>
+      const countries = [
+        ["Россия +7", "Россия +7"],
+        ["Казахстан +7", "Казахстан +7"],
+        ["Беларусь +375", "Беларусь +375"],
+        ["Украина +380", "Украина +380"],
+        ["Армения +374", "Армения +374"],
+        ["Грузия +995", "Грузия +995"],
+        ["Азербайджан +994", "Азербайджан +994"],
+        ["Кыргызстан +996", "Кыргызстан +996"],
+        ["Узбекистан +998", "Узбекистан +998"],
+        ["Таджикистан +992", "Таджикистан +992"],
+        ["Турция +90", "Турция +90"],
+        ["Германия +49", "Германия +49"],
+        ["Франция +33", "Франция +33"],
+        ["Италия +39", "Италия +39"],
+        ["Испания +34", "Испания +34"],
+        ["Великобритания +44", "Великобритания +44"],
+        ["США +1", "США +1"],
+        ["Канада +1", "Канада +1"],
+        ["ОАЭ +971", "ОАЭ +971"],
+        ["Израиль +972", "Израиль +972"],
+        ["Китай +86", "Китай +86"],
+        ["Индия +91", "Индия +91"],
+        ["Таиланд +66", "Таиланд +66"]
+      ];
+
+      const modalHtml = `
+        <div class="callback-overlay" role="dialog" aria-modal="true" aria-labelledby="callback-title">
+          <div class="callback-modal">
+            <button class="callback-close" type="button" aria-label="Закрыть форму">&times;</button>
+            <h2 class="callback-title" id="callback-title">Оставьте ваши<br />контактные данные, и я<br />с вами свяжусь</h2>
+            <form class="callback-form" action="https://formsubmit.co/ilyzenko11@gmail.com" method="POST" novalidate>
+              <input type="hidden" name="_subject" value="Заявка на обратный звонок со страницы контактов" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="Телефон полностью" value="" />
+              <label class="callback-field">
+                <input class="callback-input" name="Имя" type="text" placeholder="Ваше Имя" autocomplete="name" />
+                <span class="callback-error" data-error-for="name"></span>
+              </label>
+              <div class="callback-field">
+                <div class="callback-phone-row">
+                  <select class="callback-select" name="Страна" aria-label="Страна телефона">
+                    ${countries.map(([value, label]) => `<option value="${value}">${label}</option>`).join("")}
+                  </select>
+                  <input class="callback-input" name="Телефон" type="tel" placeholder="(000) 000-0000" autocomplete="tel" />
+                </div>
+                <span class="callback-error" data-error-for="phone"></span>
+              </div>
+              <label class="callback-field">
+                <select class="callback-select" name="Удобный мессенджер">
+                  <option value="">Выберите удобный мессенджер</option>
+                  <option value="Telegram">Телеграмм</option>
+                  <option value="MAX">Макс</option>
+                </select>
+                <span class="callback-error" data-error-for="messenger"></span>
+              </label>
+              <label class="callback-field">
+                <input class="callback-input" name="Email" type="email" placeholder="Email" autocomplete="email" />
+                <span class="callback-error" data-error-for="email"></span>
+              </label>
+              <label class="callback-field">
+                <span class="callback-label">Капча</span>
+                <input class="callback-input" name="Капча" type="text" inputmode="numeric" />
+                <span class="callback-error" data-error-for="captcha"></span>
+              </label>
+              <button class="callback-submit" type="submit">Отправить</button>
+              <p class="callback-note">После отправки данные придут на email: ilyzenko11@gmail.com</p>
+            </form>
+          </div>
+        </div>
+      `;
+
+      let captchaAnswer = "";
+
+      function setError(form, key, message) {
+        const node = form.querySelector(`[data-error-for="${key}"]`);
+        if (node) node.textContent = message || "";
+      }
+
+      function openCallback() {
+        document.body.insertAdjacentHTML("beforeend", modalHtml);
+        document.body.style.overflow = "hidden";
+        const modal = document.querySelector(".callback-overlay");
+        const form = modal.querySelector(".callback-form");
+        const first = Math.floor(Math.random() * 8) + 2;
+        const second = Math.floor(Math.random() * 8) + 2;
+        captchaAnswer = String(first + second);
+        form.querySelector('[name="Капча"]').placeholder = `Сколько будет ${first}+${second}?`;
+        form.querySelector('[name="Имя"]').focus();
+
+        function closeCallback() {
+          modal.remove();
+          document.body.style.overflow = "";
+          window.removeEventListener("keydown", onKeydown);
+        }
+
+        function onKeydown(event) {
+          if (event.key === "Escape") closeCallback();
+        }
+
+        modal.addEventListener("mousedown", (event) => {
+          if (event.target === modal) closeCallback();
+        });
+        modal.querySelector(".callback-close").addEventListener("click", closeCallback);
+        window.addEventListener("keydown", onKeydown);
+
+        form.addEventListener("submit", (event) => {
+          const name = form.querySelector('[name="Имя"]').value.trim();
+          const country = form.querySelector('[name="Страна"]').value;
+          const phone = form.querySelector('[name="Телефон"]').value.trim();
+          const messenger = form.querySelector('[name="Удобный мессенджер"]').value;
+          const email = form.querySelector('[name="Email"]').value.trim();
+          const captcha = form.querySelector('[name="Капча"]').value.trim();
+          const phoneDigits = phone.replace(/\D/g, "");
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+          let valid = true;
+
+          ["name", "phone", "messenger", "email", "captcha"].forEach((key) => setError(form, key, ""));
+          if (!name) {
+            setError(form, "name", "Заполните имя.");
+            valid = false;
+          }
+          if (!phoneDigits || phoneDigits.length < 6) {
+            setError(form, "phone", "Введите корректный номер телефона.");
+            valid = false;
+          }
+          if (!messenger) {
+            setError(form, "messenger", "Выберите удобный мессенджер.");
+            valid = false;
+          }
+          if (!email) {
+            setError(form, "email", "Заполните email.");
+            valid = false;
+          } else if (!emailPattern.test(email)) {
+            setError(form, "email", "Проверьте правильность email.");
+            valid = false;
+          }
+          if (!captcha) {
+            setError(form, "captcha", "Введите ответ на капчу.");
+            valid = false;
+          } else if (captcha !== captchaAnswer) {
+            setError(form, "captcha", "Капча решена неверно.");
+            valid = false;
+          }
+
+          form.querySelector('[name="Телефон полностью"]').value = `${country}: ${phone}`;
+          if (!valid) event.preventDefault();
+        });
+      }
+
+      document.querySelectorAll("[data-open-callback]").forEach((button) => {
+        button.addEventListener("click", openCallback);
+      });
+    </script>
+
+    <style>
+      .floating-telegram {
+        position: fixed;
+        right: clamp(16px, 3vw, 32px);
+        bottom: clamp(16px, 3vw, 32px);
+        z-index: 1000;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .floating-telegram:hover,
+      .floating-telegram:focus-visible {
+        opacity: 0.86;
+        transform: translateY(-2px);
+      }
+
+      .floating-telegram-label {
+        color: rgba(168, 168, 168, 0.72);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        text-transform: lowercase;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .floating-telegram img {
+        display: block;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.28));
+      }
+
+      @media (max-width: 640px) {
+        .floating-telegram img {
+          width: 52px;
+          height: 52px;
+        }
+      }
+    </style>
+    <a class="floating-telegram" href="https://t.me/khoruzhenko_nataly" aria-label="Telegram">
+      <span class="floating-telegram-label">тгк</span>
+      <img src="img/social-telegram.png" alt="" />
+    </a>
   </body>
 </html>

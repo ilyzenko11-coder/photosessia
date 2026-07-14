@@ -429,5 +429,54 @@
       </section>
       <section class="book-visual" aria-label="Обложка книги Встреча с собой"></section>
     </main>
+    <style>
+      .floating-telegram {
+        position: fixed;
+        right: clamp(16px, 3vw, 32px);
+        bottom: clamp(16px, 3vw, 32px);
+        z-index: 1000;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .floating-telegram:hover,
+      .floating-telegram:focus-visible {
+        opacity: 0.86;
+        transform: translateY(-2px);
+      }
+
+      .floating-telegram-label {
+        color: rgba(168, 168, 168, 0.72);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        text-transform: lowercase;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .floating-telegram img {
+        display: block;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.28));
+      }
+
+      @media (max-width: 640px) {
+        .floating-telegram img {
+          width: 52px;
+          height: 52px;
+        }
+      }
+    </style>
+    <a class="floating-telegram" href="https://t.me/Khoruzhenko_Nataly" aria-label="Telegram">
+      <span class="floating-telegram-label">тгк</span>
+      <img src="img/social-telegram.png" alt="" />
+    </a>
   </body>
 </html>
