@@ -1,0 +1,190 @@
+.has-mobile-menu .menu-toggle,
+.has-mobile-menu .menu-backdrop {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  body.has-mobile-menu .header {
+    position: relative;
+    z-index: 1100;
+    grid-template-columns: 1fr auto;
+    min-height: 70px;
+    gap: 18px;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  body.home-page .header {
+    padding: 0;
+  }
+
+  body.meeting-page .header {
+    padding: 14px 18px;
+  }
+
+  body.has-mobile-menu .brand-line,
+  body.has-mobile-menu .brand-text {
+    display: none;
+  }
+
+  body.has-mobile-menu .mark {
+    font-size: 38px;
+  }
+
+  body.has-mobile-menu .menu-toggle {
+    position: relative;
+    z-index: 1102;
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid rgba(216, 181, 138, 0.25);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5, 5, 5, 0.72);
+    color: inherit;
+    cursor: pointer;
+  }
+
+  body.has-mobile-menu .menu-toggle-lines {
+    position: relative;
+    display: block;
+    width: 19px;
+    height: 14px;
+  }
+
+  body.has-mobile-menu .menu-toggle-lines::before,
+  body.has-mobile-menu .menu-toggle-lines::after,
+  body.has-mobile-menu .menu-toggle-lines span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--gold, #d8b58a);
+    content: "";
+    transition: transform 220ms ease, opacity 180ms ease, top 220ms ease;
+  }
+
+  body.has-mobile-menu .menu-toggle-lines::before {
+    top: 0;
+  }
+
+  body.has-mobile-menu .menu-toggle-lines span {
+    top: 6px;
+  }
+
+  body.has-mobile-menu .menu-toggle-lines::after {
+    top: 12px;
+  }
+
+  body.has-mobile-menu .menu-toggle[aria-expanded="true"] .menu-toggle-lines::before {
+    top: 6px;
+    transform: rotate(45deg);
+  }
+
+  body.has-mobile-menu .menu-toggle[aria-expanded="true"] .menu-toggle-lines span {
+    opacity: 0;
+  }
+
+  body.has-mobile-menu .menu-toggle[aria-expanded="true"] .menu-toggle-lines::after {
+    top: 6px;
+    transform: rotate(-45deg);
+  }
+
+  body.has-mobile-menu .nav {
+    position: fixed;
+    z-index: 1101;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    display: flex;
+    width: min(84vw, 360px);
+    height: 100vh;
+    height: 100dvh;
+    padding: 104px 30px 40px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    overflow-y: auto;
+    border-left: 1px solid rgba(216, 181, 138, 0.18);
+    background:
+      radial-gradient(circle at 100% 0, rgba(216, 181, 138, 0.1), transparent 34%),
+      #0a0a0a;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.45);
+    transform: translateX(105%);
+    visibility: hidden;
+    transition: transform 260ms ease, visibility 260ms ease;
+  }
+
+  body.has-mobile-menu .nav a {
+    padding: 17px 0;
+    border-bottom: 1px solid rgba(216, 181, 138, 0.12);
+    color: rgba(233, 226, 218, 0.82);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.15;
+    white-space: normal;
+  }
+
+  body.has-mobile-menu .nav a::after,
+  body.has-mobile-menu .nav a.is-active::after,
+  body.home-page .nav a:first-child::after {
+    display: none;
+  }
+
+  body.has-mobile-menu .nav a.is-active,
+  body.home-page .nav a:first-child {
+    color: var(--gold, #d8b58a);
+  }
+
+  body.has-mobile-menu .header.is-menu-open .nav {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  body.has-mobile-menu .menu-backdrop {
+    position: fixed;
+    z-index: 1100;
+    inset: 0 auto auto 0;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    padding: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.64);
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    transition: opacity 220ms ease, visibility 220ms ease;
+  }
+
+  body.has-mobile-menu .header.is-menu-open .menu-backdrop {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  body.has-mobile-menu.menu-open {
+    overflow: hidden;
+  }
+
+  body.has-mobile-menu.menu-open .floating-telegram {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 620px) and (prefers-reduced-motion: reduce) {
+  body.has-mobile-menu .nav,
+  body.has-mobile-menu .menu-backdrop,
+  body.has-mobile-menu .menu-toggle-lines::before,
+  body.has-mobile-menu .menu-toggle-lines::after,
+  body.has-mobile-menu .menu-toggle-lines span {
+    transition: none;
+  }
+}

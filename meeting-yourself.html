@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="mobile-menu.css" />
+    <script src="mobile-menu.js" defer></script>
     <style>
       :root {
         --graphite: #111111;
@@ -707,7 +709,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="has-mobile-menu meeting-page">
     <div class="page">
       <header class="header">
         <a class="brand" href="index.html" aria-label="На главную">
@@ -715,6 +717,9 @@
           <div class="brand-line" aria-hidden="true"></div>
           <div class="brand-text">Наталья Хоруженко<br />фотограф | психолог</div>
         </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Открыть меню">
+          <span class="menu-toggle-lines" aria-hidden="true"><span></span></span>
+        </button>
         <nav class="nav" aria-label="Основное меню">
           <a href="index.html#top">Главная</a>
           <a href="about.html">Об авторе</a>
@@ -724,6 +729,7 @@
           <a href="nastavnichestvo.html">Наставничество</a>
           <a href="contacts.html">Контакты</a>
         </nav>
+        <button class="menu-backdrop" type="button" tabindex="-1" aria-label="Закрыть меню"></button>
       </header>
 
       <main>
