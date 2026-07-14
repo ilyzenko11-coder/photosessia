@@ -838,6 +838,8 @@
           grid-template-columns: 1fr auto;
           min-height: 70px;
           padding: 14px 18px;
+          -webkit-backdrop-filter: none;
+          backdrop-filter: none;
         }
 
         .menu-toggle {
@@ -905,9 +907,11 @@
           z-index: 11;
           top: 0;
           right: 0;
-          bottom: 0;
+          bottom: auto;
           display: flex;
           width: 100vw;
+          height: 100vh;
+          height: 100dvh;
           padding: 104px 30px 40px;
           flex-direction: column;
           flex-wrap: nowrap;
@@ -952,8 +956,11 @@
         .menu-backdrop {
           position: fixed;
           z-index: 10;
-          inset: 0;
+          inset: 0 auto auto 0;
           display: block;
+          width: 100vw;
+          height: 100vh;
+          height: 100dvh;
           border: 0;
           background: rgba(0, 0, 0, 0.64);
           opacity: 0;
