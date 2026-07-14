@@ -123,6 +123,11 @@
         background: rgba(216, 181, 138, 0.44);
       }
 
+      .menu-toggle,
+      .menu-backdrop {
+        display: none;
+      }
+
       .top-actions {
         position: absolute;
         top: clamp(24px, 3vw, 36px);
@@ -826,6 +831,162 @@
           font-size: 30px;
         }
       }
+
+      @media (max-width: 620px) {
+        .header {
+          position: relative;
+          grid-template-columns: 1fr auto;
+          min-height: 70px;
+          padding: 14px 18px;
+        }
+
+        .menu-toggle {
+          position: relative;
+          z-index: 12;
+          display: inline-flex;
+          width: 44px;
+          height: 44px;
+          padding: 0;
+          border: 1px solid rgba(216, 181, 138, 0.25);
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+          background: rgba(5, 5, 5, 0.72);
+          cursor: pointer;
+        }
+
+        .menu-toggle-lines {
+          position: relative;
+          display: block;
+          width: 19px;
+          height: 14px;
+        }
+
+        .menu-toggle-lines::before,
+        .menu-toggle-lines::after,
+        .menu-toggle-lines span {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: var(--gold);
+          content: "";
+          transition: transform 220ms ease, opacity 180ms ease, top 220ms ease;
+        }
+
+        .menu-toggle-lines::before {
+          top: 0;
+        }
+
+        .menu-toggle-lines span {
+          top: 6px;
+        }
+
+        .menu-toggle-lines::after {
+          top: 12px;
+        }
+
+        .menu-toggle[aria-expanded="true"] .menu-toggle-lines::before {
+          top: 6px;
+          transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .menu-toggle-lines span {
+          opacity: 0;
+        }
+
+        .menu-toggle[aria-expanded="true"] .menu-toggle-lines::after {
+          top: 6px;
+          transform: rotate(-45deg);
+        }
+
+        .nav {
+          position: fixed;
+          z-index: 11;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          display: flex;
+          width: min(84vw, 360px);
+          padding: 104px 30px 40px;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          align-items: stretch;
+          justify-content: flex-start;
+          gap: 0;
+          overflow-y: auto;
+          border-left: 1px solid rgba(216, 181, 138, 0.18);
+          background:
+            radial-gradient(circle at 100% 0, rgba(216, 181, 138, 0.1), transparent 34%),
+            #0a0a0a;
+          box-shadow: -20px 0 60px rgba(0, 0, 0, 0.45);
+          transform: translateX(105%);
+          visibility: hidden;
+          transition: transform 260ms ease, visibility 260ms ease;
+        }
+
+        .nav a {
+          padding: 17px 0;
+          border-bottom: 1px solid rgba(216, 181, 138, 0.12);
+          color: rgba(233, 226, 218, 0.82);
+          font-family: "Cormorant Garamond", Georgia, serif;
+          font-size: 25px;
+          font-weight: 500;
+          line-height: 1.15;
+          white-space: normal;
+        }
+
+        .nav a.is-active::after {
+          display: none;
+        }
+
+        .nav a.is-active {
+          color: var(--gold);
+        }
+
+        .header.is-menu-open .nav {
+          transform: translateX(0);
+          visibility: visible;
+        }
+
+        .menu-backdrop {
+          position: fixed;
+          z-index: 10;
+          inset: 0;
+          display: block;
+          border: 0;
+          background: rgba(0, 0, 0, 0.64);
+          opacity: 0;
+          visibility: hidden;
+          cursor: pointer;
+          transition: opacity 220ms ease, visibility 220ms ease;
+        }
+
+        .header.is-menu-open .menu-backdrop {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        body.menu-open {
+          overflow: hidden;
+        }
+
+        body.menu-open .floating-telegram {
+          visibility: hidden;
+          opacity: 0;
+          pointer-events: none;
+        }
+      }
+
+      @media (max-width: 620px) and (prefers-reduced-motion: reduce) {
+        .nav,
+        .menu-backdrop,
+        .menu-toggle-lines::before,
+        .menu-toggle-lines::after,
+        .menu-toggle-lines span {
+          transition: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -836,6 +997,9 @@
           <div class="brand-line" aria-hidden="true"></div>
           <div class="brand-text">Наталья Хоруженко<br />фотограф | психолог</div>
         </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Открыть меню">
+          <span class="menu-toggle-lines" aria-hidden="true"><span></span></span>
+        </button>
         <nav class="nav" aria-label="Основное меню">
           <a href="index.html#top">Главная</a>
           <a href="about.html">Об авторе</a>
@@ -845,6 +1009,7 @@
           <a href="nastavnichestvo.html">Наставничество</a>
           <a href="contacts.html">Контакты</a>
         </nav>
+        <button class="menu-backdrop" type="button" tabindex="-1" aria-label="Закрыть меню"></button>
       </header>
 
       <main class="stories-stage" aria-label="Истории женщин">
@@ -1394,6 +1559,31 @@
     </div>
 
     <script>
+      const header = document.querySelector(".header");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const menuBackdrop = document.querySelector(".menu-backdrop");
+      const navigationLinks = Array.from(document.querySelectorAll(".nav a"));
+
+      function setMenuOpen(isOpen) {
+        if (!header || !menuToggle) return;
+        header.classList.toggle("is-menu-open", isOpen);
+        document.body.classList.toggle("menu-open", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+      }
+
+      menuToggle?.addEventListener("click", () => {
+        setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
+      });
+      menuBackdrop?.addEventListener("click", () => setMenuOpen(false));
+      navigationLinks.forEach((link) => link.addEventListener("click", () => setMenuOpen(false)));
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 620) setMenuOpen(false);
+      });
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menuToggle?.getAttribute("aria-expanded") === "true") setMenuOpen(false);
+      });
+
       const stories = Array.from(document.querySelectorAll(".story"));
       const films = Array.from(document.querySelectorAll(".film-track"));
       let current = 0;
