@@ -708,6 +708,910 @@
         }
       }
     </style>
+    <style id="meeting-yourself-redesign">
+      .meeting-redesign {
+        --page-pad: clamp(24px, 7vw, 108px);
+        background:
+          radial-gradient(circle at 75% 3%, rgba(216, 181, 138, 0.055), transparent 22%),
+          #050505;
+      }
+
+      .meeting-redesign section {
+        border-bottom: 1px solid rgba(216, 181, 138, 0.14);
+      }
+
+      .editorial-split {
+        display: grid;
+        grid-template-columns: minmax(340px, 42%) minmax(0, 58%);
+        min-height: 620px;
+      }
+
+      .editorial-split.is-reversed {
+        grid-template-columns: minmax(0, 58%) minmax(340px, 42%);
+      }
+
+      .editorial-copy {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(64px, 8vw, 120px) var(--page-pad);
+        background:
+          radial-gradient(circle at 15% 15%, rgba(216, 181, 138, 0.05), transparent 38%),
+          #080808;
+      }
+
+      .editorial-split.is-reversed .editorial-copy {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .editorial-split.is-reversed .editorial-photo {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .editorial-kicker {
+        margin: 0 0 22px;
+        color: rgba(216, 181, 138, 0.68);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      .editorial-title,
+      .editorial-center h2,
+      .audience-title,
+      .offer-title {
+        margin: 0;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 500;
+        line-height: 0.98;
+      }
+
+      .editorial-title {
+        max-width: 620px;
+        font-size: clamp(52px, 6.2vw, 88px);
+      }
+
+      .editorial-title.is-small {
+        font-size: clamp(43px, 4.6vw, 66px);
+      }
+
+      .editorial-lead {
+        max-width: 520px;
+        margin: 34px 0 0;
+        color: rgba(233, 226, 218, 0.88);
+        font-size: clamp(18px, 1.55vw, 22px);
+        font-weight: 300;
+        line-height: 1.62;
+      }
+
+      .editorial-text {
+        max-width: 540px;
+        margin: 28px 0 0;
+        color: rgba(233, 226, 218, 0.68);
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.82;
+      }
+
+      .editorial-accent {
+        display: block;
+        margin-top: 24px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(24px, 2.2vw, 32px);
+        line-height: 1.18;
+      }
+
+      .editorial-photo {
+        position: relative;
+        min-height: 620px;
+        margin: 0;
+        overflow: hidden;
+        background: #0a0a0a;
+      }
+
+      .editorial-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(1) contrast(1.04);
+      }
+
+      .editorial-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(90deg, rgba(5, 5, 5, 0.32), transparent 24%, transparent 78%, rgba(5, 5, 5, 0.12)),
+          linear-gradient(180deg, rgba(5, 5, 5, 0.08), transparent 55%, rgba(5, 5, 5, 0.25));
+      }
+
+      .meeting-hero .editorial-photo img {
+        object-position: 52% 48%;
+      }
+
+      .meeting-hero .editorial-copy {
+        background:
+          radial-gradient(circle at 24% 22%, rgba(216, 181, 138, 0.07), transparent 38%),
+          linear-gradient(90deg, #090909 0%, #080808 82%, #050505 100%);
+      }
+
+      .meeting-hero .cta-button {
+        margin-top: 38px;
+      }
+
+      .editorial-center {
+        padding: clamp(74px, 9vw, 130px) var(--page-pad);
+        background:
+          radial-gradient(circle at 50% 0%, rgba(216, 181, 138, 0.07), transparent 36%),
+          #060606;
+        text-align: center;
+      }
+
+      .editorial-center-inner {
+        width: min(880px, 100%);
+        margin: 0 auto;
+      }
+
+      .editorial-center h2 {
+        font-size: clamp(44px, 5vw, 70px);
+      }
+
+      .editorial-center .editorial-text {
+        max-width: 820px;
+        margin: 30px auto 0;
+        font-size: clamp(15px, 1.25vw, 18px);
+      }
+
+      .editorial-divider {
+        width: 44px;
+        height: 1px;
+        margin: 26px auto 0;
+        background: rgba(216, 181, 138, 0.62);
+      }
+
+      .acquaintance .editorial-photo img {
+        object-position: 48% 50%;
+      }
+
+      .practice .editorial-photo img {
+        object-position: 49% 50%;
+      }
+
+      .keeps .editorial-photo img {
+        object-position: 50% 50%;
+      }
+
+      .audience {
+        padding: clamp(76px, 9vw, 132px) var(--page-pad);
+        background:
+          radial-gradient(circle at 22% 32%, rgba(216, 181, 138, 0.055), transparent 28%),
+          #080808;
+      }
+
+      .audience-inner {
+        display: grid;
+        grid-template-columns: minmax(300px, 0.78fr) minmax(360px, 1.22fr);
+        gap: clamp(54px, 9vw, 140px);
+        align-items: start;
+      }
+
+      .audience-title {
+        font-size: clamp(43px, 4.7vw, 66px);
+      }
+
+      .audience-list {
+        display: grid;
+        gap: 18px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .audience-list li {
+        position: relative;
+        padding-left: 28px;
+        color: rgba(233, 226, 218, 0.7);
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      .audience-list li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: var(--gold);
+      }
+
+      .audience-note {
+        margin: 32px 0 0 28px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 25px;
+        line-height: 1.25;
+      }
+
+      .meeting-offer {
+        padding: clamp(76px, 9vw, 124px) var(--page-pad);
+        background:
+          radial-gradient(circle at 50% 12%, rgba(216, 181, 138, 0.08), transparent 34%),
+          #050505;
+        text-align: center;
+      }
+
+      .offer-inner {
+        width: min(780px, 100%);
+        margin: 0 auto;
+      }
+
+      .offer-title {
+        font-size: clamp(44px, 4.8vw, 66px);
+      }
+
+      .offer-subtitle {
+        margin: 18px 0 0;
+        color: rgba(233, 226, 218, 0.74);
+        font-size: clamp(16px, 1.45vw, 20px);
+        font-weight: 300;
+        line-height: 1.55;
+      }
+
+      .offer-subtitle span {
+        color: rgba(233, 226, 218, 0.9);
+      }
+
+      .offer-price {
+        margin: 16px 0 0;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(46px, 4.8vw, 66px);
+        font-weight: 500;
+        line-height: 1;
+      }
+
+      .offer-divider {
+        width: 42px;
+        height: 1px;
+        margin: 28px auto;
+        background: rgba(216, 181, 138, 0.58);
+      }
+
+      .offer-details {
+        color: rgba(233, 226, 218, 0.68);
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.72;
+      }
+
+      .offer-label {
+        margin: 0 0 16px;
+        color: rgba(233, 226, 218, 0.86);
+        font-size: 16px;
+      }
+
+      .offer-list {
+        display: grid;
+        gap: 7px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .offer-note {
+        margin: 26px 0 0;
+        color: rgba(233, 226, 218, 0.54);
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .meeting-closing {
+        display: grid;
+        grid-template-columns: minmax(360px, 42%) minmax(0, 58%);
+        min-height: 680px;
+        background: #070707;
+      }
+
+      .meeting-closing-photo {
+        position: relative;
+        grid-column: 2;
+        grid-row: 1;
+        min-height: 680px;
+        margin: 0;
+        overflow: hidden;
+        background: #050505;
+      }
+
+      .meeting-closing-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 51% 50%;
+        filter: grayscale(1) contrast(1.04);
+      }
+
+      .meeting-closing-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(90deg, rgba(5, 5, 5, 0.08), transparent 72%, rgba(5, 5, 5, 0.32)),
+          linear-gradient(180deg, rgba(5, 5, 5, 0.06), transparent 58%, rgba(5, 5, 5, 0.26));
+      }
+
+      .meeting-closing-copy {
+        grid-column: 1;
+        grid-row: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(68px, 8vw, 112px) clamp(34px, 5vw, 78px);
+        background:
+          radial-gradient(circle at 85% 16%, rgba(216, 181, 138, 0.07), transparent 34%),
+          #080808;
+      }
+
+      .meeting-closing-title {
+        margin: 0 0 30px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(46px, 4.6vw, 66px);
+        font-weight: 500;
+        line-height: 1;
+      }
+
+      .meeting-closing-text {
+        max-width: 500px;
+        margin: 0;
+        color: rgba(233, 226, 218, 0.72);
+        font-size: clamp(15px, 1.2vw, 18px);
+        font-weight: 300;
+        line-height: 1.72;
+      }
+
+      .meeting-closing-text + .meeting-closing-text {
+        margin-top: 22px;
+      }
+
+      .meeting-closing-yes {
+        display: block;
+        margin: 8px 0 4px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(34px, 3.3vw, 50px);
+        line-height: 1;
+      }
+
+      .meeting-closing .cta-button {
+        margin-top: 36px;
+      }
+
+      .questionnaire-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1200;
+        display: grid;
+        place-items: center;
+        padding: clamp(12px, 3vw, 28px);
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(6px);
+      }
+
+      .questionnaire-overlay[hidden] {
+        display: none;
+      }
+
+      .questionnaire-modal {
+        position: relative;
+        width: min(820px, 100%);
+        max-height: min(92svh, 900px);
+        overflow-y: auto;
+        padding: clamp(28px, 4vw, 48px);
+        border: 1px solid rgba(216, 181, 138, 0.3);
+        border-radius: 4px;
+        background:
+          linear-gradient(180deg, rgba(17, 17, 17, 0.98), rgba(5, 5, 5, 0.98)),
+          #111111;
+        box-shadow: 0 24px 90px rgba(0, 0, 0, 0.58);
+      }
+
+      .questionnaire-close {
+        position: sticky;
+        top: 0;
+        float: right;
+        display: inline-grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        margin: -12px -12px 0 14px;
+        border: 1px solid rgba(216, 181, 138, 0.32);
+        border-radius: 50%;
+        color: var(--gold);
+        background: rgba(5, 5, 5, 0.74);
+        font-family: inherit;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .questionnaire-title {
+        margin: 0 0 30px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(40px, 5vw, 64px);
+        font-weight: 500;
+        line-height: 1;
+        text-align: center;
+      }
+
+      .questionnaire-form {
+        display: grid;
+        gap: 26px;
+        clear: both;
+      }
+
+      .questionnaire-field {
+        display: grid;
+        gap: 10px;
+      }
+
+      .questionnaire-label {
+        color: rgba(233, 226, 218, 0.78);
+        font-size: clamp(18px, 2.1vw, 28px);
+        font-weight: 300;
+        line-height: 1.35;
+      }
+
+      .questionnaire-input,
+      .questionnaire-textarea,
+      .questionnaire-select {
+        width: 100%;
+        border: 1px solid rgba(233, 226, 218, 0.72);
+        border-radius: 4px;
+        color: rgba(233, 226, 218, 0.9);
+        background: rgba(17, 17, 17, 0.82);
+        font-family: inherit;
+        font-size: 18px;
+        outline: none;
+        transition: border-color 180ms ease, box-shadow 180ms ease;
+      }
+
+      .questionnaire-input,
+      .questionnaire-select {
+        min-height: 58px;
+        padding: 0 18px;
+      }
+
+      .questionnaire-textarea {
+        min-height: 150px;
+        resize: vertical;
+        padding: 16px 18px;
+        line-height: 1.5;
+      }
+
+      .questionnaire-input:focus,
+      .questionnaire-textarea:focus,
+      .questionnaire-select:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(216, 181, 138, 0.12);
+      }
+
+      .questionnaire-phone-row {
+        display: grid;
+        grid-template-columns: minmax(180px, 0.44fr) minmax(220px, 1fr);
+        gap: 12px;
+      }
+
+      .questionnaire-check {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 14px;
+        align-items: start;
+        color: rgba(233, 226, 218, 0.76);
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.45;
+      }
+
+      .questionnaire-check input {
+        width: 24px;
+        height: 24px;
+        accent-color: var(--gold);
+      }
+
+      .questionnaire-submit {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: min(320px, 100%);
+        min-height: 58px;
+        padding: 15px 30px;
+        border: 1px solid rgba(216, 181, 138, 0.82);
+        border-radius: 4px;
+        color: #050505;
+        background: var(--gold);
+        font-family: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+      }
+
+      .questionnaire-submit:hover,
+      .questionnaire-submit:focus-visible {
+        border-color: #e8caa3;
+        background: #e8caa3;
+        transform: translateY(-1px);
+      }
+
+      .questionnaire-note {
+        margin: -10px 0 0;
+        color: rgba(233, 226, 218, 0.5);
+        font-size: 12px;
+        line-height: 1.5;
+        text-align: center;
+      }
+
+      .site-footer {
+        padding: 38px clamp(32px, 12vw, 220px) 42px;
+        background: #000000;
+        color: #a8a8a8;
+        text-align: center;
+      }
+
+      .footer-top {
+        display: grid;
+        grid-template-columns: max-content minmax(320px, 420px);
+        gap: clamp(12px, 2vw, 34px);
+        align-items: start;
+        justify-content: center;
+        max-width: 1180px;
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      .footer-contact-block {
+        justify-self: start;
+      }
+
+      .footer-title {
+        margin: 0 0 22px;
+        color: var(--gold);
+        font-size: clamp(18px, 1.6vw, 24px);
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .footer-socials {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 18px;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 58px;
+        height: 58px;
+        text-decoration: none;
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .social-link:hover,
+      .social-link:focus-visible {
+        opacity: 0.82;
+        transform: translateY(-2px);
+      }
+
+      .social-link img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .footer-phone {
+        margin-top: 26px;
+        color: #a8a8a8;
+        font-size: clamp(18px, 1.7vw, 22px);
+        font-weight: 400;
+        white-space: nowrap;
+        text-align: left;
+      }
+
+      .footer-invite {
+        justify-self: start;
+        max-width: 420px;
+        color: #a8a8a8;
+        transform: translateX(clamp(130px, 14vw, 260px));
+      }
+
+      .footer-invite-title {
+        margin: 0 0 22px;
+        color: var(--gold);
+        font-family: "Manrope", Arial, sans-serif;
+        font-size: clamp(18px, 1.6vw, 24px);
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .footer-invite-text {
+        margin: 0;
+        color: #a8a8a8;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      .footer-invite-links {
+        display: grid;
+        gap: 18px;
+        margin-top: 30px;
+      }
+
+      .footer-invite-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        width: fit-content;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(17px, 1.35vw, 20px);
+        font-weight: 600;
+        line-height: 1.2;
+        text-decoration: none;
+        transition: color 180ms ease, transform 180ms ease;
+      }
+
+      .footer-invite-link::before {
+        content: "→";
+        color: var(--gold);
+        font-family: "Manrope", Arial, sans-serif;
+        font-size: 22px;
+        font-weight: 300;
+      }
+
+      .footer-invite-link:hover,
+      .footer-invite-link:focus-visible {
+        color: #e9e2da;
+        transform: translateX(4px);
+      }
+
+      .site-footer .footer-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(26px, 5vw, 110px);
+        width: 100%;
+        margin-top: 58px;
+      }
+
+      .footer-text-button {
+        padding: 0;
+        border: 0;
+        color: #a8a8a8;
+        background: transparent;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition: color 180ms ease;
+      }
+
+      .footer-text-button:hover,
+      .footer-text-button:focus-visible {
+        color: var(--gold);
+      }
+
+      .site-footer .footer-copy {
+        max-width: 1180px;
+        margin: 48px auto 0;
+        color: #a8a8a8;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.55;
+        text-align: center;
+      }
+
+      .footer-consent-button {
+        padding: 0;
+        border: 0;
+        color: var(--gold);
+        background: transparent;
+        font: inherit;
+        cursor: pointer;
+        text-decoration: none;
+        transition: color 180ms ease;
+      }
+
+      .footer-consent-button:hover,
+      .footer-consent-button:focus-visible {
+        color: var(--gold);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      @media (max-width: 920px) {
+        .editorial-split,
+        .editorial-split.is-reversed {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .editorial-split .editorial-copy,
+        .editorial-split.is-reversed .editorial-copy,
+        .editorial-split .editorial-photo,
+        .editorial-split.is-reversed .editorial-photo {
+          grid-column: 1;
+        }
+
+        .editorial-split .editorial-copy,
+        .editorial-split.is-reversed .editorial-copy {
+          grid-row: 2;
+        }
+
+        .editorial-split .editorial-photo,
+        .editorial-split.is-reversed .editorial-photo {
+          grid-row: 1;
+        }
+
+        .editorial-photo {
+          min-height: min(68vw, 620px);
+        }
+
+        .meeting-hero .editorial-photo {
+          min-height: min(74vw, 700px);
+        }
+
+        .audience-inner {
+          grid-template-columns: 1fr;
+          gap: 42px;
+        }
+
+        .meeting-closing {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .meeting-closing-copy {
+          grid-column: 1;
+          grid-row: 2;
+        }
+
+        .meeting-closing-photo {
+          grid-column: 1;
+          grid-row: 1;
+          min-height: min(76vw, 680px);
+        }
+      }
+
+      @media (max-width: 620px) {
+        .meeting-redesign {
+          --page-pad: 22px;
+        }
+
+        .editorial-copy,
+        .editorial-center,
+        .audience,
+        .meeting-offer {
+          padding-top: 62px;
+          padding-bottom: 64px;
+        }
+
+        .editorial-title {
+          font-size: clamp(46px, 15vw, 62px);
+        }
+
+        .editorial-title.is-small,
+        .editorial-center h2,
+        .audience-title,
+        .offer-title {
+          font-size: clamp(38px, 12vw, 50px);
+        }
+
+        .editorial-photo,
+        .meeting-hero .editorial-photo {
+          min-height: 72vw;
+        }
+
+        .meeting-hero .editorial-photo img {
+          object-position: 54% 50%;
+        }
+
+        .editorial-lead {
+          margin-top: 26px;
+          font-size: 17px;
+        }
+
+        .editorial-text,
+        .editorial-center .editorial-text {
+          font-size: 14px;
+          line-height: 1.76;
+        }
+
+        .audience-list li {
+          font-size: 14px;
+        }
+
+        .audience-note {
+          margin-left: 0;
+        }
+
+        .meeting-closing-copy {
+          padding: 62px 22px 66px;
+        }
+
+        .meeting-closing-title {
+          font-size: clamp(42px, 13vw, 54px);
+        }
+
+        .meeting-closing-photo {
+          min-height: 78vw;
+        }
+
+        .questionnaire-modal {
+          padding: 24px 16px 28px;
+        }
+
+        .questionnaire-phone-row {
+          grid-template-columns: 1fr;
+        }
+
+        .site-footer {
+          padding: 34px 18px 36px;
+        }
+
+        .footer-top {
+          grid-template-columns: 1fr;
+          gap: 42px;
+          text-align: center;
+        }
+
+        .footer-contact-block,
+        .footer-invite {
+          justify-self: center;
+        }
+
+        .footer-invite {
+          transform: none;
+        }
+
+        .footer-socials {
+          justify-content: center;
+        }
+
+        .footer-phone {
+          text-align: center;
+        }
+
+        .footer-invite-links {
+          justify-items: center;
+        }
+
+        .site-footer .footer-actions {
+          flex-direction: column;
+          align-items: center;
+          gap: 24px;
+          margin-top: 52px;
+          text-align: center;
+        }
+      }
+    </style>
   </head>
   <body class="has-mobile-menu meeting-page">
     <div class="page">
@@ -732,82 +1636,249 @@
         <button class="menu-backdrop" type="button" tabindex="-1" aria-label="Закрыть меню"></button>
       </header>
 
-      <main>
-        <section class="hero">
-          <div class="hero-copy">
-            <h1 class="hero-title">Встреча<br />с собой</h1>
-            <p class="hero-lead">Не фотосессия.<br />Не терапия.<br />Не день красоты.</p>
-            <p class="hero-text">Это авторская практика, которая помогает женщине перестать бороться с собой и впервые увидеть себя настоящей.</p>
+      <main class="meeting-redesign">
+        <section class="editorial-split meeting-hero" data-section="1">
+          <div class="editorial-copy">
+            <p class="editorial-kicker">Авторская практика Натальи Хоруженко</p>
+            <h1 class="editorial-title">Представь…</h1>
+            <p class="editorial-lead">Ты приходишь не за фотографиями, а за встречей с собой — без привычных ролей, ожиданий и необходимости кому-то нравиться.</p>
+            <p class="editorial-text">Здесь можно замедлиться. Услышать тело. Заметить чувства, которым давно не хватало места. И увидеть себя настоящую — живую, свободную, чувственную.</p>
+            <span class="editorial-accent">Всё это всегда было внутри тебя.</span>
             <button class="cta-button" type="button" data-open-callback>Записаться на предварительную встречу</button>
           </div>
-          <div class="hero-photo" aria-label="Черно-белый портрет женщины"></div>
+          <figure class="editorial-photo">
+            <img src="img/meeting-self-01.jpg" alt="Женщина отдыхает в полосе солнечного света" />
+          </figure>
         </section>
 
-        <section class="process">
-          <h2 class="section-title">Как проходит встреча</h2>
-          <div class="title-line" aria-hidden="true"></div>
-          <div class="steps">
-            <article class="step">
-              <p class="step-number">01</p>
-              <h3 class="step-title">Предварительная встреча</h3>
-              <p class="step-text">Мы знакомимся.<br />Я внимательно слушаю твою историю.<br /><br />Мы говорим о теле, о чувствах, о том, какой ты хочешь увидеть себя.<br /><br />Именно здесь начинается наша работа.</p>
-            </article>
-            <article class="step">
-              <p class="step-number">02</p>
-              <h3 class="step-title">Авторская концепция</h3>
-              <p class="step-text">После встречи я создаю концепцию только для тебя.<br /><br />Не образ.<br />Не сценарий.<br /><br />А пространство, в котором тебе будет безопасно быть собой.<br /><br />Мы вместе подбираем место, одежду, детали будущей встречи.</p>
-            </article>
-            <article class="step">
-              <p class="step-number">03</p>
-              <h3 class="step-title">Практика</h3>
-              <p class="step-text">И только потом происходит сама встреча.<br /><br />Без спешки.<br />Без необходимости нравиться.<br /><br />Через разговор.<br />Через тело.<br />Через присутствие.<br /><br />И именно тогда рождаются фотографии.</p>
-            </article>
+        <section class="editorial-center meeting-intro">
+          <div class="editorial-center-inner">
+            <p class="editorial-kicker">Встреча с собой</p>
+            <h2>Больше, чем фотосессия</h2>
+            <div class="editorial-divider" aria-hidden="true"></div>
+            <p class="editorial-text">Это авторская практика на стыке психологии, бережной телесной работы и художественной фотографии. Съёмка здесь не цель, а естественное продолжение внутреннего процесса. Когда появляется безопасность, исчезает напряжение. Когда тело перестаёт прятаться, рождается портрет, в котором ты узнаёшь себя.</p>
           </div>
         </section>
 
-        <section class="after">
-          <div class="after-copy">
-            <h2 class="section-title">Что остаётся после</h2>
-            <div class="title-line" aria-hidden="true"></div>
-            <p class="section-text">Фотографии —<br />лишь часть этой встречи.<br /><br />Самое важное остаётся внутри.<br /><br />Спокойствие.<br />Доверие себе.<br />Контакт со своим телом.<br />Внутренняя опора.<br /><br />И фотографии, которые помогают снова возвращаться в это состояние.</p>
+        <section class="editorial-split is-reversed acquaintance" data-section="2">
+          <div class="editorial-copy">
+            <p class="editorial-kicker">Первый шаг</p>
+            <h2 class="editorial-title is-small">Знакомство</h2>
+            <p class="editorial-text">Всё начинается не в студии. Сначала мы встречаемся и разговариваем: о тебе, твоём опыте, отношениях с телом, о том, что хочется прожить и сохранить.</p>
+            <p class="editorial-text">Мы не ищем образ, роль или красивый референс. Мы находим состояние, в котором тебе не нужно изображать кого-то другого.</p>
+            <span class="editorial-accent">Не идеальную. Тебя настоящую.</span>
           </div>
-          <div class="after-photo" aria-label="Черно-белая фотография у стены"></div>
+          <figure class="editorial-photo">
+            <img src="img/meeting-self-02.jpg" alt="Женщина смотрит на своё отражение" />
+          </figure>
         </section>
 
-        <section class="price">
-          <div class="price-inner">
-            <p class="price-kicker">Авторская практика</p>
-            <p class="price-value">39 000 &#8381;</p>
-            <div class="price-divider" aria-hidden="true"></div>
-            <p class="price-list">В стоимость входит:<br /><br />> предварительная встреча<br />> индивидуальная концепция<br />> сопровождение подготовки<br />> практика «Встреча с собой»<br />> фотосессия<br />> художественная обработка фотографий</p>
-            <p class="price-note">Дополнительно оплачиваются аренда студии и услуги визажиста.<br />Все детали мы спокойно обсуждаем заранее.</p>
+        <section class="editorial-center concept">
+          <div class="editorial-center-inner">
+            <p class="editorial-kicker">Только для тебя</p>
+            <h2>Концепция</h2>
+            <div class="editorial-divider" aria-hidden="true"></div>
+            <p class="editorial-text">После знакомства я создаю не сценарий и не набор поз, а маршрут нашей встречи. Продумываю пространство, свет, одежду и детали так, чтобы они раскрывали именно твою историю. Мы движемся от напряжения к свободе, от желания соответствовать — к смелости быть собой.</p>
           </div>
         </section>
 
-        <section class="final">
-          <div>
-            <h2 class="final-title">Возможно...</h2>
-            <p class="final-text">Ты давно ищешь<br />не красивые фотографии.<br /><br />А место, где можно наконец перестать быть сильной, правильной и удобной.<br /><br />Если внутри уже появилось тихое</p>
-            <span class="final-yes">«Да...»</span>
-            <p class="final-text">значит,<br />эта встреча уже начинается.</p>
-            <button class="cta-button" type="button" data-open-callback>Записаться на предварительную встречу</button>
+        <section class="editorial-split practice" data-section="3">
+          <div class="editorial-copy">
+            <p class="editorial-kicker">День встречи</p>
+            <h2 class="editorial-title is-small">Практика</h2>
+            <p class="editorial-text">Тебе не нужно уметь позировать, знать, куда деть руки, или всё время держать лицо. Через дыхание, движение, голос, внимание и контакт с телом напряжение постепенно отпускает.</p>
+            <p class="editorial-text">Ты возвращаешься к себе — и в этот момент камера просто сохраняет то, что уже происходит внутри.</p>
+            <span class="editorial-accent">Так появляются настоящие кадры.</span>
           </div>
-          <aside class="aside">
-            <p class="aside-note">Практика проходит только<br />в индивидуальном формате.</p>
-            <div class="aside-line" aria-hidden="true"></div>
-            <p class="aside-note">Каждая встреча создаётся<br />только для одной женщины.</p>
-          </aside>
+          <figure class="editorial-photo">
+            <img src="img/meeting-self-03.jpg" alt="Женщина свободно движется у окна" />
+          </figure>
+        </section>
+
+        <section class="editorial-split is-reversed keeps" data-section="4">
+          <div class="editorial-copy">
+            <p class="editorial-kicker">После встречи</p>
+            <h2 class="editorial-title is-small">Что остаётся</h2>
+            <p class="editorial-text">Да, фотографии. Но самое ценное — не они. Остаётся память о состоянии, в котором можно спокойно смотреть на себя, не спорить с отражением и не заслуживать право быть красивой.</p>
+            <p class="editorial-text">Позже эти снимки становятся точкой возвращения: к доверию, внутренней опоре, мягкости и ощущению «со мной всё в порядке».</p>
+            <span class="editorial-accent">Ты просто улыбаешься — потому что узнаёшь себя.</span>
+          </div>
+          <figure class="editorial-photo">
+            <img src="img/meeting-self-04.jpg" alt="Искренняя улыбка женщины в движении" />
+          </figure>
+        </section>
+
+        <section class="audience">
+          <div class="audience-inner">
+            <div>
+              <p class="editorial-kicker">Это может быть про тебя</p>
+              <h2 class="audience-title">Эта встреча для тебя, если ты…</h2>
+            </div>
+            <div>
+              <ul class="audience-list">
+                <li>давно живёшь в режиме «надо» и почти не слышишь собственные желания;</li>
+                <li>устаёшь сравнивать себя с другими и хочешь перестать искать в себе недостатки;</li>
+                <li>боишься камеры, но мечтаешь однажды увидеть фотографии, в которых узнаешь себя;</li>
+                <li>переживаешь важный переход и хочешь сохранить новую внутреннюю опору;</li>
+                <li>хочешь почувствовать больше свободы, чувственности и доверия к своему телу;</li>
+                <li>готова не исправлять себя, а наконец познакомиться с собой ближе.</li>
+              </ul>
+              <p class="audience-note">Иногда нам нужен всего один честный момент, чтобы снова увидеть себя.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="meeting-offer">
+          <div class="offer-inner">
+            <h2 class="offer-title">Стоимость</h2>
+            <p class="offer-subtitle">Авторская практика<br /><span>«Встреча с собой»</span></p>
+            <p class="offer-price">39 000 &#8381;</p>
+            <div class="offer-divider" aria-hidden="true"></div>
+            <div class="offer-details">
+              <p class="offer-label">Включает:</p>
+              <ul class="offer-list">
+                <li>— предварительное знакомство;</li>
+                <li>— создание индивидуальной концепции;</li>
+                <li>— сопровождение подготовки;</li>
+                <li>— практику «Встреча с собой»;</li>
+                <li>— фотосъёмку;</li>
+                <li>— художественную обработку снимков.</li>
+              </ul>
+              <p class="offer-note">Студия, визажист и дополнительные расходы обсуждаются отдельно.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="meeting-closing">
+          <figure class="meeting-closing-photo">
+            <img src="img/meeting-self-05.jpg" alt="Женщина стоит перед зеркалом" />
+          </figure>
+          <div class="meeting-closing-copy">
+            <h2 class="meeting-closing-title">Возможно…</h2>
+            <p class="meeting-closing-text">Ты ищешь не просто красивые кадры.</p>
+            <p class="meeting-closing-text">А пространство,<br />где можно перестать оценивать себя.<br />Перестать соответствовать.<br />И снова почувствовать,<br />какая ты на самом деле.</p>
+            <p class="meeting-closing-text">Если сейчас внутри появилось тихое:</p>
+            <span class="meeting-closing-yes">«Да…»</span>
+            <p class="meeting-closing-text">значит,<br />твоя встреча с собой уже начинается.</p>
+            <button class="cta-button" type="button" data-open-questionnaire>Записаться на предварительную встречу</button>
+          </div>
         </section>
       </main>
 
       <footer class="site-footer">
-        <div class="footer-actions">
-          <button type="button" data-open-callback>Заказать обратный звонок</button>
-          <a href="privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>
-          <a href="offer.html" target="_blank" rel="noopener">Оферта</a>
+        <div class="footer-top">
+          <div class="footer-contact-block">
+            <p class="footer-title">Контакты</p>
+            <div class="footer-socials">
+              <a class="social-link" href="https://t.me/khoruzhenko_nataly" aria-label="Telegram"><img src="img/social-telegram.png" alt="" /></a>
+              <a class="social-link" href="https://max.ru/u/f9LHodD0cOLBq1trg3ctk1oujiVY9LP8ciax4O8db_CDsbIM1cx2tUGCV8c" aria-label="MAX"><img src="img/social-max.png" alt="" /></a>
+              <a class="social-link" href="https://www.instagram.com/khoruzhenko_natalya?igsh=MXJnbW04OHd2ZDZqdw%3D%3D" aria-label="Instagram"><img src="img/social-instagram.png" alt="" /></a>
+              <a class="social-link" href="https://vk.ru/khoruzhenko_natalya" aria-label="VK"><img src="img/social-vk.png" alt="" /></a>
+            </div>
+            <div class="footer-phone">Телефон: +7 913 945 4927</div>
+          </div>
+          <div class="footer-invite">
+            <h2 class="footer-invite-title">Останемся на связи?</h2>
+            <p class="footer-invite-text">В Telegram и MAX я продолжаю говорить<br />о красоте, которая рождается не перед камерой,<br />а внутри женщины.</p>
+            <div class="footer-invite-links">
+              <a class="footer-invite-link" href="https://t.me/khoruzhenko_natalya">Перейти в Telegram</a>
+              <a class="footer-invite-link" href="https://max.ru/join/Ky_laijAnAXNXVZiBa8XL-ct-ZNSgVSWyO0Qg3uQMKg">Перейти в MAX</a>
+            </div>
+          </div>
         </div>
-        <p class="footer-copy">© ИП Хоруженко Наталья Петровна. Отправляя любую форму на сайте, вы даете <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a>.</p>
+        <div class="footer-actions">
+          <button class="footer-text-button" type="button" data-open-callback>Заказать обратный звонок</button>
+          <a class="footer-text-button" href="privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>
+          <a class="footer-text-button" href="offer.html" target="_blank" rel="noopener">Оферта</a>
+        </div>
+        <p class="footer-copy">© ИП Хоруженко Наталья Петровна. Все материалы данного сайта являются объектами авторского права. Запрещается копирование, распространение и любое иное использование материалов без предварительного письменного согласия правообладателя. Отправляя любую форму на сайте, вы даете <a class="footer-consent-button" href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a>.</p>
       </footer>
+    </div>
+
+    <div class="questionnaire-overlay" data-questionnaire-overlay hidden>
+      <div class="questionnaire-modal" role="dialog" aria-modal="true" aria-labelledby="questionnaire-title">
+        <button class="questionnaire-close" type="button" data-close-questionnaire aria-label="Закрыть анкету">&times;</button>
+        <h2 class="questionnaire-title" id="questionnaire-title">Глубинная анкета</h2>
+        <form class="questionnaire-form" action="https://formsubmit.co/Khoruzhenkophoto@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Анкета на наставничество" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="Телефон полностью" value="" data-questionnaire-full-phone />
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Фамилия и имя</span>
+            <input class="questionnaire-input" name="Фамилия и имя" type="text" autocomplete="name" required />
+          </label>
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Опиши свой уровень в фотографии: как ты сама себя оцениваешь</span>
+            <textarea class="questionnaire-textarea" name="Уровень в фотографии" placeholder="Новичок, есть опыт в коммерческой съемке, профессионал, сколько лет в сфере..." required></textarea>
+          </label>
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Ссылки на свои соцсети, сайт или портфолио</span>
+            <textarea class="questionnaire-textarea" name="Соцсети и сайт" required></textarea>
+          </label>
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Опиши кратко свой запрос</span>
+            <textarea class="questionnaire-textarea" name="Запрос" required></textarea>
+          </label>
+
+          <div class="questionnaire-field">
+            <span class="questionnaire-label">Напиши номер телефона для связи</span>
+            <div class="questionnaire-phone-row">
+              <select class="questionnaire-select" name="Страна" data-questionnaire-country aria-label="Код страны">
+                <option value="Россия +7">Россия +7</option>
+                <option value="Казахстан +7">Казахстан +7</option>
+                <option value="Беларусь +375">Беларусь +375</option>
+                <option value="Украина +380">Украина +380</option>
+                <option value="Армения +374">Армения +374</option>
+                <option value="Грузия +995">Грузия +995</option>
+                <option value="Азербайджан +994">Азербайджан +994</option>
+                <option value="Кыргызстан +996">Кыргызстан +996</option>
+                <option value="Узбекистан +998">Узбекистан +998</option>
+                <option value="Таджикистан +992">Таджикистан +992</option>
+                <option value="Турция +90">Турция +90</option>
+                <option value="Германия +49">Германия +49</option>
+                <option value="Франция +33">Франция +33</option>
+                <option value="Италия +39">Италия +39</option>
+                <option value="Испания +34">Испания +34</option>
+                <option value="Великобритания +44">Великобритания +44</option>
+                <option value="США +1">США +1</option>
+                <option value="Канада +1">Канада +1</option>
+                <option value="ОАЭ +971">ОАЭ +971</option>
+                <option value="Израиль +972">Израиль +972</option>
+                <option value="Китай +86">Китай +86</option>
+                <option value="Индия +91">Индия +91</option>
+                <option value="Таиланд +66">Таиланд +66</option>
+              </select>
+              <input class="questionnaire-input" name="Телефон" type="tel" placeholder="(000) 000-0000" autocomplete="tel" required />
+            </div>
+          </div>
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Удобный мессенджер для связи</span>
+            <select class="questionnaire-select" name="Удобный мессенджер" required>
+              <option value="">Выбери мессенджер</option>
+              <option value="Telegram">Telegram</option>
+              <option value="MAX">MAX</option>
+            </select>
+          </label>
+
+          <label class="questionnaire-field">
+            <span class="questionnaire-label">Email</span>
+            <input class="questionnaire-input" name="Email" type="email" autocomplete="email" required />
+          </label>
+
+          <label class="questionnaire-check">
+            <input type="checkbox" name="Согласие" value="Да" required />
+            <span>Я разрешаю использовать мои ответы для предварительного анализа запроса и согласна на обработку персональных данных.</span>
+          </label>
+
+          <button class="questionnaire-submit" type="submit">Отправить</button>
+          <p class="questionnaire-note">После отправки ответы придут на почту Khoruzhenkophoto@gmail.com.</p>
+        </form>
+      </div>
     </div>
 
     <script>
@@ -963,6 +2034,44 @@
 
       document.querySelectorAll("[data-open-callback]").forEach((button) => {
         button.addEventListener("click", openCallback);
+      });
+
+      const questionnaireOverlay = document.querySelector("[data-questionnaire-overlay]");
+      const questionnaireForm = document.querySelector(".questionnaire-form");
+      const closeQuestionnaireButton = document.querySelector("[data-close-questionnaire]");
+
+      function openQuestionnaire() {
+        if (!questionnaireOverlay) return;
+        questionnaireOverlay.hidden = false;
+        document.body.style.overflow = "hidden";
+        questionnaireOverlay.querySelector("input, textarea, select")?.focus();
+      }
+
+      function closeQuestionnaire() {
+        if (!questionnaireOverlay) return;
+        questionnaireOverlay.hidden = true;
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll("[data-open-questionnaire]").forEach((button) => {
+        button.addEventListener("click", openQuestionnaire);
+      });
+
+      closeQuestionnaireButton?.addEventListener("click", closeQuestionnaire);
+      questionnaireOverlay?.addEventListener("mousedown", (event) => {
+        if (event.target === questionnaireOverlay) closeQuestionnaire();
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && questionnaireOverlay && !questionnaireOverlay.hidden) {
+          closeQuestionnaire();
+        }
+      });
+
+      questionnaireForm?.addEventListener("submit", () => {
+        const country = questionnaireForm.querySelector("[data-questionnaire-country]").value;
+        const phone = questionnaireForm.querySelector('[name="Телефон"]').value.trim();
+        questionnaireForm.querySelector("[data-questionnaire-full-phone]").value = `${country}: ${phone}`;
       });
     </script>
     <style>
