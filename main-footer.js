@@ -28,6 +28,140 @@
     <p class="footer-copy">© ИП Хоруженко Наталья Петровна. Все материалы данного сайта являются объектами авторского права. Запрещается копирование, распространение и любое иное использование материалов без предварительного письменного согласия правообладателя. Отправляя любую форму на сайте, вы даете <a class="footer-consent-button" href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a>.</p>
   `;
 
+  function createCallbackModal() {
+    const existingModal = document.querySelector(".main-callback-overlay");
+    if (existingModal) return existingModal;
+
+    const modal = document.createElement("div");
+    modal.className = "main-callback-overlay";
+    modal.hidden = true;
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-labelledby", "main-callback-title");
+    modal.innerHTML = `
+      <div class="main-callback-modal">
+        <button class="main-callback-close" type="button" aria-label="Закрыть форму">&times;</button>
+        <h2 class="main-callback-title" id="main-callback-title">Оставьте ваши<br />контактные данные, и я<br />с вами свяжусь</h2>
+        <form class="main-callback-form" action="https://formsubmit.co/ilyzenko11@gmail.com" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="Заявка на обратный звонок с сайта" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="Телефон полностью" value="" data-main-full-phone />
+          <label class="main-callback-field">
+            <input class="main-callback-input" name="Имя" type="text" placeholder="Ваше Имя" autocomplete="name" />
+            <span class="main-callback-error" data-main-error="name"></span>
+          </label>
+          <div class="main-callback-field">
+            <div class="main-callback-phone-row">
+              <select class="main-callback-select" name="Страна" aria-label="Страна телефона">
+                <option value="Россия +7">Россия +7</option>
+                <option value="Казахстан +7">Казахстан +7</option>
+                <option value="Беларусь +375">Беларусь +375</option>
+                <option value="Другая страна">Другая страна</option>
+              </select>
+              <input class="main-callback-input" name="Телефон" type="tel" placeholder="(000) 000-0000" autocomplete="tel" />
+            </div>
+            <span class="main-callback-error" data-main-error="phone"></span>
+          </div>
+          <label class="main-callback-field">
+            <select class="main-callback-select" name="Удобный мессенджер">
+              <option value="">Удобный мессенджер</option>
+              <option value="Telegram">Telegram</option>
+              <option value="MAX">MAX</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Телефонный звонок">Телефонный звонок</option>
+            </select>
+            <span class="main-callback-error" data-main-error="messenger"></span>
+          </label>
+          <label class="main-callback-field">
+            <input class="main-callback-input" name="Email" type="email" placeholder="Email" autocomplete="email" />
+            <span class="main-callback-error" data-main-error="email"></span>
+          </label>
+          <label class="main-callback-field">
+            <span class="main-callback-label" data-main-captcha-label>Капча</span>
+            <input class="main-callback-input" name="Капча" type="text" inputmode="numeric" />
+            <span class="main-callback-error" data-main-error="captcha"></span>
+          </label>
+          <button class="main-callback-submit" type="submit">Отправить</button>
+          <p class="main-callback-note">После отправки данные придут на email: ilyzenko11@gmail.com</p>
+        </form>
+      </div>
+    `;
+    document.body.append(modal);
+
+    const form = modal.querySelector(".main-callback-form");
+    const closeButton = modal.querySelector(".main-callback-close");
+    const setError = (field, message) => {
+      const error = form.querySelector(`[data-main-error="${field}"]`);
+      if (error) error.textContent = message;
+    };
+    const closeModal = () => {
+      modal.hidden = true;
+      document.body.classList.remove("main-callback-open");
+    };
+
+    closeButton.addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !modal.hidden) closeModal();
+    });
+
+    form.addEventListener("submit", (event) => {
+      const name = form.querySelector('[name="Имя"]').value.trim();
+      const phone = form.querySelector('[name="Телефон"]').value.trim();
+      const country = form.querySelector('[name="Страна"]').value;
+      const messenger = form.querySelector('[name="Удобный мессенджер"]').value;
+      const email = form.querySelector('[name="Email"]').value.trim();
+      const captcha = form.querySelector('[name="Капча"]').value.trim();
+      const phoneDigits = phone.replace(/\D/g, "");
+      const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      let valid = true;
+
+      ["name", "phone", "messenger", "email", "captcha"].forEach((field) => setError(field, ""));
+      if (!name) {
+        setError("name", "Введите имя.");
+        valid = false;
+      }
+      if (phoneDigits.length < 6) {
+        setError("phone", "Введите корректный номер телефона.");
+        valid = false;
+      }
+      if (!messenger) {
+        setError("messenger", "Выберите удобный способ связи.");
+        valid = false;
+      }
+      if (!emailIsValid) {
+        setError("email", "Введите корректный email.");
+        valid = false;
+      }
+      if (captcha !== form.dataset.captchaAnswer) {
+        setError("captcha", "Неверный ответ.");
+        valid = false;
+      }
+
+      if (!valid) {
+        event.preventDefault();
+        return;
+      }
+      form.querySelector("[data-main-full-phone]").value = `${country}: ${phone}`;
+    });
+
+    return modal;
+  }
+
+  function openFooterCallback() {
+    const modal = createCallbackModal();
+    const firstNumber = Math.floor(Math.random() * 8) + 1;
+    const secondNumber = Math.floor(Math.random() * 8) + 1;
+    const form = modal.querySelector(".main-callback-form");
+    form.dataset.captchaAnswer = String(firstNumber + secondNumber);
+    modal.querySelector("[data-main-captcha-label]").textContent = `Сколько будет ${firstNumber} + ${secondNumber}?`;
+    modal.hidden = false;
+    document.body.classList.add("main-callback-open");
+    window.setTimeout(() => form.querySelector('[name="Имя"]').focus(), 0);
+  }
+
   let footer = document.querySelector(".site-footer");
   if (!footer) {
     footer = document.createElement("footer");
@@ -49,6 +183,6 @@
       return;
     }
 
-    window.location.href = "contacts.html";
+    openFooterCallback();
   });
 })();
