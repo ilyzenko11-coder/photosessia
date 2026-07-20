@@ -185,4 +185,8 @@
 
     openFooterCallback();
   });
+
+  document.querySelectorAll("[data-main-callback]").forEach((button) => {
+    button.addEventListener("click", openFooterCallback);
+  });
 })();

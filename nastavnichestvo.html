@@ -267,6 +267,10 @@
         cursor: pointer;
       }
 
+      .individual .questionnaire-inline-button {
+        margin-top: 28px;
+      }
+
       .split {
         display: grid;
         grid-template-columns: minmax(0, 0.93fr) minmax(0, 1.07fr);
@@ -1002,7 +1006,9 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="admin-panel.css" />
+    <link rel="stylesheet" href="main-footer.css" />
+    <script src="main-footer.js" defer></script>
+    <link rel="stylesheet" href="admin-panel.css?v=20260720-admin2" />
   </head>
   <body>
     <header class="header">
@@ -1036,7 +1042,7 @@
           <h1 class="hero-title">Искусство<br />видеть</h1>
           <p class="lead">Фотография начинается не с камеры. Она начинается со взгляда фотографа: честного, внимательного, живого.</p>
           <span class="down" aria-hidden="true">↓</span>
-          <a class="action-link" href="contacts.html">Подать заявку <span aria-hidden="true">→</span></a>
+          <button class="action-link questionnaire-inline-button" type="button" data-open-questionnaire>Подать заявку <span aria-hidden="true">→</span></button>
         </div>
       </section>
 
@@ -1100,7 +1106,7 @@
           <p class="section-text">Женщина приходит за снимками, но уходит с новым ощущением себя. Она начинает видеть в себе ту, которая всегда была рядом, просто ждала бережного взгляда.</p>
           <p class="section-text">На наставничестве мы учимся создавать не только кадр, но и состояние, в котором этот кадр может родиться.</p>
           <span class="down" aria-hidden="true">↓</span>
-          <a class="action-link" href="contacts.html">Подать заявку <span aria-hidden="true">→</span></a>
+          <button class="action-link questionnaire-inline-button" type="button" data-open-questionnaire>Подать заявку <span aria-hidden="true">→</span></button>
         </div>
       </section>
 
@@ -1125,6 +1131,7 @@
           <p class="section-text">Наставничество проходит в личном формате. Без общего темпа, в который нужно успевать, и без чужих задач, которые не имеют отношения к вашему пути.</p>
           <p class="section-text">Мы смотрим на вашу точку сейчас: как вы видите кадр, как общаетесь с героиней, где теряется уверенность и где уже есть собственная сила.</p>
           <p class="section-text">После диагностики я собираю маршрут, который поможет соединить технику, состояние и авторский взгляд в понятную систему работы.</p>
+          <button class="action-link questionnaire-inline-button" type="button" data-open-questionnaire>Заполнить анкету <span aria-hidden="true">→</span></button>
         </div>
       </section>
 
@@ -1350,10 +1357,10 @@
         }
       }
     </style>
-    <a class="floating-telegram" href="https://t.me/Khoruzhenko_Nataly" aria-label="Telegram">
-      <span class="floating-telegram-label">тгк</span>
+    <a class="floating-telegram" href="https://t.me/khoruzhenko_natalya" aria-label="Telegram-канал">
+      <span class="floating-telegram-label">тг-канал</span>
       <img src="img/social-telegram.png" alt="" />
     </a>
-    <script src="admin-panel.js"></script>
+    <script src="admin-panel.js?v=20260720-admin2"></script>
   </body>
 </html>

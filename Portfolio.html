@@ -13,7 +13,7 @@
         --black: #050505;
         --milk: #e9e2da;
         --line: rgba(216, 181, 138, 0.18);
-        --film-height: clamp(168px, 27vh, 297px);
+        --film-height: clamp(120px, 16dvh, 170px);
       }
 
       * {
@@ -539,30 +539,187 @@
       }
 
       @media (min-width: 1181px) {
+        html,
+        body {
+          height: 100%;
+          overflow: hidden;
+        }
+
+        .page {
+          display: grid;
+          grid-template-rows: auto minmax(0, 1fr) var(--film-height);
+          height: 100vh;
+          height: 100dvh;
+          min-height: 0;
+          overflow: hidden;
+        }
+
+        .stories-stage {
+          height: 100%;
+          min-height: 0;
+          overflow: hidden;
+        }
+
+        .story,
+        .story--irina,
+        .story--anya,
+        .story--yulia-k,
+        .story--mentor {
+          grid-template-columns: var(--story-photo-width, 42vw) minmax(0, 1fr);
+          width: 100%;
+          height: 100%;
+          min-height: 0;
+          align-items: start;
+          overflow: hidden;
+        }
+
+        .story-photo-wrap,
+        .story--irina .story-photo-wrap,
+        .story--anya .story-photo-wrap,
+        .story--yulia-k .story-photo-wrap,
+        .story--mentor .story-photo-wrap {
+          width: 100%;
+          height: auto;
+          min-height: 0;
+          align-self: start;
+        }
+
+        .story-photo,
+        .story-photo.is-full-length,
+        .story-photo.is-full-visible,
+        .story-photo.is-irina-main,
+        .story-photo.is-anya-main,
+        .story-photo.is-yulia-k-main,
+        .story-photo.is-mentor-main {
+          width: 100%;
+          height: auto;
+          min-height: 0;
+          margin: 0;
+          object-fit: contain;
+          object-position: center top;
+        }
+
+        .story-copy,
+        .story-copy--irina,
+        .story-copy--anya,
+        .story-copy--yulia-k,
+        .story-copy--mentor,
         .story--scroll-copy .story-copy {
-          height: calc(100svh - 86px);
-          min-height: 560px;
-          overflow-y: auto;
-          overscroll-behavior-y: auto;
-          scrollbar-color: rgba(216, 181, 138, 0.5) rgba(216, 181, 138, 0.08);
-          scrollbar-width: thin;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          width: 100%;
+          height: auto;
+          min-height: 0;
+          max-height: none;
+          align-self: start;
+          align-content: start;
+          column-gap: var(--fit-column-gap, 38px);
+          row-gap: var(--fit-row-gap, 16px);
+          padding: var(--fit-padding-y, 28px) var(--fit-padding-x, 34px);
+          overflow: visible;
+          overscroll-behavior: auto;
+          scrollbar-width: auto;
         }
 
-        .story--scroll-copy .story-copy--mentor {
-          min-height: 620px;
+        .story-copy--mentor {
+          grid-template-columns: minmax(0, 1fr);
         }
 
-        .story--scroll-copy .story-copy::-webkit-scrollbar {
-          width: 8px;
+        .story-copy--irina,
+        .story-copy--yulia-k {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
-        .story--scroll-copy .story-copy::-webkit-scrollbar-track {
-          background: rgba(216, 181, 138, 0.08);
+        .story-copy--irina .story-column {
+          display: contents;
         }
 
-        .story--scroll-copy .story-copy::-webkit-scrollbar-thumb {
-          border-radius: 999px;
-          background: rgba(216, 181, 138, 0.5);
+        .story-copy--irina .story-text + .story-text {
+          margin-top: 0;
+        }
+
+        .story-name,
+        .story-copy--irina .story-name,
+        .story-copy--anya .story-name,
+        .story-copy--yulia-k .story-name,
+        .story-copy--mentor .story-name {
+          margin: 0 0 var(--fit-name-gap, 8px);
+          padding-right: 94px;
+          font-size: var(--fit-title-size, 68px);
+          line-height: 0.9;
+        }
+
+        .story-lead,
+        .story-copy--irina .story-lead,
+        .story-copy--anya .story-lead,
+        .story-copy--yulia-k .story-lead {
+          margin: 0 0 var(--fit-lead-gap, 12px);
+          font-size: var(--fit-lead-size, 36px);
+          line-height: 1.12;
+          text-align: left;
+        }
+
+        .story-text,
+        .story-copy--irina .story-text,
+        .story-copy--anya .story-text,
+        .story-copy--yulia-k .story-text,
+        .story-copy--mentor .story-text {
+          font-size: var(--fit-body-size, 15px);
+          line-height: var(--fit-line-height, 1.45);
+        }
+
+        .story-text + .story-text,
+        .story-copy--irina .story-text + .story-text,
+        .story-copy--anya .story-text + .story-text,
+        .story-copy--yulia-k .story-text + .story-text,
+        .story-copy--mentor .story-text + .story-text {
+          margin-top: var(--fit-paragraph-gap, 18px);
+        }
+
+        .story-copy--yulia-k .story-column--quotes .story-text + .story-text {
+          margin-top: var(--fit-paragraph-gap, 18px);
+          padding-top: var(--fit-paragraph-gap, 18px);
+        }
+
+        .story-copy--yulia-k .story-wide {
+          grid-column: 3;
+          grid-row: 3;
+          max-width: none;
+          justify-self: stretch;
+        }
+
+        .story-copy--yulia-k .story-final {
+          grid-column: 3;
+          grid-row: 3;
+          align-self: end;
+          margin-top: 0;
+          font-size: var(--fit-final-size, 34px);
+          text-align: left;
+        }
+
+        .story-copy--mentor .story-name-line {
+          margin-bottom: var(--fit-name-line-gap, 22px);
+        }
+
+        .story[data-story="4"] .story-name-line,
+        .story[data-story="5"] .story-name-line,
+        .story[data-story="6"] .story-name-line,
+        .story[data-story="7"] .story-name-line {
+          display: none;
+        }
+
+        .story[data-story="4"] .story-column,
+        .story[data-story="5"] .story-column,
+        .story[data-story="6"] .story-column,
+        .story[data-story="7"] .story-column {
+          max-width: none;
+        }
+
+        .story[data-story="1"] .story-copy,
+        .story[data-story="4"] .story-copy,
+        .story[data-story="5"] .story-copy,
+        .story[data-story="6"] .story-copy,
+        .story[data-story="7"] .story-copy {
+          row-gap: var(--fit-under-name-gap, 7px);
         }
       }
 
@@ -995,7 +1152,7 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="admin-panel.css" />
+    <link rel="stylesheet" href="admin-panel.css?v=20260720-admin2" />
   </head>
   <body>
     <div class="page">
@@ -1187,7 +1344,6 @@
           </div>
         </section>
       </main>
-    </div>
 
     <div class="film-overlay" aria-hidden="true">
       <div class="film-track is-active" data-film="0">
@@ -1565,6 +1721,7 @@
         </div>
       </div>
     </div>
+    </div>
 
     <script>
       const header = document.querySelector(".header");
@@ -1594,8 +1751,165 @@
 
       const stories = Array.from(document.querySelectorAll(".story"));
       const films = Array.from(document.querySelectorAll(".film-track"));
+      const desktopStories = window.matchMedia("(min-width: 1181px)");
       let current = 0;
       let isAnimating = false;
+      let fitFrame = 0;
+      let fitVersion = 0;
+
+      const fitProfiles = {
+        default: { body: 19.5, title: 66, lead: 34, final: 34, paddingY: 24, paddingX: 32, columnGap: 34, rowGap: 13, paragraphGap: 14, nameGap: 6, leadGap: 8, nameLineGap: 18, lineHeight: 1.48 },
+        irina: { body: 19, title: 60, lead: 34, final: 32, paddingY: 21, paddingX: 29, columnGap: 32, rowGap: 10, paragraphGap: 12, nameGap: 3, leadGap: 5, nameLineGap: 16, lineHeight: 1.45 },
+        anya: { body: 19, title: 64, lead: 30, final: 32, paddingY: 20, paddingX: 29, columnGap: 32, rowGap: 10, paragraphGap: 12, nameGap: 3, leadGap: 5, nameLineGap: 16, lineHeight: 1.43 },
+        yuliaK: { body: 18, title: 62, lead: 31, final: 31, paddingY: 18, paddingX: 27, columnGap: 29, rowGap: 9, paragraphGap: 9, nameGap: 2, leadGap: 4, nameLineGap: 15, lineHeight: 1.4 },
+        mentor: { body: 20, title: 58, lead: 32, final: 32, paddingY: 21, paddingX: 31, columnGap: 0, rowGap: 7, paragraphGap: 12, nameGap: 4, leadGap: 6, nameLineGap: 14, lineHeight: 1.46 }
+      };
+
+      const fitProperties = [
+        "--story-photo-width",
+        "--fit-body-size",
+        "--fit-title-size",
+        "--fit-lead-size",
+        "--fit-final-size",
+        "--fit-padding-y",
+        "--fit-padding-x",
+        "--fit-column-gap",
+        "--fit-row-gap",
+        "--fit-paragraph-gap",
+        "--fit-name-gap",
+        "--fit-lead-gap",
+        "--fit-name-line-gap",
+        "--fit-under-name-gap",
+        "--fit-line-height"
+      ];
+
+      function getFitProfile(story) {
+        if (story.classList.contains("story--yulia-k")) return fitProfiles.yuliaK;
+        if (story.classList.contains("story--anya")) return fitProfiles.anya;
+        if (story.classList.contains("story--irina")) return fitProfiles.irina;
+        if (story.classList.contains("story--mentor")) return fitProfiles.mentor;
+        return fitProfiles.default;
+      }
+
+      function applyStoryDensity(story, scale) {
+        const profile = getFitProfile(story);
+        const px = (value) => `${(value * scale).toFixed(2)}px`;
+        const bodyScale = 0.55 + scale * 0.45;
+        story.style.setProperty("--fit-body-size", `${(profile.body * bodyScale).toFixed(2)}px`);
+        story.style.setProperty("--fit-title-size", px(profile.title));
+        story.style.setProperty("--fit-lead-size", px(profile.lead));
+        story.style.setProperty("--fit-final-size", px(profile.final));
+        story.style.setProperty("--fit-padding-y", px(profile.paddingY));
+        story.style.setProperty("--fit-padding-x", px(profile.paddingX));
+        story.style.setProperty("--fit-column-gap", px(profile.columnGap));
+        story.style.setProperty("--fit-row-gap", px(profile.rowGap));
+        story.style.setProperty("--fit-paragraph-gap", px(profile.paragraphGap));
+        story.style.setProperty("--fit-name-gap", px(profile.nameGap));
+        story.style.setProperty("--fit-lead-gap", px(profile.leadGap));
+        story.style.setProperty("--fit-name-line-gap", px(profile.nameLineGap));
+        story.style.setProperty("--fit-under-name-gap", px(7));
+        story.style.setProperty("--fit-line-height", String(profile.lineHeight));
+      }
+
+      function clearStoryFit(story) {
+        fitProperties.forEach((property) => story.style.removeProperty(property));
+      }
+
+      async function fitStoryLayout(story) {
+        const version = ++fitVersion;
+
+        if (!desktopStories.matches) {
+          stories.forEach(clearStoryFit);
+          return;
+        }
+
+        const photo = story.querySelector(".story-photo");
+        const copy = story.querySelector(".story-copy");
+        const stage = document.querySelector(".stories-stage");
+        if (!photo || !copy || !stage) return;
+
+        if (!photo.complete || !photo.naturalWidth) {
+          await photo.decode().catch(() => undefined);
+        }
+        if (document.fonts?.ready) await document.fonts.ready;
+        if (version !== fitVersion || !story.classList.contains("is-active")) return;
+
+        const stageWidth = stage.clientWidth;
+        const stageHeight = stage.clientHeight;
+        const imageRatio = photo.naturalWidth / photo.naturalHeight;
+        const isMentor = story.classList.contains("story--mentor");
+        const minimumCopyWidth = isMentor
+          ? Math.max(460, stageWidth * 0.32)
+          : Math.max(580, stageWidth * 0.4);
+        const maximumPhotoWidth = Math.max(
+          120,
+          Math.min(stageHeight * imageRatio, stageWidth - minimumCopyWidth, stageWidth * 0.68)
+        );
+        const minimumPhotoWidth = Math.min(maximumPhotoWidth, Math.max(210, stageWidth * 0.15));
+
+        const measure = (photoWidth, scale) => {
+          applyStoryDensity(story, scale);
+          story.style.setProperty("--story-photo-width", `${photoWidth.toFixed(2)}px`);
+          const photoHeight = photo.getBoundingClientRect().height;
+          const copyHeight = copy.getBoundingClientRect().height;
+          return {
+            photoHeight,
+            copyHeight,
+            fits: photoHeight <= stageHeight + 0.5 && copyHeight <= stageHeight - 1
+          };
+        };
+
+        let density = 1;
+        let selectedWidth = maximumPhotoWidth;
+        let widestMeasurement = measure(maximumPhotoWidth, density);
+
+        if (!widestMeasurement.fits) {
+          const narrowMeasurement = measure(minimumPhotoWidth, density);
+
+          if (!narrowMeasurement.fits) {
+            let lowDensity = 0.46;
+            let highDensity = 1;
+            measure(minimumPhotoWidth, lowDensity);
+
+            for (let iteration = 0; iteration < 12; iteration += 1) {
+              const candidate = (lowDensity + highDensity) / 2;
+              if (measure(minimumPhotoWidth, candidate).fits) {
+                lowDensity = candidate;
+              } else {
+                highDensity = candidate;
+              }
+            }
+
+            density = lowDensity;
+            const minimumMeasurement = measure(minimumPhotoWidth, density);
+            if (!minimumMeasurement.fits && minimumMeasurement.copyHeight > 0) {
+              density = Math.max(0.34, density * (stageHeight / minimumMeasurement.copyHeight) * 0.98);
+              measure(minimumPhotoWidth, density);
+            }
+          }
+
+          let lowWidth = minimumPhotoWidth;
+          let highWidth = maximumPhotoWidth;
+          selectedWidth = minimumPhotoWidth;
+
+          for (let iteration = 0; iteration < 13; iteration += 1) {
+            const candidate = (lowWidth + highWidth) / 2;
+            if (measure(candidate, density).fits) {
+              selectedWidth = candidate;
+              lowWidth = candidate;
+            } else {
+              highWidth = candidate;
+            }
+          }
+        }
+
+        measure(selectedWidth, density);
+      }
+
+      function scheduleStoryFit(story = stories[current]) {
+        window.cancelAnimationFrame(fitFrame);
+        fitFrame = window.requestAnimationFrame(() => fitStoryLayout(story));
+      }
 
       function showStory(index) {
         if (isAnimating || index === current) return;
@@ -1609,6 +1923,7 @@
         previousStory.classList.add(direction > 0 ? "is-leaving-left" : "is-leaving-right");
         nextStory.style.setProperty("--enter-x", `${direction * 30}px`);
         nextStory.classList.add("is-active");
+        scheduleStoryFit(nextStory);
 
         films.forEach((film, filmIndex) => {
           film.classList.toggle("is-active", filmIndex === next);
@@ -1634,6 +1949,14 @@
         if (event.key === "ArrowLeft") showStory(current - 1);
         if (event.key === "ArrowRight") showStory(current + 1);
       });
+
+      window.addEventListener("resize", () => scheduleStoryFit(stories[current]));
+      window.addEventListener("load", () => scheduleStoryFit(stories[current]));
+      if (document.fonts?.ready) {
+        document.fonts.ready.then(() => scheduleStoryFit(stories[current]));
+      } else {
+        scheduleStoryFit(stories[current]);
+      }
     </script>
     <style>
       .floating-telegram {
@@ -1680,10 +2003,10 @@
         }
       }
     </style>
-    <a class="floating-telegram" href="https://t.me/Khoruzhenko_Nataly" aria-label="Telegram">
-      <span class="floating-telegram-label">тгк</span>
+    <a class="floating-telegram" href="https://t.me/khoruzhenko_natalya" aria-label="Telegram-канал">
+      <span class="floating-telegram-label">тг-канал</span>
       <img src="img/social-telegram.png" alt="" />
     </a>
-    <script src="admin-panel.js"></script>
+    <script src="admin-panel.js?v=20260720-admin2"></script>
   </body>
 </html>
