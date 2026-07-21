@@ -538,20 +538,52 @@
         margin-top: clamp(30px, 3.4vh, 44px);
       }
 
+      .story-copy--reference {
+        grid-template-columns: minmax(440px, 840px);
+        padding-top: clamp(54px, 7vh, 88px);
+      }
+
+      .story-copy--reference .story-name {
+        font-size: clamp(64px, 5.4vw, 88px);
+      }
+
+      .story-copy--reference .story-name-line {
+        display: none;
+      }
+
+      .story-copy--reference .story-column {
+        max-width: 840px;
+      }
+
+      .story-copy--reference .story-text {
+        font-size: clamp(20px, 1.32vw, 23px);
+        line-height: 1.5;
+      }
+
+      .story-copy--reference .story-text + .story-text {
+        margin-top: clamp(22px, 2.6vh, 34px);
+      }
+
+      .story-highlight {
+        color: var(--gold);
+        font-weight: 500;
+      }
+
       @media (min-width: 1181px) {
         html,
         body {
-          height: 100%;
-          overflow: hidden;
+          height: auto;
+          overflow-x: hidden;
+          overflow-y: auto;
         }
 
         .page {
           display: grid;
-          grid-template-rows: auto minmax(0, 1fr) var(--film-height);
-          height: 100vh;
-          height: 100dvh;
-          min-height: 0;
-          overflow: hidden;
+          grid-template-rows: auto calc(100dvh - 86px - var(--film-height)) var(--film-height) auto;
+          height: auto;
+          min-height: 100vh;
+          min-height: 100dvh;
+          overflow: visible;
         }
 
         .stories-stage {
@@ -698,6 +730,10 @@
 
         .story-copy--mentor .story-name-line {
           margin-bottom: var(--fit-name-line-gap, 22px);
+        }
+
+        .story--reference .story-column .story-text:first-child {
+          padding-right: 112px;
         }
 
         .story[data-story="4"] .story-name-line,
@@ -1152,6 +1188,8 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="main-footer.css?v=20260721" />
+    <script src="main-footer.js?v=20260721" defer></script>
     <link rel="stylesheet" href="admin-panel.css?v=20260720-admin2" />
   </head>
   <body>
@@ -1340,6 +1378,55 @@
             <div class="story-name-line" aria-hidden="true"></div>
             <div class="story-column">
               <p class="story-text">Хочу сказать что ты очень крутая Наташа!<br />Ты наша фея крестная!)<br />Видишь всю красоту в женщине<br />и внутреннюю и внешнюю,<br />и показываешь её на фотографиях.<br />Ты отличный психолог, поход к тебе<br />можно расценивать как месяц работы с психологом,<br />у меня столько инсайтов)<br />даже мой мужчина стал по другому<br />ко мне относиться,<br />причём прям на второй день после съёмки))<br />у меня нет слов,<br />я тебе очень сильно благодарна!</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--mentor story--reference" data-story="9">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-elena-main.jpg" alt="Елена, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor story-copy--reference">
+            <h1 class="story-name">Елена, 40 лет</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column">
+              <p class="story-text">«Наташ, валяюсь на диване,<br />и фотосессия догоняет).<br />Закрываю глаза, вижу себя<br />в лучах солнца другую,<br />слышу твой голос – <span class="story-highlight">Лена, дыши!</span></p>
+              <p class="story-text">Очень трудно порой расслабиться<br />в нашем ритме жизни,<br />спасибо тебе большое за то, что<br />хоть на немного <span class="story-highlight">вытащила меня настоящую.</span><br />И мысли у меня – наконец я сделала это<br />не для мужа, не для дочки,<br /><span class="story-highlight">а для себя...</span> Это очень ценно!»</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--mentor story--reference" data-story="10">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-kristina-main.jpg" alt="Кристина, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor story-copy--reference">
+            <h1 class="story-name">Кристина, 38 лет</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column">
+              <p class="story-text">Наташа.. Я пришла к тебе с легким волнением, трепетом. Ты превзошла все мои ожидания, ты была не просто фотограф, не просто наставник, <span class="story-highlight">ты проживала эту фотосессию вместе со мной</span></p>
+              <p class="story-text"><span class="story-highlight">Ты смягчила меня, показала какой я могу быть.</span> Мне было очень комфортно с тобой, спокойно, я следовала за тобой.. И ты была права, я почти совсем не замечала объектива, я <span class="story-highlight">видела только тебя</span></p>
+              <p class="story-text">я правильно сделала выбор, в отношении тебя как фотографа, но получила <span class="story-highlight">намного больше чем ожидала,</span> как будто мы прожили с тобой <span class="story-highlight">маленькую жизнь.</span></p>
+              <p class="story-text">Я пронесу эти воспоминания о нашей первой фотосессии через всю свою жизнь. <span class="story-highlight">Первая и самая особенная.</span></p>
+              <p class="story-text">Я вернусь, вернусь не только за новыми фото, вернусь к тебе в первую очередь за <span class="story-highlight">новыми эмоциями...</span></p>
+              <p class="story-text">Как можно узнать человека за пару дней? Узнать изнутри?... <span class="story-highlight">Спросите Наташу))</span></p>
+              <p class="story-text">Ехала домой и много думала, ты мой <span class="story-highlight">первый шаг к изменениям...</span></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--mentor story--reference" data-story="11">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-nina-main.jpg" alt="Нина, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor story-copy--reference">
+            <h1 class="story-name">Нина, 40 лет</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column">
+              <p class="story-text">Съемка была <span class="story-highlight">бомбическая,</span> столько <span class="story-highlight">эмоций</span> и <span class="story-highlight">ощущений</span> прожила за эти пару часов!!! <span class="story-highlight">Слезы...</span>что это? (За многие годы могу пересчитать по пальцам одной руки сколько раз я плакала и то пока никто не видит и не слышит). Я была в <span class="story-highlight">огромном шоке,</span> что плакала, ещё и при чужом человеке, а это для меня категорически под запретом. Это же слабость, а как я могу показать свою слабость и уязвимость? А ты мне <span class="story-highlight">разрешила,</span> благодарю!! И мне <span class="story-highlight">не было стыдно</span> за слезы! <span class="story-highlight">Впервые!!!!</span></p>
+              <p class="story-text">Сейчас мне так <span class="story-highlight">легко,</span> даже дышать как-будто бы легче. Весь день после съемок я была <span class="story-highlight">на подъеме,</span> ловила себя, что <span class="story-highlight">улыбаюсь</span> без повода😁 Еду за рулем, а у меня <span class="story-highlight">нос задран вверх, зубы не скрипят</span> (они в основном у меня стиснуты). Хочу <span class="story-highlight">кружиться</span> и <span class="story-highlight">танцевать!!!</span> <span class="story-highlight">Радоваться, жить!!!</span></p>
+              <p class="story-text">А когда увидела свои фото.....знаешь, я <span class="story-highlight">впервые себе нравлюсь!!</span> Хочу на них <span class="story-highlight">смотреть,</span> хочу их <span class="story-highlight">показать</span> 😁🤣 Меня <span class="story-highlight">не бесит</span> мое <span class="story-highlight">тело</span> на них, мой <span class="story-highlight">длинный нос, морщинки, глаза...</span> и даже в зеркало смотрю на себя теперь <span class="story-highlight">иначе!</span> Может и правда <span class="story-highlight">я хороша</span>😁</p>
+              <p class="story-text">Наташа, я нахожусь в <span class="story-highlight">принятии</span> и очень <span class="story-highlight">глубоком</span>......мне <span class="story-highlight">нравится,</span> что со мной сейчас происходит.....вообще <span class="story-highlight">смотрю на себя иначе.</span> <span class="story-highlight">Благодарю свое тело, что живу!</span></p>
             </div>
           </div>
         </section>
@@ -1720,7 +1807,142 @@
           <img src="img/yulia-1-film-10.jpg" alt="" />
         </div>
       </div>
+      <div class="film-track" data-film="9">
+        <div class="film-sequence">
+          <img src="img/elena-film-01.jpg" alt="" />
+          <img src="img/elena-film-02.jpg" alt="" />
+          <img src="img/elena-film-03.jpg" alt="" />
+          <img src="img/elena-film-04.jpg" alt="" />
+          <img src="img/elena-film-05.jpg" alt="" />
+          <img src="img/elena-film-06.jpg" alt="" />
+          <img src="img/elena-film-07.jpg" alt="" />
+          <img src="img/elena-film-08.jpg" alt="" />
+          <img src="img/elena-film-01.jpg" alt="" />
+          <img src="img/elena-film-02.jpg" alt="" />
+          <img src="img/elena-film-03.jpg" alt="" />
+          <img src="img/elena-film-04.jpg" alt="" />
+          <img src="img/elena-film-05.jpg" alt="" />
+          <img src="img/elena-film-06.jpg" alt="" />
+          <img src="img/elena-film-07.jpg" alt="" />
+          <img src="img/elena-film-08.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/elena-film-01.jpg" alt="" />
+          <img src="img/elena-film-02.jpg" alt="" />
+          <img src="img/elena-film-03.jpg" alt="" />
+          <img src="img/elena-film-04.jpg" alt="" />
+          <img src="img/elena-film-05.jpg" alt="" />
+          <img src="img/elena-film-06.jpg" alt="" />
+          <img src="img/elena-film-07.jpg" alt="" />
+          <img src="img/elena-film-08.jpg" alt="" />
+          <img src="img/elena-film-01.jpg" alt="" />
+          <img src="img/elena-film-02.jpg" alt="" />
+          <img src="img/elena-film-03.jpg" alt="" />
+          <img src="img/elena-film-04.jpg" alt="" />
+          <img src="img/elena-film-05.jpg" alt="" />
+          <img src="img/elena-film-06.jpg" alt="" />
+          <img src="img/elena-film-07.jpg" alt="" />
+          <img src="img/elena-film-08.jpg" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="10">
+        <div class="film-sequence">
+          <img src="img/kristina-film-01.jpg" alt="" />
+          <img src="img/kristina-film-02.jpg" alt="" />
+          <img src="img/kristina-film-03.jpg" alt="" />
+          <img src="img/kristina-film-04.jpg" alt="" />
+          <img src="img/kristina-film-05.jpg" alt="" />
+          <img src="img/kristina-film-06.jpg" alt="" />
+          <img src="img/kristina-film-07.jpg" alt="" />
+          <img src="img/kristina-film-08.jpg" alt="" />
+          <img src="img/kristina-film-09.jpg" alt="" />
+          <img src="img/kristina-film-10.jpg" alt="" />
+          <img src="img/kristina-film-01.jpg" alt="" />
+          <img src="img/kristina-film-02.jpg" alt="" />
+          <img src="img/kristina-film-03.jpg" alt="" />
+          <img src="img/kristina-film-04.jpg" alt="" />
+          <img src="img/kristina-film-05.jpg" alt="" />
+          <img src="img/kristina-film-06.jpg" alt="" />
+          <img src="img/kristina-film-07.jpg" alt="" />
+          <img src="img/kristina-film-08.jpg" alt="" />
+          <img src="img/kristina-film-09.jpg" alt="" />
+          <img src="img/kristina-film-10.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/kristina-film-01.jpg" alt="" />
+          <img src="img/kristina-film-02.jpg" alt="" />
+          <img src="img/kristina-film-03.jpg" alt="" />
+          <img src="img/kristina-film-04.jpg" alt="" />
+          <img src="img/kristina-film-05.jpg" alt="" />
+          <img src="img/kristina-film-06.jpg" alt="" />
+          <img src="img/kristina-film-07.jpg" alt="" />
+          <img src="img/kristina-film-08.jpg" alt="" />
+          <img src="img/kristina-film-09.jpg" alt="" />
+          <img src="img/kristina-film-10.jpg" alt="" />
+          <img src="img/kristina-film-01.jpg" alt="" />
+          <img src="img/kristina-film-02.jpg" alt="" />
+          <img src="img/kristina-film-03.jpg" alt="" />
+          <img src="img/kristina-film-04.jpg" alt="" />
+          <img src="img/kristina-film-05.jpg" alt="" />
+          <img src="img/kristina-film-06.jpg" alt="" />
+          <img src="img/kristina-film-07.jpg" alt="" />
+          <img src="img/kristina-film-08.jpg" alt="" />
+          <img src="img/kristina-film-09.jpg" alt="" />
+          <img src="img/kristina-film-10.jpg" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="11">
+        <div class="film-sequence">
+          <img src="img/nina-film-01.jpg" alt="" />
+          <img src="img/nina-film-02.jpg" alt="" />
+          <img src="img/nina-film-03.jpg" alt="" />
+          <img src="img/nina-film-04.jpg" alt="" />
+          <img src="img/nina-film-05.jpg" alt="" />
+          <img src="img/nina-film-06.jpg" alt="" />
+          <img src="img/nina-film-07.jpg" alt="" />
+          <img src="img/nina-film-08.jpg" alt="" />
+          <img src="img/nina-film-09.jpg" alt="" />
+          <img src="img/nina-film-10.jpg" alt="" />
+          <img src="img/nina-film-11.jpg" alt="" />
+          <img src="img/nina-film-01.jpg" alt="" />
+          <img src="img/nina-film-02.jpg" alt="" />
+          <img src="img/nina-film-03.jpg" alt="" />
+          <img src="img/nina-film-04.jpg" alt="" />
+          <img src="img/nina-film-05.jpg" alt="" />
+          <img src="img/nina-film-06.jpg" alt="" />
+          <img src="img/nina-film-07.jpg" alt="" />
+          <img src="img/nina-film-08.jpg" alt="" />
+          <img src="img/nina-film-09.jpg" alt="" />
+          <img src="img/nina-film-10.jpg" alt="" />
+          <img src="img/nina-film-11.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/nina-film-01.jpg" alt="" />
+          <img src="img/nina-film-02.jpg" alt="" />
+          <img src="img/nina-film-03.jpg" alt="" />
+          <img src="img/nina-film-04.jpg" alt="" />
+          <img src="img/nina-film-05.jpg" alt="" />
+          <img src="img/nina-film-06.jpg" alt="" />
+          <img src="img/nina-film-07.jpg" alt="" />
+          <img src="img/nina-film-08.jpg" alt="" />
+          <img src="img/nina-film-09.jpg" alt="" />
+          <img src="img/nina-film-10.jpg" alt="" />
+          <img src="img/nina-film-11.jpg" alt="" />
+          <img src="img/nina-film-01.jpg" alt="" />
+          <img src="img/nina-film-02.jpg" alt="" />
+          <img src="img/nina-film-03.jpg" alt="" />
+          <img src="img/nina-film-04.jpg" alt="" />
+          <img src="img/nina-film-05.jpg" alt="" />
+          <img src="img/nina-film-06.jpg" alt="" />
+          <img src="img/nina-film-07.jpg" alt="" />
+          <img src="img/nina-film-08.jpg" alt="" />
+          <img src="img/nina-film-09.jpg" alt="" />
+          <img src="img/nina-film-10.jpg" alt="" />
+          <img src="img/nina-film-11.jpg" alt="" />
+        </div>
+      </div>
     </div>
+    <footer class="site-footer"></footer>
     </div>
 
     <script>
@@ -1762,7 +1984,8 @@
         irina: { body: 19, title: 60, lead: 34, final: 32, paddingY: 21, paddingX: 29, columnGap: 32, rowGap: 10, paragraphGap: 12, nameGap: 3, leadGap: 5, nameLineGap: 16, lineHeight: 1.45 },
         anya: { body: 19, title: 64, lead: 30, final: 32, paddingY: 20, paddingX: 29, columnGap: 32, rowGap: 10, paragraphGap: 12, nameGap: 3, leadGap: 5, nameLineGap: 16, lineHeight: 1.43 },
         yuliaK: { body: 18, title: 62, lead: 31, final: 31, paddingY: 18, paddingX: 27, columnGap: 29, rowGap: 9, paragraphGap: 9, nameGap: 2, leadGap: 4, nameLineGap: 15, lineHeight: 1.4 },
-        mentor: { body: 20, title: 58, lead: 32, final: 32, paddingY: 21, paddingX: 31, columnGap: 0, rowGap: 7, paragraphGap: 12, nameGap: 4, leadGap: 6, nameLineGap: 14, lineHeight: 1.46 }
+        mentor: { body: 20, title: 58, lead: 32, final: 32, paddingY: 21, paddingX: 31, columnGap: 0, rowGap: 7, paragraphGap: 12, nameGap: 4, leadGap: 6, nameLineGap: 14, lineHeight: 1.46 },
+        reference: { body: 21.5, title: 62, lead: 32, final: 32, paddingY: 19, paddingX: 33, columnGap: 0, rowGap: 18, paragraphGap: 16, nameGap: 7, leadGap: 6, nameLineGap: 0, lineHeight: 1.48 }
       };
 
       const fitProperties = [
@@ -1784,6 +2007,7 @@
       ];
 
       function getFitProfile(story) {
+        if (story.classList.contains("story--reference")) return fitProfiles.reference;
         if (story.classList.contains("story--yulia-k")) return fitProfiles.yuliaK;
         if (story.classList.contains("story--anya")) return fitProfiles.anya;
         if (story.classList.contains("story--irina")) return fitProfiles.irina;

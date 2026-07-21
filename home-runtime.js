@@ -3,7 +3,7 @@
     document.body.classList.add("home-runtime-ready");
 
     const sections = Array.from(document.querySelectorAll(
-      ".story-section, .practice-section, .reflection-section, .permission-section, .women-story-section"
+      ".story-section, .practice-section, .reflection-section, .permission-section, .women-story-section, .author-intro-section"
     ));
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

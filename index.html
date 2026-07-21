@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="mobile-menu.css?v=20260720" />
     <link rel="stylesheet" href="home-runtime.css?v=20260720" />
     <script src="mobile-menu.js?v=20260720" defer></script>
-    <script src="home-runtime.js?v=20260720" defer></script>
+    <script src="home-runtime.js?v=20260720-2" defer></script>
     <style>
       :root {
         --graphite: #111111;
@@ -69,6 +69,7 @@
         height: 100%;
         object-fit: cover;
         object-position: 52% 50%;
+        filter: brightness(0.8);
         transform: scale(1.02);
       }
 
@@ -692,14 +693,14 @@
         text-decoration: none;
         font-size: 18px;
         font-weight: 400;
-        transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+        transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
       }
 
       .women-story-link:hover,
       .women-story-link:focus-visible {
-        color: var(--gold);
-        border-color: rgba(216, 181, 138, 0.72);
-        background: rgba(17, 17, 17, 0.78);
+        color: #080808;
+        border-color: var(--gold);
+        background: var(--gold);
       }
 
       .women-story-section.with-animation .women-story-content {
@@ -711,6 +712,115 @@
       .women-story-section.is-visible .women-story-content {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      .author-intro-section {
+        min-height: 100vh;
+        min-height: 100svh;
+        display: grid;
+        grid-template-columns: minmax(0, 52%) minmax(460px, 48%);
+        overflow: hidden;
+        background: #080808;
+        border-bottom: 1px solid rgba(216, 181, 138, 0.14);
+      }
+
+      .author-intro-photo {
+        min-height: 100%;
+        background-color: #101010;
+        background-image: url("img/home-author.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% center;
+        filter: brightness(0.65);
+      }
+
+      .author-intro-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 72px clamp(52px, 6vw, 104px);
+      }
+
+      .author-intro-title {
+        margin: 0 0 36px;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(34px, 2.5vw, 42px);
+        font-weight: 600;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .author-intro-text {
+        margin: 0;
+        color: rgba(233, 226, 218, 0.78);
+        font-size: clamp(15px, 1.05vw, 17px);
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      .author-intro-text + .author-intro-text {
+        margin-top: 20px;
+      }
+
+      .author-intro-text strong {
+        color: rgba(233, 226, 218, 0.96);
+        font-weight: 500;
+      }
+
+      .author-intro-values {
+        display: grid;
+        gap: 7px;
+        margin: 22px 0 0;
+        padding: 0;
+        color: var(--gold);
+        font-size: clamp(15px, 1.05vw, 17px);
+        font-weight: 500;
+        line-height: 1.45;
+        list-style: none;
+      }
+
+      .author-intro-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: min(292px, 100%);
+        min-height: 50px;
+        margin-top: 36px;
+        padding: 13px 24px;
+        border: 1px solid rgba(216, 181, 138, 0.72);
+        border-radius: 2px;
+        color: rgba(233, 226, 218, 0.88);
+        background: transparent;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 400;
+        transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+      }
+
+      .author-intro-button:hover,
+      .author-intro-button:focus-visible {
+        color: #080808;
+        border-color: var(--gold);
+        background: var(--gold);
+      }
+
+      .author-intro-section.with-animation .author-intro-photo {
+        opacity: 0;
+        transform: scale(1.025);
+        transition: opacity 1s ease, transform 1.2s ease;
+      }
+
+      .author-intro-section.with-animation .author-intro-copy {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 900ms ease 120ms, transform 900ms ease 120ms;
+      }
+
+      .author-intro-section.is-visible .author-intro-photo,
+      .author-intro-section.is-visible .author-intro-copy {
+        opacity: 1;
+        transform: none;
       }
 
       .closing-section {
@@ -1227,6 +1337,15 @@
             linear-gradient(90deg, rgba(5, 5, 5, 0.82) 0%, rgba(5, 5, 5, 0.62) 48%, rgba(5, 5, 5, 0.32) 100%),
             linear-gradient(180deg, rgba(5, 5, 5, 0.3) 0%, rgba(5, 5, 5, 0.42) 42%, rgba(5, 5, 5, 0.94) 100%);
         }
+
+        .author-intro-section {
+          grid-template-columns: minmax(0, 48%) minmax(420px, 52%);
+        }
+
+        .author-intro-copy {
+          padding-right: 36px;
+          padding-left: 36px;
+        }
       }
 
       @media (min-width: 981px) and (max-height: 790px) {
@@ -1319,6 +1438,28 @@
         .women-story-card {
           padding-top: 28px;
           padding-bottom: 30px;
+        }
+
+        .author-intro-copy {
+          padding-top: 46px;
+          padding-bottom: 46px;
+        }
+
+        .author-intro-title {
+          margin-bottom: 24px;
+          font-size: 32px;
+        }
+
+        .author-intro-text + .author-intro-text {
+          margin-top: 14px;
+        }
+
+        .author-intro-values {
+          margin-top: 16px;
+        }
+
+        .author-intro-button {
+          margin-top: 24px;
         }
 
       }
@@ -1434,6 +1575,47 @@
           margin-top: 22px;
           padding: 14px 18px;
           font-size: 15px;
+        }
+
+        .author-intro-section {
+          min-height: auto;
+          grid-template-columns: 1fr;
+          grid-template-rows: minmax(460px, 66svh) auto;
+        }
+
+        .author-intro-photo {
+          min-height: 0;
+          background-position: 52% center;
+        }
+
+        .author-intro-copy {
+          padding: 52px 22px 58px;
+        }
+
+        .author-intro-title {
+          margin-bottom: 30px;
+          font-size: 35px;
+        }
+
+        .author-intro-text {
+          font-size: 15px;
+          line-height: 1.62;
+        }
+
+        .author-intro-text + .author-intro-text {
+          margin-top: 18px;
+        }
+
+        .author-intro-values {
+          gap: 6px;
+          margin-top: 20px;
+          font-size: 15px;
+        }
+
+        .author-intro-button {
+          width: 100%;
+          min-height: 54px;
+          margin-top: 32px;
         }
 
         .video-wrap video {
@@ -2084,6 +2266,24 @@
           </div>
           <p class="women-story-note">Иногда встреча с собой<br />начинается с одного взгляда.</p>
           <a class="women-story-link" href="Portfolio.html">Смотреть другие истории <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+      <section class="author-intro-section" id="author-intro">
+        <div class="author-intro-photo" role="img" aria-label="Наталья Хоруженко, фотограф и психолог"></div>
+        <div class="author-intro-copy">
+          <h2 class="author-intro-title">Об авторе</h2>
+          <p class="author-intro-text">Меня зовут <strong>Наталья Хоруженко.</strong><br />Я фотограф, психолог и автор практики <strong>«Встреча с собой».</strong></p>
+          <p class="author-intro-text">В своей работе я соединяю фотографию и бережный внутренний диалог. Для меня камера — не способ оценить внешность, а возможность остановиться и увидеть себя без привычной критики.</p>
+          <p class="author-intro-text">Я создаю пространство, в котором женщина может расслабиться, почувствовать своё тело и встретиться с той собой, которую давно не замечала.</p>
+          <p class="author-intro-text">Мне важно сохранить не идеальный образ, а живое состояние:</p>
+          <ul class="author-intro-values">
+            <li>Красоту.</li>
+            <li>Женственность.</li>
+            <li>Достоинство.</li>
+            <li>Внутреннюю опору.</li>
+          </ul>
+          <p class="author-intro-text">То, к чему можно возвращаться снова и снова.</p>
+          <a class="author-intro-button" href="about.html">Узнать больше обо мне</a>
         </div>
       </section>
       <section class="closing-section" id="closing">
