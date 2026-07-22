@@ -564,6 +564,11 @@
         margin-top: clamp(22px, 2.6vh, 34px);
       }
 
+      .story-column--split {
+        display: grid;
+        gap: clamp(24px, 3vw, 42px);
+      }
+
       .story-highlight {
         color: var(--gold);
         font-weight: 500;
@@ -736,6 +741,17 @@
           padding-right: 112px;
         }
 
+        .story--reference-long .story-column--split {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          max-width: none;
+          align-items: start;
+          column-gap: clamp(26px, 2.6vw, 46px);
+        }
+
+        .story--reference-long .story-column--split .story-text:first-child {
+          padding-right: 0;
+        }
+
         .story[data-story="4"] .story-name-line,
         .story[data-story="5"] .story-name-line,
         .story[data-story="6"] .story-name-line,
@@ -771,6 +787,10 @@
       }
 
       .film-track {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
         display: none;
         width: max-content;
         height: 100%;
@@ -918,6 +938,10 @@
         .story-copy--mentor {
           grid-template-columns: 1fr;
           padding-top: 58px;
+        }
+
+        .story--reference-long .story-column--split {
+          grid-template-columns: 1fr;
         }
 
         .story-copy--anya .story-lead {
@@ -1427,6 +1451,73 @@
               <p class="story-text">Сейчас мне так <span class="story-highlight">легко,</span> даже дышать как-будто бы легче. Весь день после съемок я была <span class="story-highlight">на подъеме,</span> ловила себя, что <span class="story-highlight">улыбаюсь</span> без повода😁 Еду за рулем, а у меня <span class="story-highlight">нос задран вверх, зубы не скрипят</span> (они в основном у меня стиснуты). Хочу <span class="story-highlight">кружиться</span> и <span class="story-highlight">танцевать!!!</span> <span class="story-highlight">Радоваться, жить!!!</span></p>
               <p class="story-text">А когда увидела свои фото.....знаешь, я <span class="story-highlight">впервые себе нравлюсь!!</span> Хочу на них <span class="story-highlight">смотреть,</span> хочу их <span class="story-highlight">показать</span> 😁🤣 Меня <span class="story-highlight">не бесит</span> мое <span class="story-highlight">тело</span> на них, мой <span class="story-highlight">длинный нос, морщинки, глаза...</span> и даже в зеркало смотрю на себя теперь <span class="story-highlight">иначе!</span> Может и правда <span class="story-highlight">я хороша</span>😁</p>
               <p class="story-text">Наташа, я нахожусь в <span class="story-highlight">принятии</span> и очень <span class="story-highlight">глубоком</span>......мне <span class="story-highlight">нравится,</span> что со мной сейчас происходит.....вообще <span class="story-highlight">смотрю на себя иначе.</span> <span class="story-highlight">Благодарю свое тело, что живу!</span></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--mentor story--reference story--reference-long" data-story="12">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-irina-dark-main.jpg" alt="Ирина, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor story-copy--reference">
+            <h1 class="story-name">Ирина, 42 года</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column story-column--split">
+              <div>
+                <p class="story-text">Для меня фотографироваться - это <span class="story-highlight">тяжёлая работа.</span> Но когда долго мечтаешь о фотосессии и классных фото, когда нашла фотографа, чьи работы очень нравятся, нужно было себя преодолеть, <span class="story-highlight">выйти из зоны комфорта</span> и осуществлять свою мечту. И да, в твоих руках, Наталья, это было сделать намного проще. То как ты <span class="story-highlight">нашла ко мне подход,</span> как <span class="story-highlight">вкладывалась</span> в каждый кадр, как <span class="story-highlight">чувствовала меня, поддерживала,</span> хвалила, шутила, давала отдохнуть и <span class="story-highlight">принимала такой какая есть.</span></p>
+              </div>
+              <div>
+                <p class="story-text">Ну и конечно такой профессиональный подход не мог не дать нужных результатов. Мне очень понравилось что получилось. <span class="story-highlight">Неужели это я))). Я в восторге,</span> от качества фото, от света, от себя и в целом от результата! В отзывах часто пишут что ты волшебница, но это не волшебство, это <span class="story-highlight">талант, профессионализм, огромная отдача и работа на результат.</span> Я <span class="story-highlight">благодарю вселённую</span> что нашла тебя.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--mentor story--reference" data-story="13">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-irina-light-main.jpg" alt="Ирина, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor story-copy--reference">
+            <h1 class="story-name">Ирина, 42 года</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column">
+              <p class="story-text">Это было очень необычно!</p>
+              <p class="story-text">Мы так в жизни не делаем.<br />Это такое время,<br />которое просто <span class="story-highlight">для себя.</span><br /><span class="story-highlight">Это очень ценно.</span></p>
+              <p class="story-text">Потому что время пройдет,<br />а посмотреть на себя вот так....<br /><span class="story-highlight">Настоящую, живую...</span><br />Да, спустя даже много лет.<br /><span class="story-highlight">Это очень ценно,</span> я думаю.</p>
+              <p class="story-text">Я бы очень хотела потом<br />эти фотографии <span class="story-highlight">детям показывать.</span></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--mentor story--reference story--reference-long" data-story="14">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-olga-42-main.jpg" alt="Ольга, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor story-copy--reference">
+            <h1 class="story-name">Ольга, 42 года</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column story-column--split">
+              <div>
+                <p class="story-text">Дорогие девушки , женщины , хочу поделится с вами своими эмоциями после работы с Наташей . Я второй раз прихожу к Наташе на фотосессию и понимаю одно , что я <span class="story-highlight">буду делать это периодически</span> , таких эмоций в последние годы я уже давно не получала, как получила в очередной раз на фотосессии . Я понимаю, что меня с каждым разом <span class="story-highlight">затягивает все больше и мне это очень нравится</span> , мне нравится получать <span class="story-highlight">бурю положительных эмоций</span> , <span class="story-highlight">полное расслабление</span> во время работы и конечно же после получения фотографий.</p>
+              </div>
+              <div>
+                <p class="story-text">Каждый раз на фотографиях я вижу какой я могу быть <span class="story-highlight">красивой , женственной</span> , а самое главное той <span class="story-highlight">настоящей</span> какая я есть . Получая фотографии по моему телу пробегают <span class="story-highlight">толпы мурашек</span> , от той проделанной работы , той красоты в каждой фотографии , я вижу <span class="story-highlight">что то новое про себя.</span> Многие знакомые говорят мне какая я <span class="story-highlight">настоящая и красивая!</span> Пересматривая время от времени фотографии каждый раз любуюсь ими и говорю себе , что <span class="story-highlight">не жалею</span> , что сходила на фотосессию.</p>
+                <p class="story-text">Раньше я жалела сделать для себя что то , но теперь точно решила, что я <span class="story-highlight">буду приходить и получать ту бурю положительных эмоций</span> что получила в очередной раз!</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="story story--mentor story--reference" data-story="15">
+          <div class="story-photo-wrap">
+            <img class="story-photo is-mentor-main" src="img/story-olga-50-main.jpg" alt="Ольга, портрет из истории" />
+          </div>
+          <div class="story-copy story-copy--mentor story-copy--reference">
+            <h1 class="story-name">Ольга, 50 лет</h1>
+            <div class="story-name-line" aria-hidden="true"></div>
+            <div class="story-column">
+              <p class="story-text">Наташа, как же это безумно <span class="story-highlight">красиво, дорого и изысканно вкусно</span> смотрится 😍 Твой неординарный подход на раскрытие эмоций дает <span class="story-highlight">ошеломительный результат</span> и фотографии получились бомбические. Терапевтический эксперимент однозначно удался, <span class="story-highlight">эмоции зашкаливали</span> 🥰</p>
+              <p class="story-text">Фото, которые ты мне в анонс бросила, потрясающие. <span class="story-highlight">Аж до мурашек, не верится</span> что это Я, как будто модель из глянцевого журнала</p>
             </div>
           </div>
         </section>
@@ -1941,6 +2032,178 @@
           <img src="img/nina-film-11.jpg" alt="" />
         </div>
       </div>
+      <div class="film-track" data-film="12">
+        <div class="film-sequence">
+          <img src="img/irina-dark-film-01.jpg" alt="" />
+          <img src="img/irina-dark-film-02.jpg" alt="" />
+          <img src="img/irina-dark-film-03.jpg" alt="" />
+          <img src="img/irina-dark-film-04.jpg" alt="" />
+          <img src="img/irina-dark-film-05.jpg" alt="" />
+          <img src="img/irina-dark-film-06.jpg" alt="" />
+          <img src="img/irina-dark-film-07.jpg" alt="" />
+          <img src="img/irina-dark-film-08.jpg" alt="" />
+          <img src="img/irina-dark-film-09.jpg" alt="" />
+          <img src="img/irina-dark-film-10.jpg" alt="" />
+          <img src="img/irina-dark-film-11.jpg" alt="" />
+          <img src="img/irina-dark-film-12.jpg" alt="" />
+          <img src="img/irina-dark-film-01.jpg" alt="" />
+          <img src="img/irina-dark-film-02.jpg" alt="" />
+          <img src="img/irina-dark-film-03.jpg" alt="" />
+          <img src="img/irina-dark-film-04.jpg" alt="" />
+          <img src="img/irina-dark-film-05.jpg" alt="" />
+          <img src="img/irina-dark-film-06.jpg" alt="" />
+          <img src="img/irina-dark-film-07.jpg" alt="" />
+          <img src="img/irina-dark-film-08.jpg" alt="" />
+          <img src="img/irina-dark-film-09.jpg" alt="" />
+          <img src="img/irina-dark-film-10.jpg" alt="" />
+          <img src="img/irina-dark-film-11.jpg" alt="" />
+          <img src="img/irina-dark-film-12.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/irina-dark-film-01.jpg" alt="" />
+          <img src="img/irina-dark-film-02.jpg" alt="" />
+          <img src="img/irina-dark-film-03.jpg" alt="" />
+          <img src="img/irina-dark-film-04.jpg" alt="" />
+          <img src="img/irina-dark-film-05.jpg" alt="" />
+          <img src="img/irina-dark-film-06.jpg" alt="" />
+          <img src="img/irina-dark-film-07.jpg" alt="" />
+          <img src="img/irina-dark-film-08.jpg" alt="" />
+          <img src="img/irina-dark-film-09.jpg" alt="" />
+          <img src="img/irina-dark-film-10.jpg" alt="" />
+          <img src="img/irina-dark-film-11.jpg" alt="" />
+          <img src="img/irina-dark-film-12.jpg" alt="" />
+          <img src="img/irina-dark-film-01.jpg" alt="" />
+          <img src="img/irina-dark-film-02.jpg" alt="" />
+          <img src="img/irina-dark-film-03.jpg" alt="" />
+          <img src="img/irina-dark-film-04.jpg" alt="" />
+          <img src="img/irina-dark-film-05.jpg" alt="" />
+          <img src="img/irina-dark-film-06.jpg" alt="" />
+          <img src="img/irina-dark-film-07.jpg" alt="" />
+          <img src="img/irina-dark-film-08.jpg" alt="" />
+          <img src="img/irina-dark-film-09.jpg" alt="" />
+          <img src="img/irina-dark-film-10.jpg" alt="" />
+          <img src="img/irina-dark-film-11.jpg" alt="" />
+          <img src="img/irina-dark-film-12.jpg" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="13">
+        <div class="film-sequence">
+          <img src="img/irina-light-film-01.jpg" alt="" />
+          <img src="img/irina-light-film-02.jpg" alt="" />
+          <img src="img/irina-light-film-03.jpg" alt="" />
+          <img src="img/irina-light-film-04.jpg" alt="" />
+          <img src="img/irina-light-film-05.jpg" alt="" />
+          <img src="img/irina-light-film-06.jpg" alt="" />
+          <img src="img/irina-light-film-07.jpg" alt="" />
+          <img src="img/irina-light-film-08.jpg" alt="" />
+          <img src="img/irina-light-film-01.jpg" alt="" />
+          <img src="img/irina-light-film-02.jpg" alt="" />
+          <img src="img/irina-light-film-03.jpg" alt="" />
+          <img src="img/irina-light-film-04.jpg" alt="" />
+          <img src="img/irina-light-film-05.jpg" alt="" />
+          <img src="img/irina-light-film-06.jpg" alt="" />
+          <img src="img/irina-light-film-07.jpg" alt="" />
+          <img src="img/irina-light-film-08.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/irina-light-film-01.jpg" alt="" />
+          <img src="img/irina-light-film-02.jpg" alt="" />
+          <img src="img/irina-light-film-03.jpg" alt="" />
+          <img src="img/irina-light-film-04.jpg" alt="" />
+          <img src="img/irina-light-film-05.jpg" alt="" />
+          <img src="img/irina-light-film-06.jpg" alt="" />
+          <img src="img/irina-light-film-07.jpg" alt="" />
+          <img src="img/irina-light-film-08.jpg" alt="" />
+          <img src="img/irina-light-film-01.jpg" alt="" />
+          <img src="img/irina-light-film-02.jpg" alt="" />
+          <img src="img/irina-light-film-03.jpg" alt="" />
+          <img src="img/irina-light-film-04.jpg" alt="" />
+          <img src="img/irina-light-film-05.jpg" alt="" />
+          <img src="img/irina-light-film-06.jpg" alt="" />
+          <img src="img/irina-light-film-07.jpg" alt="" />
+          <img src="img/irina-light-film-08.jpg" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="14">
+        <div class="film-sequence">
+          <img src="img/olga-42-film-01.jpg" alt="" />
+          <img src="img/olga-42-film-02.jpg" alt="" />
+          <img src="img/olga-42-film-03.jpg" alt="" />
+          <img src="img/olga-42-film-04.jpg" alt="" />
+          <img src="img/olga-42-film-05.jpg" alt="" />
+          <img src="img/olga-42-film-06.jpg" alt="" />
+          <img src="img/olga-42-film-07.jpg" alt="" />
+          <img src="img/olga-42-film-08.jpg" alt="" />
+          <img src="img/olga-42-film-09.jpg" alt="" />
+          <img src="img/olga-42-film-10.jpg" alt="" />
+          <img src="img/olga-42-film-11.jpg" alt="" />
+          <img src="img/olga-42-film-01.jpg" alt="" />
+          <img src="img/olga-42-film-02.jpg" alt="" />
+          <img src="img/olga-42-film-03.jpg" alt="" />
+          <img src="img/olga-42-film-04.jpg" alt="" />
+          <img src="img/olga-42-film-05.jpg" alt="" />
+          <img src="img/olga-42-film-06.jpg" alt="" />
+          <img src="img/olga-42-film-07.jpg" alt="" />
+          <img src="img/olga-42-film-08.jpg" alt="" />
+          <img src="img/olga-42-film-09.jpg" alt="" />
+          <img src="img/olga-42-film-10.jpg" alt="" />
+          <img src="img/olga-42-film-11.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/olga-42-film-01.jpg" alt="" />
+          <img src="img/olga-42-film-02.jpg" alt="" />
+          <img src="img/olga-42-film-03.jpg" alt="" />
+          <img src="img/olga-42-film-04.jpg" alt="" />
+          <img src="img/olga-42-film-05.jpg" alt="" />
+          <img src="img/olga-42-film-06.jpg" alt="" />
+          <img src="img/olga-42-film-07.jpg" alt="" />
+          <img src="img/olga-42-film-08.jpg" alt="" />
+          <img src="img/olga-42-film-09.jpg" alt="" />
+          <img src="img/olga-42-film-10.jpg" alt="" />
+          <img src="img/olga-42-film-11.jpg" alt="" />
+          <img src="img/olga-42-film-01.jpg" alt="" />
+          <img src="img/olga-42-film-02.jpg" alt="" />
+          <img src="img/olga-42-film-03.jpg" alt="" />
+          <img src="img/olga-42-film-04.jpg" alt="" />
+          <img src="img/olga-42-film-05.jpg" alt="" />
+          <img src="img/olga-42-film-06.jpg" alt="" />
+          <img src="img/olga-42-film-07.jpg" alt="" />
+          <img src="img/olga-42-film-08.jpg" alt="" />
+          <img src="img/olga-42-film-09.jpg" alt="" />
+          <img src="img/olga-42-film-10.jpg" alt="" />
+          <img src="img/olga-42-film-11.jpg" alt="" />
+        </div>
+      </div>
+      <div class="film-track" data-film="15">
+        <div class="film-sequence">
+          <img src="img/olga-50-film-01.jpg" alt="" />
+          <img src="img/olga-50-film-02.jpg" alt="" />
+          <img src="img/olga-50-film-03.jpg" alt="" />
+          <img src="img/olga-50-film-04.jpg" alt="" />
+          <img src="img/olga-50-film-05.jpg" alt="" />
+          <img src="img/olga-50-film-06.jpg" alt="" />
+          <img src="img/olga-50-film-01.jpg" alt="" />
+          <img src="img/olga-50-film-02.jpg" alt="" />
+          <img src="img/olga-50-film-03.jpg" alt="" />
+          <img src="img/olga-50-film-04.jpg" alt="" />
+          <img src="img/olga-50-film-05.jpg" alt="" />
+          <img src="img/olga-50-film-06.jpg" alt="" />
+        </div>
+        <div class="film-sequence" aria-hidden="true">
+          <img src="img/olga-50-film-01.jpg" alt="" />
+          <img src="img/olga-50-film-02.jpg" alt="" />
+          <img src="img/olga-50-film-03.jpg" alt="" />
+          <img src="img/olga-50-film-04.jpg" alt="" />
+          <img src="img/olga-50-film-05.jpg" alt="" />
+          <img src="img/olga-50-film-06.jpg" alt="" />
+          <img src="img/olga-50-film-01.jpg" alt="" />
+          <img src="img/olga-50-film-02.jpg" alt="" />
+          <img src="img/olga-50-film-03.jpg" alt="" />
+          <img src="img/olga-50-film-04.jpg" alt="" />
+          <img src="img/olga-50-film-05.jpg" alt="" />
+          <img src="img/olga-50-film-06.jpg" alt="" />
+        </div>
+      </div>
     </div>
     <footer class="site-footer"></footer>
     </div>
@@ -2231,6 +2494,6 @@
       <span class="floating-telegram-label">тг-канал</span>
       <img src="img/social-telegram.png" alt="" />
     </a>
-    <script src="admin-panel.js?v=20260720-admin2"></script>
+    <script src="admin-panel.js?v=20260722-storyfix1"></script>
   </body>
 </html>

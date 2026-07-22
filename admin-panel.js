@@ -8,6 +8,12 @@
     "A", "BLOCKQUOTE", "BUTTON", "DD", "DT", "FIGCAPTION", "H1", "H2", "H3",
     "H4", "H5", "H6", "LABEL", "LI", "P", "SPAN", "TD", "TH"
   ]);
+  const TRANSIENT_SELECTOR_CLASSES = new Set([
+    "is-active",
+    "is-leaving-left",
+    "is-leaving-right",
+    "is-menu-open",
+  ]);
 
   const pendingChanges = new Map();
   const bypassAdminCheck = new WeakSet();
@@ -26,7 +32,9 @@
 
   function getPageKey() {
     const path = window.location.pathname.replace(/\/+$/, "") || "/";
-    return path;
+    if (path === "/") return path;
+    const lastSegment = path.slice(path.lastIndexOf("/") + 1);
+    return lastSegment.includes(".") ? path : `${path}.html`;
   }
 
   function getAdminHint() {
@@ -103,19 +111,23 @@
     let current = element;
 
     while (current && current.nodeType === Node.ELEMENT_NODE) {
-      let segment = current.tagName.toLowerCase();
+      const storyId = current.dataset.story;
+      let segment = storyId === undefined
+        ? current.tagName.toLowerCase()
+        : `[data-story="${escapeSelector(storyId)}"]`;
       const stableClasses = Array.from(current.classList)
         .filter((className) => !className.startsWith("admin-panel-"))
+        .filter((className) => !TRANSIENT_SELECTOR_CLASSES.has(className))
         .slice(0, 3);
 
-      if (stableClasses.length) {
+      if (storyId === undefined && stableClasses.length) {
         segment += stableClasses.map((className) => `.${escapeSelector(className)}`).join("");
       }
 
       const sameTagSiblings = current.parentElement
         ? Array.from(current.parentElement.children).filter((child) => child.tagName === current.tagName)
         : [];
-      if (sameTagSiblings.length > 1) {
+      if (storyId === undefined && sameTagSiblings.length > 1) {
         segment += `:nth-of-type(${sameTagSiblings.indexOf(current) + 1})`;
       }
 
@@ -128,6 +140,11 @@
         }
       } catch (error) {
         // Continue building a fully qualified selector.
+      }
+
+      if (storyId !== undefined) {
+        selectorCache.set(element, selector);
+        return selector;
       }
 
       if (current === document.body) break;
